@@ -11,6 +11,7 @@ class AppColor{
   static const Color royalBlue = Color(0xFF0C1755);
   static const Color honeyYellow = Color(0xFFFFB400);
   static const Color roseMadder = Color(0xFFDF2935);
+  static const Color black = Color(0xFF000000);
 
   static const MaterialColor defaultColor = MaterialColor(
     0xFF005DA3,

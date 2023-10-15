@@ -9,6 +9,7 @@ import '../../data/remote/dio_helper.dart';
 import '../../main.dart';
 import '../../presentation/widget/toast.dart';
 import '../app_localization.dart';
+
 part 'global_state.dart';
 
 class GlobalCubit extends Cubit<GlobalState> {
@@ -56,21 +57,24 @@ class GlobalCubit extends Cubit<GlobalState> {
     });
   }
 
-  void userRegister(
-      {required String name,
-      required String email,
-      required String password,
-      required String phone,
-      required context}) {
+  void userRegister({
+    required String name,
+    required String email,
+    required String password,
+    required String phone,
+    required context,
+  }) {
     emit(RegisterLoadingState());
 
     DioHelper.postData(
       url: REGISTER,
       body: {
-        'name': name,
+        'first_name': name,
+        'last_name': name,
         'email': email,
         'password': password,
         'phone': phone,
+        'level_id': '1',
       },
     ).then((value) {
       registerModel = RegisterModel.fromJson(value.data);
@@ -88,13 +92,13 @@ class GlobalCubit extends Cubit<GlobalState> {
     });
   }
 
-  IconData suffix = Icons.visibility_outlined;
+  IconData suffix = Icons.visibility;
   bool isPassword = true;
 
   changePasswordVisibility() {
     isPassword = !isPassword;
     suffix =
-        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+        isPassword ? Icons.visibility : Icons.visibility_off;
     emit(ChangePasswordVisibilityState());
   }
 
@@ -102,6 +106,12 @@ class GlobalCubit extends Cubit<GlobalState> {
     delegate.changeLocale(delegate.currentLocale.languageCode == 'ar'
         ? const Locale('en')
         : const Locale('ar'));
+    emit(AppChangeLanguageState());
+  }
+  changeLanguageValueWithLang(context,String lang) async {
+    delegate.changeLocale(lang == 'ar'
+        ? const Locale('ar')
+        : const Locale('en'));
     emit(AppChangeLanguageState());
   }
 }

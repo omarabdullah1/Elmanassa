@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:edumaster/presentation/router/app_router.dart';
 import 'package:edumaster/presentation/styles/colors.dart';
 import 'package:edumaster/presentation/widget/toast.dart';
@@ -17,28 +19,27 @@ import 'business_logic/global_cubit/global_cubit.dart';
 import 'data/local/cache_helper.dart';
 import 'data/remote/dio_helper.dart';
 
-
 late LocalizationDelegate delegate;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  BlocOverrides.runZoned(
-        () async {
-      DioHelper.init();
-      await CacheHelper.init();
-      final locale =
-          CacheHelper.getDataFromSharedPreference(key: 'language') ?? "en";
-      delegate = await LocalizationDelegate.create(
-        fallbackLocale: locale,
-        supportedLocales: ['ar', 'en'],
-      );
-      await delegate.changeLocale(Locale(locale));
-      runApp(MyApp(
-        appRouter: AppRouter(),
-      ));
-    },
-    blocObserver: MyBlocObserver(),
+  DioHelper.init();
+  await CacheHelper.init();
+  final locale =
+      CacheHelper.getDataFromSharedPreference(key: 'language') ?? "en";
+  delegate = await LocalizationDelegate.create(
+    fallbackLocale: locale,
+    supportedLocales: ['ar', 'en'],
   );
+  await delegate.changeLocale(Locale(locale));
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
+
+  runApp(MyApp(
+    appRouter: AppRouter(),
+  ));
+  Bloc.observer = MyBlocObserver();
 }
 
 class MyApp extends StatefulWidget {

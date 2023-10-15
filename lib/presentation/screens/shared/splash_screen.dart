@@ -24,11 +24,17 @@ class _SplashScreenState extends State<SplashScreen> {
     timer = Timer(
         const Duration(seconds: 3),
         () => Navigator.pushNamedAndRemoveUntil(
-            context, id == null ? '/entry' : '/profile', (route) => false));
+            context, id == null ? '/onboard' : '/profile', (route) => false));
     return Scaffold(
-      backgroundColor: AppColor.primary,
+      backgroundColor: AppColor.white,
       body: Center(
-        child: Image.asset('assets/images/logo2.png'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/logo.png'),
+            const CircularProgressIndicator(color: AppColor.honeyYellow,)
+          ],
+        ),
       ),
     );
   }
