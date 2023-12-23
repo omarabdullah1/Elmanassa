@@ -26,12 +26,16 @@ class CourseDashboardScreen extends StatelessWidget {
       child: BlocConsumer<StudentHomeCubit, StudentHomeState>(
         listener: (context, state) {},
         builder: (context, state) {
-          final StudentHomeCubit studentHomeCubit = context.read<StudentHomeCubit>();
+          final StudentHomeCubit studentHomeCubit =
+              context.read<StudentHomeCubit>();
           if (studentHomeCubit.courseDashboardModel != null) {
             List<Widget> widgetsUnits = [];
-            for (var ele in studentHomeCubit.courseDashboardModel!.course!.units!) {
+            for (var ele
+                in studentHomeCubit.courseDashboardModel!.course!.units!) {
               // Add a SizedBox as a separator, except for the last item
-              if (studentHomeCubit.courseDashboardModel!.course!.units!.indexOf(ele) == 0) {
+              if (studentHomeCubit.courseDashboardModel!.course!.units!
+                      .indexOf(ele) ==
+                  0) {
                 widgetsUnits.add(
                   const ListTile(
                     title: Align(
@@ -56,12 +60,14 @@ class CourseDashboardScreen extends StatelessWidget {
               );
             }
             // Add a SizedBox as a separator, except for the last item
-            if (studentHomeCubit.courseDashboardModel!.course!.units!.length <= 3) {
+            if (studentHomeCubit.courseDashboardModel!.course!.units!.length <=
+                3) {
               widgetsUnits.add(
                 SizedBox(
                   height: (MediaQuery.of(context).size.height -
                       (360 +
-                          (studentHomeCubit.courseDashboardModel!.course!.units!.length *
+                          (studentHomeCubit
+                                  .courseDashboardModel!.course!.units!.length *
                               127))),
                 ),
               );
@@ -174,11 +180,15 @@ class CourseDashboardScreen extends StatelessWidget {
                             fit: StackFit.expand,
                             children: [
                               CachedNetworkImage(
-                                imageUrl: '$domain/${studentHomeCubit.courseDashboardModel!.course!.thumbnail!}',
+                                imageUrl:
+                                    '$domain/${studentHomeCubit.courseDashboardModel!.course!.thumbnail!}',
                                 fit: BoxFit.cover,
-                                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                    CircularProgressIndicator(value: downloadProgress.progress),
-                                errorWidget: (context, url, error) => const Icon(Icons.error),
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) =>
+                                        CircularProgressIndicator(
+                                            value: downloadProgress.progress),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                               ),
                               Container(
                                 decoration: BoxDecoration(
@@ -209,40 +219,39 @@ class CourseDashboardScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            for (var i in studentHomeCubit.courseDashboardModel!.course!.tags!)
+                            for (var i in studentHomeCubit
+                                .courseDashboardModel!.course!.tags!)
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
                                   width: 80.0,
                                   height: 30.0,
                                   decoration: BoxDecoration(
-                                    color: AppColor.tagsColors[studentHomeCubit.courseDashboardModel!.course!
-                                        .tags!
-                                        .indexOf(i)]
+                                    color: AppColor.tagsColors[studentHomeCubit
+                                            .courseDashboardModel!.course!.tags!
+                                            .indexOf(i)]
                                         .withOpacity(0.20),
-                                    borderRadius:
-                                    const BorderRadius.all(
+                                    borderRadius: const BorderRadius.all(
                                       Radius.circular(8.0),
                                     ),
                                   ),
                                   child: FittedBox(
                                     fit: BoxFit.scaleDown,
                                     child: Padding(
-                                      padding:
-                                      const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Center(
                                         child: Text(
                                           i.toString(),
                                           style: TextStyle(
-                                            color: AppColor
-                                                .tagsColors[
-                                            studentHomeCubit.courseDashboardModel!
-                                                .course!.tags!
-                                                .indexOf(i)],
+                                            color: AppColor.tagsColors[
+                                                studentHomeCubit
+                                                    .courseDashboardModel!
+                                                    .course!
+                                                    .tags!
+                                                    .indexOf(i)],
                                             fontSize: 18,
                                             fontFamily: 'cairo',
-                                            fontWeight:
-                                            FontWeight.bold,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
@@ -255,8 +264,7 @@ class CourseDashboardScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 22.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
                       child: Text(
                         studentHomeCubit.courseDashboardModel!.course!.title!,
                         textAlign: TextAlign.center,
@@ -280,7 +288,9 @@ class CourseDashboardScreen extends StatelessWidget {
                           topRight: Radius.circular(35.0),
                         ),
                       ),
-                      child: studentHomeCubit.courseDashboardModel!.course!.units == null
+                      child: studentHomeCubit
+                                  .courseDashboardModel!.course!.units ==
+                              null
                           ? const Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -289,7 +299,8 @@ class CourseDashboardScreen extends StatelessWidget {
                                 )
                               ],
                             )
-                          : studentHomeCubit.courseDashboardModel!.course!.units!.isEmpty
+                          : studentHomeCubit
+                                  .courseDashboardModel!.course!.units!.isEmpty
                               ? const SizedBox()
                               : Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
@@ -499,17 +510,25 @@ class _ExpandableCardState extends State<ExpandableCard> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              ele!.lesson!.title.toString(),
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: AppColor.roseMadder,
-                                // fontSize: 22,
-                                fontFamily: 'Tajawal',
-                                fontWeight: FontWeight.bold,
-                              ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  ele!.lesson!.title!.toString(),
+                                  textAlign: TextAlign.start,
+                                  style: const TextStyle(
+                                    color: AppColor.roseMadder,
+                                    // fontSize: 22,
+                                    fontFamily: 'Tajawal',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textDirection: TextDirection.rtl,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
                             ),
                           ),
                           Text(
