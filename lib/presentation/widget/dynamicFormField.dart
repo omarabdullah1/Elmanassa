@@ -55,5 +55,5 @@ Widget dynamicFormField({
       ),
       obscureText: isPassword,
       validator: (_) => validate!(_),
-      onFieldSubmitted: (_) => onSubmit!(_),
+      onFieldSubmitted: (_) => onSubmit!(_) ?? '',
     );

@@ -12,6 +12,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   Timer? timer;
+
   @override
   void dispose() {
     timer!.cancel();
@@ -21,10 +22,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     var id = CacheHelper.getDataFromSharedPreference(key: 'id');
+    var isParent = CacheHelper.getDataFromSharedPreference(key: 'isParent');
     timer = Timer(
-        const Duration(seconds: 3),
+        const Duration(
+          seconds: 3,
+        ),
         () => Navigator.pushNamedAndRemoveUntil(
-            context, id == null ? '/onboard' : '/profile', (route) => false));
+            context,
+            id == null
+                ? '/onboard'
+                : isParent
+                    ? '/parent_home'
+                    : '/student_home',
+            (route) => false));
     return Scaffold(
       backgroundColor: AppColor.white,
       body: Center(
@@ -32,7 +42,9 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/images/logo.png'),
-            const CircularProgressIndicator(color: AppColor.honeyYellow,)
+            const CircularProgressIndicator(
+              color: AppColor.honeyYellow,
+            ),
           ],
         ),
       ),

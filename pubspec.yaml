@@ -12,7 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   cupertino_icons: ^1.0.6
   dio: ^5.3.3
   bloc: ^8.1.2
@@ -20,6 +19,22 @@ dependencies:
   shared_preferences: ^2.2.2
   conditional_builder_null_safety: ^0.0.6
   smooth_page_indicator: ^1.1.0
+  dropdown_button2: ^2.3.9
+  carousel_slider: ^4.2.1
+  cached_network_image: ^3.3.0
+
+
+  video_player: ^2.8.1
+  youtube_player_flutter: ^8.1.2
+  visibility_detector: ^0.4.0+2
+  flutter_barcode_scanner: ^2.0.0
+  barcode_widget: ^2.0.2
+  auto_size_text: ^3.0.0
+  multi_image_picker_view: ^0.0.17
+  image_picker: ^1.0.5
+  awesome_dialog: ^3.0.2
+
+
 
   flutter_localizations:
 

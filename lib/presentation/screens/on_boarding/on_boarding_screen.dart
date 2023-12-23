@@ -5,6 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../business_logic/global_cubit/global_cubit.dart';
 import '../../../data/local/cache_helper.dart';
+import '../../widget/custom_elevation.dart';
 
 class BoardingModel {
   final String image;
@@ -20,43 +21,38 @@ class BoardingModel {
   });
 }
 
-class OnBoardingScreen extends StatefulWidget {
-  const OnBoardingScreen({super.key});
+class OnBoardingScreen extends StatelessWidget {
+  OnBoardingScreen({super.key});
 
-  @override
-  _OnBoardingScreenState createState() => _OnBoardingScreenState();
-}
+  final boardController = PageController();
 
-class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  var boardController = PageController();
-
-  List<BoardingModel> boarding = [
+  final List<BoardingModel> boarding = [
     BoardingModel(
       image: 'assets/images/onboard1.png',
       title: 'أول منصة تعليمية ألكترونية بالكامل',
       body:
-      'التعليم الجيد و المستمر هو مفتاحك لمستقبل أفضل\n   ..مكان واحد تقدر تتعلم فيه كل المواد و الكورسات    \n                          ابدأ دلوقتي في المنصة ',
+          'التعليم الجيد و المستمر هو مفتاحك لمستقبل أفضل\n   ..مكان واحد تقدر تتعلم فيه كل المواد و الكورسات    \n                          ابدأ دلوقتي في المنصة ',
       color: AppColor.roseMadder,
     ),
     BoardingModel(
       image: 'assets/images/onboard2.png',
       title: 'أول منصة تعليمية ألكترونية بالكامل',
       body:
-      'التعليم الجيد و المستمر هو مفتاحك لمستقبل أفضل\n   ..مكان واحد تقدر تتعلم فيه كل المواد و الكورسات    \n                          ابدأ دلوقتي في المنصة ',
+          'التعليم الجيد و المستمر هو مفتاحك لمستقبل أفضل\n   ..مكان واحد تقدر تتعلم فيه كل المواد و الكورسات    \n                          ابدأ دلوقتي في المنصة ',
       color: AppColor.indigoDye,
     ),
     BoardingModel(
       image: 'assets/images/onboard3.png',
       title: 'أول منصة تعليمية ألكترونية بالكامل',
       body:
-      'التعليم الجيد و المستمر هو مفتاحك لمستقبل أفضل\n   ..مكان واحد تقدر تتعلم فيه كل المواد و الكورسات    \n                          ابدأ دلوقتي في المنصة ',
+          'التعليم الجيد و المستمر هو مفتاحك لمستقبل أفضل\n   ..مكان واحد تقدر تتعلم فيه كل المواد و الكورسات    \n                          ابدأ دلوقتي في المنصة ',
       color: AppColor.honeyYellow,
     ),
   ];
 
   bool isLast = false;
 
-  void submit() {
+  void submit(BuildContext context) {
     CacheHelper.saveDataSharedPreference(
       key: 'onBoarding',
       value: true,
@@ -65,58 +61,56 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         Navigator.pushNamedAndRemoveUntil(
           context,
           '/entry',
-              (route) => false,
+          (route) => false,
         );
       }
     });
   }
 
   @override
-  void initState() {
-    GlobalCubit.get(context).changeLanguageValueWithLang(context,'en');
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocConsumer<GlobalCubit, GlobalState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Column(
-              children: [
-                Expanded(
-                  child: PageView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    controller: boardController,
-                    onPageChanged: (int index) {
-                      if (index == boarding.length - 1) {
-                        setState(() {
+    return BlocProvider(
+      create: (context) =>
+          GlobalCubit()..changeLanguageValueWithLang(context, 'en'),
+      child: BlocConsumer<GlobalCubit, GlobalState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          final GlobalCubit globalCubit = context.read<GlobalCubit>();
+          return Scaffold(
+            body: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: PageView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      controller: boardController,
+                      onPageChanged: (int index) {
+                        if (index == boarding.length - 1) {
                           isLast = true;
-                        });
-                      } else {
-                        setState(() {
+                          globalCubit.changeLocalState();
+                        } else {
                           isLast = false;
-                        });
-                      }
-                    },
-                    itemBuilder: (context, index) =>
-                        buildBoardingItem(boarding[index]),
-                    itemCount: boarding.length,
+                          globalCubit.changeLocalState();
+                        }
+                      },
+                      itemBuilder: (context, index) => buildBoardingItem(
+                        boarding[index],
+                        context,
+                      ),
+                      itemCount: boarding.length,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
-  Widget buildBoardingItem(BoardingModel model) =>
-      Column(
+  Widget buildBoardingItem(BoardingModel model, BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
@@ -139,7 +133,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               const Text(
                 'مرحبا',
                 style: TextStyle(
-                  fontFamily: 'tajawal',
+                  fontFamily: 'cairo',
                   color: AppColor.black,
                   fontSize: 45.0,
                   fontWeight: FontWeight.bold,
@@ -150,100 +144,173 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           const SizedBox(
             height: 30.0,
           ),
-          Text(
-            model.title,
-            style: const TextStyle(
-              fontFamily: 'tajawal',
-              color: AppColor.indigoDye,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: SizedBox(
+              height: 200.0,
+              width: double.infinity,
+              child: Column(
+                children: [
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      model.title,
+                      style: const TextStyle(
+                        fontFamily: 'cairo',
+                        color: AppColor.indigoDye,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15.0,
+                  ),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      model.body,
+                      style: const TextStyle(
+                        fontFamily: 'cairo',
+                        color: AppColor.indigoDye,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40.0,
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 15.0,
-          ),
-          Text(
-            model.body,
-            style: const TextStyle(
-              fontFamily: 'tajawal',
-              color: AppColor.indigoDye,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(
-            height: 40.0,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 30.0,
-                width: 30.0,
-                child: FloatingActionButton(
-                  onPressed: () {
-                    boardController.previousPage(
-                      duration: const Duration(
-                        milliseconds: 750,
-                      ),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                    );
-                  },
-                  child: const Icon(
-                    Icons.arrow_back_ios_new,
-                    size: 18.0,
-                  ),
-                  backgroundColor: model.color,
-                  mini: true,
-                  elevation: 1,
-                ),
-              ),
-              const SizedBox(
-                width: 20.0,
-              ),
-              SmoothPageIndicator(
-                controller: boardController,
-                effect: ExpandingDotsEffect(
-                  dotColor: model.color.withOpacity(0.3),
-                  activeDotColor: model.color,
-                  dotHeight: 10,
-                  expansionFactor: 4,
-                  dotWidth: 10,
-                  spacing: 5.0,
-                ),
-                count: boarding.length,
-              ),
-              const SizedBox(
-                width: 20.0,
-              ),
-              SizedBox(
-                height: 30.0,
-                width: 30.0,
-                child: FloatingActionButton(
-                  heroTag: 'FB' + model.color.toString(),
-                  onPressed: () {
-                    if (isLast) {
-                      submit();
-                    } else {
-                      boardController.nextPage(
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: SizedBox(
+                  height: 30.0,
+                  width: 30.0,
+                  child: FloatingActionButton(
+                    heroTag: 'FB${model.color}',
+                    onPressed: () {
+                      boardController.previousPage(
                         duration: const Duration(
                           milliseconds: 750,
                         ),
                         curve: Curves.fastLinearToSlowEaseIn,
                       );
-                    }
-                  },
-                  child: const Icon(
-                    Icons.arrow_forward_ios,
-                    size: 18.0,
+                    },
+                    backgroundColor: model.color,
+                    mini: true,
+                    elevation: 1,
+                    child: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18.0,
+                    ),
                   ),
-                  backgroundColor: model.color,
-                  mini: true,
-                  elevation: 1,
+                ),
+              ),
+              const SizedBox(
+                width: 20.0,
+              ),
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: SmoothPageIndicator(
+                  controller: boardController,
+                  effect: ExpandingDotsEffect(
+                    dotColor: model.color.withOpacity(0.3),
+                    activeDotColor: model.color,
+                    dotHeight: 10,
+                    expansionFactor: 4,
+                    dotWidth: 10,
+                    spacing: 5.0,
+                  ),
+                  count: boarding.length,
+                ),
+              ),
+              const SizedBox(
+                width: 20.0,
+              ),
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: SizedBox(
+                  height: 30.0,
+                  width: 30.0,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      if (isLast) {
+                        submit(context);
+                      } else {
+                        boardController.nextPage(
+                          duration: const Duration(
+                            milliseconds: 750,
+                          ),
+                          curve: Curves.fastLinearToSlowEaseIn,
+                        );
+                      }
+                    },
+                    backgroundColor: model.color,
+                    mini: true,
+                    elevation: 1,
+                    child: Icon(
+                      isLast ? Icons.check : Icons.arrow_back_ios_new,
+                      size: 18.0,
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          !isLast
+              ? TextButton(
+                  onPressed: () {
+                    submit(context);
+                  },
+                  child: Text(
+                    'تخطي',
+                    style: TextStyle(
+                      color: model.color,
+                      fontSize: 18.0,
+                      fontFamily: 'cairo',
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ))
+              : Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: CustomElevation(
+                    color: model.color,
+                    radius: 21.0,
+                    opacity: 0.25,
+                    child: MaterialButton(
+                      height: MediaQuery.of(context).size.height / 21.05,
+                      minWidth: MediaQuery.of(context).size.width / 3,
+                      elevation: 5.0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(21.0)),
+                      onPressed: () {
+                        submit(context);
+                      },
+                      color: model.color,
+                      child: const Text(
+                        'أبدا الان',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontFamily: 'cairo',
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
         ],
       );
 }

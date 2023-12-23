@@ -12,7 +12,6 @@ import 'package:flutter_translate/flutter_translate.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
-
 import 'business_logic/app_localization.dart';
 import 'business_logic/bloc_observer.dart';
 import 'business_logic/global_cubit/global_cubit.dart';
@@ -23,6 +22,7 @@ late LocalizationDelegate delegate;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // await CacheHelper.sharedPreferences.clear();
   DioHelper.init();
   await CacheHelper.init();
   final locale =
@@ -73,12 +73,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: ((context) => GlobalCubit()),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => GlobalCubit(),
       child: BlocConsumer<GlobalCubit, GlobalState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -88,7 +84,7 @@ class _MyAppState extends State<MyApp> {
                 delegate,
                 LayoutBuilder(builder: (context, constraints) {
                   return MaterialApp(
-                    debugShowCheckedModeBanner: false,
+                    // debugShowCheckedModeBanner: false,
                     title: 'EDU-MASTER',
                     localizationsDelegates: [
                       AppLocalizations.delegate,
@@ -103,8 +99,10 @@ class _MyAppState extends State<MyApp> {
                     onGenerateRoute: widget.appRouter.onGenerateRoute,
                     theme: ThemeData(
                       fontFamily: 'cairo',
-                      primaryColor: AppColor.primary,
+                      primaryColor: AppColor.indigoDye,
                       primarySwatch: AppColor.defaultColor,
+                      progressIndicatorTheme: const ProgressIndicatorThemeData(color: AppColor.indigoDye),
+                      // splashColor: AppColor.indigoDye,
                       //scaffoldBackgroundColor: AppColors.white,
                       appBarTheme: const AppBarTheme(
                         elevation: 0.0,

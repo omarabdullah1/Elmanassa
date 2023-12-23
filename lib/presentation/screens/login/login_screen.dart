@@ -1,391 +1,635 @@
-import 'dart:developer';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../business_logic/app_localization.dart';
 import '../../../business_logic/global_cubit/global_cubit.dart';
 import '../../../data/local/cache_helper.dart';
+import '../../../main.dart';
 import '../../styles/colors.dart';
 import '../../widget/custom_elevation.dart';
 import '../../widget/dynamicFormField.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+   LoginScreen({Key? key}) : super(key: key);
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
+  final emailController = TextEditingController();
 
-class _LoginScreenState extends State<LoginScreen> {
-  var emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
-  var passwordController = TextEditingController();
-
-  var formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    var bloc = GlobalCubit.get(context);
-    return BlocConsumer<GlobalCubit, GlobalState>(
-      listener: (context, state) async {
-        if (state is LoginSuccessState) {
-          log(bloc.loginModel!.user!.firstName.toString());
-          CacheHelper.saveDataSharedPreference(
-            key: 'id',
-            value: bloc.loginModel!.user!.id!,
-          );
-          CacheHelper.saveDataSharedPreference(
-            key: 'email',
-            value: emailController.text,
-          );
-          CacheHelper.saveDataSharedPreference(
-            key: 'password',
-            value: passwordController.text,
-          );
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            '/profile',
-            (route) => false,
-          );
-        }
-      },
-      builder: (context, state) {
-        return Localizations.override(
-          context: context,
-          locale: const Locale('ar'),
-          child: Builder(builder: (context) {
+    return BlocProvider(
+      create: (context) => GlobalCubit()..changeLang(()=>delegate.changeLocale(const Locale('ar'))),
+      child: BlocConsumer<GlobalCubit, GlobalState>(
+        listener: (context, state) async {
+          final GlobalCubit globalCubit = context.read<GlobalCubit>();
+          if (state is LoginSuccessState) {
+            CacheHelper.saveDataSharedPreference(
+              key: 'id',
+              value: globalCubit.loginModel!.user!.id,
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'token',
+              value: globalCubit
+                  .loginModel!
+                  .user!
+                  .tokenData!
+                  .accessToken,
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'email',
+              value: emailController.text.toString(),
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'password',
+              value: passwordController.text.toString(),
+            );
+
+            CacheHelper.saveDataSharedPreference(
+              key: 'isParent',
+              value: globalCubit.isParentLogin,
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'first_name',
+              value: globalCubit
+                  .loginModel!
+                  .user!
+                  .firstName!,
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'last_name',
+              value: globalCubit
+                  .loginModel!
+                  .user!
+                  .lastName!,
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'code',
+              value: globalCubit
+                  .loginModel!
+                  .user!
+                  .code!,
+            );
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              '/student_home',
+                  (route) => false,
+            );
+          } else if (state is LoginParentSuccessState) {
+            CacheHelper.saveDataSharedPreference(
+              key: 'id',
+              value: globalCubit.parentModel!.user!.id,
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'token',
+              value: globalCubit
+                  .parentModel!
+                  .user!
+                  .tokenData!
+                  .accessToken,
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'email',
+              value: emailController.text.toString(),
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'password',
+              value: passwordController.text.toString(),
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'isParent',
+              value: globalCubit.isParentLogin,
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'first_name',
+              value: globalCubit
+                  .parentModel!
+                  .user!
+                  .firstName!,
+            );
+            CacheHelper.saveDataSharedPreference(
+              key: 'last_name',
+              value: globalCubit
+                  .parentModel!
+                  .user!
+                  .lastName!,
+            );
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              '/parent_home',
+              (route) => false,
+            );
+          }
+        },
+        builder: (context, state) {
+          return Builder(builder: (context) {
+            final GlobalCubit globalCubit = context.read<GlobalCubit>();
             return Scaffold(
               backgroundColor: AppColor.babyBlue,
-              body: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: MediaQuery.of(context).size.height * 0.06,
-                      right: MediaQuery.of(context).size.width * 0.1,
-                      child: const Text(
-                        '..أهلا',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 35.0,
-                          fontFamily: 'Tajawal',
-                          fontWeight: FontWeight.w500,
+              body: Directionality(
+                textDirection: TextDirection.rtl,
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: MediaQuery.of(context).size.height * 0.06,
+                        right: MediaQuery.of(context).size.width * 0.1,
+                        child: const Text(
+                          '..أهلا',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 35.0,
+                            fontFamily: 'cairo',
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      top: MediaQuery.of(context).size.height * 0.12,
-                      right: MediaQuery.of(context).size.width * 0.1,
-                      child: const Text(
-                        'مرحبا بك',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 35.0,
-                          fontFamily: 'Tajawal',
-                          fontWeight: FontWeight.bold,
+                      Positioned(
+                        top: MediaQuery.of(context).size.height * 0.12,
+                        right: MediaQuery.of(context).size.width * 0.1,
+                        child: const Text(
+                          'مرحبا بك',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 35.0,
+                            fontFamily: 'cairo',
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      top: MediaQuery.of(context).size.height * 0.05,
-                      right: MediaQuery.of(context).size.width * 0.85,
-                      child: SizedBox(
-                        width: 30.0,
-                        height: 30.0,
-                        child: CustomElevation(
-                          color: AppColor.roseMadder,
-                          opacity: 0.4,
-                          radius: 10.0,
-                          child: FloatingActionButton(
-                            onPressed: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                '/entry',
-                                    (route) => false,
-                              );
-                            },
-                            child: const Icon(
-                              Icons.arrow_back_ios_new,
-                              size: 25.0,
-                              color: AppColor.roseMadder,
+                      Positioned(
+                        top: MediaQuery.of(context).size.height * 0.05,
+                        right: MediaQuery.of(context).size.width * 0.85,
+                        child: SizedBox(
+                          width: 30.0,
+                          height: 30.0,
+                          child: CustomElevation(
+                            color: AppColor.roseMadder,
+                            opacity: 0.4,
+                            radius: 10.0,
+                            child: FloatingActionButton(
+                              onPressed: () {
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  '/entry',
+                                  (route) => false,
+                                );
+                              },
+                              backgroundColor: AppColor.white,
+                              mini: true,
+                              elevation: 1,
+                              child: const Icon(
+                                Icons.arrow_back_ios_new,
+                                size: 25.0,
+                                color: AppColor.roseMadder,
+                              ),
                             ),
-                            backgroundColor: AppColor.white,
-                            mini: true,
-                            elevation: 1,
                           ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      top: MediaQuery.of(context).viewInsets.bottom == 0
-                          ? MediaQuery.of(context).size.height * 0.23
-                          : MediaQuery.of(context).size.height * 0.16,
-                      // left: MediaQuery.of(context).size.width -
-                      //     (MediaQuery.of(context).size.width * 0.46) * 2.155,
-                      child: SizedBox(
-                        child: const Image(
-                          image: AssetImage(
-                            'assets/images/person.png',
+                      Positioned(
+                        bottom: MediaQuery.of(context).viewInsets.bottom == 0
+                            ? MediaQuery.of(context).size.height * 0.0
+                            : MediaQuery.of(context).size.height * 0.0,
+                        left: 0.0,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).viewInsets.bottom == 0
+                              ? MediaQuery.of(context).size.height * 0.55
+                              : MediaQuery.of(context).size.height * 0.3,
+                          decoration: const BoxDecoration(
+                            color: AppColor.white,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20.0),
+                              topRight: Radius.circular(20.0),
+                            ),
                           ),
                         ),
-                        height: MediaQuery.of(context).viewInsets.bottom == 0
-                            ? MediaQuery.of(context).size.height * 0.33
-                            : MediaQuery.of(context).size.height * 0.25,
-                        width: MediaQuery.of(context).size.width,
                       ),
-                    ),
-                    Positioned(
-                      bottom: MediaQuery.of(context).viewInsets.bottom == 0
-                          ? MediaQuery.of(context).size.height * 0.370
-                          : MediaQuery.of(context).size.height * 0.18,
-                      left: 0.0,
-                      child: CustomPaint(
-                        size: Size(
-                          MediaQuery.of(context).size.width * 0.464,
-                          MediaQuery.of(context).size.height * 0.145,
-                        ),
-                        painter: RPSCustomPainter(),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0.0,
-                      height: MediaQuery.of(context).viewInsets.bottom == 0
-                          ? MediaQuery.of(context).size.height * 0.50
-                          : MediaQuery.of(context).size.height * 0.22,
-                      child: SingleChildScrollView(
-                        child: Localizations.override(
-                          context: context,
-                          locale: const Locale('ar'),
-                          child: Builder(builder: (context) {
-                            return SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.50,
+                      Positioned(
+                        top: MediaQuery.of(context).viewInsets.bottom == 0
+                            ? MediaQuery.of(context).size.height * 0.18
+                            : MediaQuery.of(context).size.height * 0.16,
+                        // left: MediaQuery.of(context).size.width -
+                        //     (MediaQuery.of(context).size.width * 0.46) * 2.155,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                                height: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom ==
+                                        0
+                                    ? MediaQuery.of(context).size.height * 0.34
+                                    : MediaQuery.of(context).size.height * 0.25,
+                                width: MediaQuery.of(context).size.width,
+                                child: const CircleAvatar(
+                                  backgroundColor: AppColor.babyBlue,
+                                )),
+                            SizedBox(
+                              height: MediaQuery.of(context)
+                                          .viewInsets
+                                          .bottom ==
+                                      0
+                                  ? MediaQuery.of(context).size.height * 0.35
+                                  : MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width,
-                              child: SingleChildScrollView(
-                                child: Center(
-                                  child: Form(
-                                    key: formKey,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.05,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 60.0),
-                                          child: dynamicFormField(
-                                            controller: emailController,
-                                            type: TextInputType.emailAddress,
-                                            isValidate: true,
-                                            isLabel: true,
-                                            borderRadius: 10,
-                                            validate: (String value) {
-                                              if (value.isEmpty) {
-                                                return AppLocalizations.of(
-                                                        context)!
-                                                    .translate(
-                                                        'pleaseEnterYourEmailAddress')
-                                                    .toString();
-                                              }
-                                            },
-                                            label: 'الاسم/رقم الهاتف',
-                                            labelColor: AppColor.babyBlue,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 5.0,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 60.0),
-                                          child: dynamicFormField(
-                                            controller: passwordController,
-                                            type: TextInputType.visiblePassword,
-                                            suffixIcon:
-                                                GlobalCubit.get(context).suffix,
-                                            isValidate: true,
-                                            isLabel: true,
-                                            borderRadius: 10,
-                                            onSubmit: (value) {
-                                              if (formKey.currentState!
-                                                  .validate()) {
-                                                GlobalCubit.get(context)
-                                                    .userLogin(
-                                                  email: emailController.text,
-                                                  password:
-                                                      passwordController.text,
-                                                  context: context,
-                                                );
-                                              }
-                                            },
-                                            isPassword: GlobalCubit.get(context)
-                                                .isPassword,
-                                            suffixPressed: () {
-                                              GlobalCubit.get(context)
-                                                  .changePasswordVisibility();
-                                            },
-                                            validate: (String value) {
-                                              if (value.isEmpty) {
-                                                return AppLocalizations.of(
-                                                        context)!
-                                                    .translate(
-                                                        'pleaseEnterYourPassword')
-                                                    .toString();
-                                              }
-                                            },
-                                            label: 'كلمة المرور',
-                                            labelColor: AppColor.babyBlue,
-                                            suffixIconColor: AppColor.indigoDye,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 55.0,
-                                          ),
-                                          child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: TextButton(
-                                              child: const Text(
-                                                'هل نسيت كلمة السر؟',
-                                                style: TextStyle(
-                                                  // fontFamily: 'tajawal',
-                                                  color: AppColor.indigoDye,
-                                                  fontSize: 12.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  decoration:
-                                                      TextDecoration.underline,
-                                                ),
-                                              ),
-                                              onPressed: () {
-                                                // Navigator.pushNamed(
-                                                //   context,
-                                                //   '/login',
-                                                // );
-                                              },
-                                              style: TextButton.styleFrom(
-                                                foregroundColor: AppColor
-                                                    .roseMadder, // Text Color
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 27.0,
-                                        ),
-                                        ConditionalBuilder(
-                                          condition:
-                                              state is! LoginLoadingState,
-                                          fallback: (context) => const Center(
-                                              child: CircularProgressIndicator(
-                                            color: AppColor.honeyYellow,
-                                          )),
-                                          builder: (context) => CustomElevation(
-                                            color: AppColor.honeyYellow,
-                                            radius: 21.0,
-                                            opacity: 0.8,
-                                            child: MaterialButton(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  17.0,
-                                              minWidth: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  3,
-                                              elevation: 5.0,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          21.0)),
-                                              onPressed: () {
-                                                if (formKey.currentState!
-                                                    .validate()) {
-                                                  GlobalCubit.get(context)
-                                                      .userLogin(
-                                                    email: emailController.text,
-                                                    password:
-                                                        passwordController.text,
-                                                    context: context,
-                                                  );
-                                                }
-                                              },
-                                              child: const Text(
-                                                'أستمرار',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 18,
-                                                  fontFamily: 'Tajawal',
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                              color: AppColor.honeyYellow,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 20.0,
-                                        ),
-                                        const Text(
-                                          'اذا كان لديك حساب بالفعل',
-                                          style: TextStyle(
-                                            fontFamily: 'tajawal',
-                                            color: AppColor.indigoDye,
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 1.0,
-                                        ),
-                                        TextButton(
-                                          child: const Text(
-                                            'تسجيل الدخول',
-                                            style: TextStyle(
-                                              fontFamily: 'tajawal',
-                                              color: AppColor.roseMadder,
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.bold,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                            ),
-                                          ),
-                                          onPressed: () {
-                                            Navigator.pushNamed(
-                                              context,
-                                              '/login',
-                                            );
-                                          },
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: AppColor
-                                                .roseMadder, // Text Color
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                              child: const Image(
+                                image: AssetImage(
+                                  'assets/images/person.png',
                                 ),
                               ),
-                            );
-                          }),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                      Positioned(
+                        bottom: 0.0,
+                        height: MediaQuery.of(context).viewInsets.bottom == 0
+                            ? MediaQuery.of(context).size.height * 0.48
+                            : MediaQuery.of(context).size.height * 0.22,
+                        child: SingleChildScrollView(
+                          child: Builder(
+                              builder: (context) => SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.50,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: SingleChildScrollView(
+                                      child: Center(
+                                        child: Form(
+                                          key: formKey,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              // SizedBox(
+                                              //   height: MediaQuery.of(context)
+                                              //           .size
+                                              //           .height *
+                                              //       0.05,
+                                              // ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 60.0),
+                                                child: dynamicFormField(
+                                                  controller: emailController,
+                                                  type: TextInputType
+                                                      .emailAddress,
+                                                  isValidate: true,
+                                                  isLabel: true,
+                                                  borderRadius: 10,
+                                                  validate: (String value) {
+                                                    if (value.isEmpty) {
+                                                      return AppLocalizations
+                                                              .of(context)!
+                                                          .translate(
+                                                            'pleaseEnterYourEmailAddress',
+                                                          )
+                                                          .toString();
+                                                    }
+                                                  },
+                                                  label: 'الايميل/رقم الهاتف',
+                                                  labelColor: AppColor.babyBlue,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 5.0,
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 60.0),
+                                                child: dynamicFormField(
+                                                  controller:
+                                                      passwordController,
+                                                  type: TextInputType
+                                                      .visiblePassword,
+                                                  suffixIcon:
+                                                      globalCubit
+                                                          .suffix,
+                                                  isValidate: true,
+                                                  isLabel: true,
+                                                  borderRadius: 10,
+                                                  onSubmit: (value) {
+                                                    if (formKey.currentState!
+                                                        .validate()) {
+                                                      globalCubit
+                                                          .userLogin(
+                                                        email: emailController
+                                                            .text,
+                                                        password:
+                                                            passwordController
+                                                                .text,
+                                                        context: context,
+                                                      );
+                                                    }
+                                                  },
+                                                  isPassword:
+                                                      globalCubit
+                                                          .isPassword,
+                                                  suffixPressed: () {
+                                                    globalCubit
+                                                        .changePasswordVisibility();
+                                                  },
+                                                  validate: (String value) {
+                                                    if (value.isEmpty) {
+                                                      return AppLocalizations
+                                                              .of(context)!
+                                                          .translate(
+                                                            'pleaseEnterYourPassword',
+                                                          )
+                                                          .toString();
+                                                    }
+                                                  },
+                                                  label: 'كلمة المرور',
+                                                  labelColor: AppColor.babyBlue,
+                                                  suffixIconColor:
+                                                      AppColor.indigoDye,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 55.0,
+                                                ),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  child: TextButton(
+                                                    onPressed: () {
+                                                      // Navigator.pushNamed(
+                                                      //   context,
+                                                      //   '/login',
+                                                      // );
+                                                    },
+                                                    style: TextButton.styleFrom(
+                                                      foregroundColor: AppColor
+                                                          .roseMadder, // Text Color
+                                                    ),
+                                                    child: const Text(
+                                                      'هل نسيت كلمة السر؟',
+                                                      style: TextStyle(
+                                                        // fontFamily: 'cairo',
+                                                        color:
+                                                            AppColor.indigoDye,
+                                                        fontSize: 12.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 27.0,
+                                              ),
+                                              ConditionalBuilder(
+                                                condition:
+                                                    state is! LoginLoadingState,
+                                                fallback: (context) =>
+                                                    const Center(
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                  color: AppColor.honeyYellow,
+                                                )),
+                                                builder: (context) =>
+                                                    CustomElevation(
+                                                  color: AppColor.honeyYellow,
+                                                  radius: 21.0,
+                                                  opacity: 0.8,
+                                                  child: MaterialButton(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            17.0,
+                                                    minWidth:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            3,
+                                                    elevation: 5.0,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        21.0)),
+                                                    onPressed: () {
+                                                      if (formKey.currentState!
+                                                          .validate()) {
+                                                        globalCubit
+                                                                .isParentLogin
+                                                            ? globalCubit
+                                                                .parentLogin(
+                                                                email:
+                                                                    emailController
+                                                                        .text,
+                                                                password:
+                                                                    passwordController
+                                                                        .text,
+                                                                context:
+                                                                    context,
+                                                              )
+                                                            : globalCubit
+                                                                .userLogin(
+                                                                email:
+                                                                    emailController
+                                                                        .text,
+                                                                password:
+                                                                    passwordController
+                                                                        .text,
+                                                                context:
+                                                                    context,
+                                                              );
+                                                      }
+                                                    },
+                                                    color: AppColor.honeyYellow,
+                                                    child: const Text(
+                                                      'أستمرار',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 18,
+                                                        fontFamily: 'cairo',
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 20.0,
+                                              ),
+                                              Container(
+                                                height: 45,
+                                                width: 200.0,
+                                                decoration: BoxDecoration(
+                                                  color: AppColor.roseMadder,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () => globalCubit
+                                                          .changeIsParentLoginValue(),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Container(
+                                                          height: 45,
+                                                          width: 83.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: globalCubit
+                                                                    .isParentLogin
+                                                                ? AppColor.white
+                                                                : AppColor
+                                                                    .roseMadder,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        25.0),
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              'ولي أمر',
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'cairo',
+                                                                color: globalCubit
+                                                                        .isParentLogin
+                                                                    ? AppColor
+                                                                        .indigoDye
+                                                                    : AppColor
+                                                                        .white,
+                                                                fontSize: 16.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    const Spacer(),
+                                                    InkWell(
+                                                      onTap: () => globalCubit
+                                                          .changeIsParentLoginValue(),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Container(
+                                                          height: 45,
+                                                          width: 83.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: !globalCubit
+                                                                    .isParentLogin
+                                                                ? AppColor.white
+                                                                : AppColor
+                                                                    .roseMadder,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        25.0),
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              'طالب',
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'cairo',
+                                                                color: !globalCubit
+                                                                        .isParentLogin
+                                                                    ? AppColor
+                                                                        .indigoDye
+                                                                    : AppColor
+                                                                        .white,
+                                                                fontSize: 16.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 20.0,
+                                              ),
+                                              const Text(
+                                                'اذا كان لديك حساب بالفعل',
+                                                style: TextStyle(
+                                                  fontFamily: 'cairo',
+                                                  color: AppColor.indigoDye,
+                                                  fontSize: 16.0,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 1.0,
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    '/register',
+                                                  );
+                                                },
+                                                style: TextButton.styleFrom(
+                                                  foregroundColor: AppColor
+                                                      .roseMadder, // Text Color
+                                                ),
+                                                child: const Text(
+                                                  'حساب جديد',
+                                                  style: TextStyle(
+                                                    fontFamily: 'cairo',
+                                                    color: AppColor.roseMadder,
+                                                    fontSize: 18.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    decoration: TextDecoration
+                                                        .underline,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
-          }),
-        );
-      },
+          });
+        },
+      ),
     );
   }
 }
