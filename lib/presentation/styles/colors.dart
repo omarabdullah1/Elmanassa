@@ -6,11 +6,11 @@ class AppColor {
   static const Color primary = Color(0xFF005DA3);
   static const Color error = Color(0xFFFF0000);
 
-  static const Color babyBlue = Color(0xFFA1C6EA);
-  static const Color indigoDye = Color(0xFF00467A);
+  static const Color babyBlue = Color(0xFF7FAECB);
+  static const Color indigoDye = Color(0xFF0D6BAB);
   static const Color royalBlue = Color(0xFF0C1755);
-  static const Color honeyYellow = Color(0xFFFFB400);
-  static const Color roseMadder = Color(0xFFDF2935);
+  static const Color honeyYellow = Color(0xFFF7AB5D);
+  static const Color roseMadder = Color(0xFFEF7F07);
   static const Color black = Color(0xFF000000);
   static const Color carosalBG = Color(0xFFAAAAAA);
   static const Color cardGray = Color(0xFFE2E2E2);
