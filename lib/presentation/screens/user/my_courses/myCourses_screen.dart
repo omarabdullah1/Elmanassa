@@ -20,36 +20,62 @@ class MyCoursesScreen extends StatelessWidget {
       builder: (context, state) {
         final StudentHomeCubit studentHomeCubit =
             context.read<StudentHomeCubit>();
-        List<Widget> widgetsUnits = [];
+        // print(studentHomeCubit.myCoursesModel!.courses!.length);
+        // print(CacheHelper.sharedPreferences.getString('token') != null);
+        // print(studentHomeCubit.myCoursesModel!.courses!.isNotEmpty||studentHomeCubit.myCoursesModel!.courses!.length!=0);
+        // print(studentHomeCubit.myCoursesModel!.courses!.isNotEmpty);
+        // print(studentHomeCubit.myCoursesModel!.courses!.length!=0);
+        // print(studentHomeCubit.myCoursesModel!.courses!.length <= 3);
 
-        if (studentHomeCubit.myCoursesModel!.courses!.isNotEmpty) {
-          for (int index = 0;
-              index < studentHomeCubit.myCoursesModel!.courses!.length;
-              index++) {
-            widgetsUnits.add(CustomMyCourseWidget(
-              domain: domain,
-              course: studentHomeCubit.myCoursesModel!.courses![index]!,
-              isEnrolled: true,
-            ));
-          }
-          if (studentHomeCubit.myCoursesModel!.courses!.length <= 3) {
-            widgetsUnits.add(
-              SizedBox(
-                height: (MediaQuery.of(context).size.height -
-                    (360 +
-                        (studentHomeCubit.myCoursesModel!.courses!.length *
-                            130))),
-              ),
-            );
-          }
-        } else {
-          widgetsUnits.add(const Text('لا توجد كورسات حتي الان قم بالتسجيل'));
-          if (studentHomeCubit.myCoursesModel!.courses!.length <= 3) {
-            widgetsUnits.add(
-              SizedBox(
-                height: (MediaQuery.of(context).size.height-170),
-              ),
-            );
+        List<Widget> widgetsUnits = [];
+        if(CacheHelper.sharedPreferences.getString('token') != null) {
+          if (studentHomeCubit.myCoursesModel!.courses!.isNotEmpty) {
+            for (int index = 0;
+            index < studentHomeCubit.myCoursesModel!.courses!.length;
+            index++) {
+              widgetsUnits.add(CustomMyCourseWidget(
+                domain: domain,
+                course: studentHomeCubit.myCoursesModel!.courses![index]!,
+                isEnrolled: true,
+              ));
+            }
+            if (studentHomeCubit.myCoursesModel!.courses!.length <= 3) {
+              widgetsUnits.add(
+                SizedBox(
+                  height: (MediaQuery
+                      .of(context)
+                      .size
+                      .height -
+                      (360 +
+                          (studentHomeCubit.myCoursesModel!.courses!.length *
+                              130))),
+                ),
+              );
+            }
+          } else {
+            widgetsUnits.add(const Text('لا توجد كورسات حتي الان قم بالتسجيل'));
+            if (CacheHelper.sharedPreferences.getString('token') != null) {
+              if (studentHomeCubit.myCoursesModel!.courses!.length <= 3 ||
+                  studentHomeCubit.myCoursesModel!.courses!.isEmpty) {
+                widgetsUnits.add(
+                  SizedBox(
+                    height: (MediaQuery
+                        .of(context)
+                        .size
+                        .height - 170),
+                  ),
+                );
+              }
+            } else {
+              widgetsUnits.add(
+                SizedBox(
+                  height: (MediaQuery
+                      .of(context)
+                      .size
+                      .height - 170),
+                ),
+              );
+            }
           }
         }
         return CacheHelper.sharedPreferences.getString('token') == null
@@ -313,7 +339,7 @@ class MyCoursesScreen extends StatelessWidget {
                                                 ],
                                               ),
                                               state is! GetCoursesLoadingState
-                                                  ? studentHomeCubit
+                                                  ? !studentHomeCubit
                                                           .myCoursesModel!
                                                           .courses!
                                                           .isNotEmpty

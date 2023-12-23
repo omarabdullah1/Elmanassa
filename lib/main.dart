@@ -85,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                 LayoutBuilder(builder: (context, constraints) {
                   return MaterialApp(
                     // debugShowCheckedModeBanner: false,
-                    title: 'EDU-MASTER',
+                    title: 'Droosak Online',
                     localizationsDelegates: [
                       AppLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,

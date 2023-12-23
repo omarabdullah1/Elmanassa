@@ -217,17 +217,25 @@ class _UnitCardState extends State<UnitCard> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  ele!.title.toString(),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    color: AppColor.roseMadder,
-                                    // fontSize: 22,
-                                    fontFamily: 'Tajawal',
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width*0.6,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      ele!.title!.toString(),
+                                      textAlign: TextAlign.start,
+                                      style: const TextStyle(
+                                        color: AppColor.roseMadder,
+                                        // fontSize: 22,
+                                        fontFamily: 'Tajawal',
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textDirection: TextDirection.rtl,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
                                 ),
                               ),
                               Text(
@@ -265,34 +273,37 @@ class _UnitCardState extends State<UnitCard> {
                           ),
                           Row(
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Text(
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width*0.6,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
                                       ele!.title!.toString(),
-                                      textAlign: TextAlign.center,
+                                      textAlign: TextAlign.start,
                                       style: const TextStyle(
                                         color: AppColor.black,
                                         fontFamily: 'Tajawal',
                                         fontWeight: FontWeight.bold,
                                       ),
+                                      textDirection: TextDirection.rtl,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
                                     ),
-                                  ),
-                                  Text(
-                                    ele
-                                        .videoDuration!
-                                        .toString(),
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: AppColor.indigoDye,
-                                      fontSize: 18.0,
-                                      fontFamily: 'Tajawal',
-                                      fontWeight: FontWeight.bold,
+                                    Text(
+                                      ele
+                                          .videoDuration!
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        color: AppColor.indigoDye,
+                                        fontSize: 18.0,
+                                        fontFamily: 'Tajawal',
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               const Icon(
                                 Icons.play_circle,
