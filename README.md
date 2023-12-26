@@ -14,5 +14,5 @@ flutter run
 ```
 
 #### Looks
-      <img src="./assets/MOCUP/Presentation1.png" alt="Image 1">
-      <img src="./assets/MOCUP/Presentation2.png" alt="Image 2">
+      <img src="./assets/MOCUP/Presentation1.png" alt="Image 1"></img>
+      <img src="./assets/MOCUP/Presentation2.png" alt="Image 2"></img>
