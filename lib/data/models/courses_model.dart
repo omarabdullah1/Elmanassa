@@ -6,6 +6,7 @@ class CoursesModelCourses {
 {
   "id": 1,
   "title": "مادة الرياضيات",
+  "intro_video": "https://youtu.be/NsEReUrQoao?list=PLoXcfNwaVZDYuQ-rcKE9yXZL1O2vzUEt0",
   "thumbnail": "assets/images/courses/math-thumbnail.jpg",
   "annual_price": 500,
   "image": "assets/images/courses/math.jpg",
@@ -13,13 +14,14 @@ class CoursesModelCourses {
     "اللغة العربية"
   ],
   "level_id": 1,
-  "is_enrolled": false,
+  "is_enrolled": true,
   "level_title": "الصف الاول الاعدادي"
 }
 */
 
   int? id;
   String? title;
+  String? introVideo;
   String? thumbnail;
   int? annualPrice;
   String? image;
@@ -31,6 +33,7 @@ class CoursesModelCourses {
   CoursesModelCourses({
     this.id,
     this.title,
+    this.introVideo,
     this.thumbnail,
     this.annualPrice,
     this.image,
@@ -42,6 +45,7 @@ class CoursesModelCourses {
   CoursesModelCourses.fromJson(Map<String, dynamic> json) {
     id = json['id']?.toInt();
     title = json['title']?.toString();
+    introVideo = json['intro_video']?.toString();
     thumbnail = json['thumbnail']?.toString();
     annualPrice = json['annual_price']?.toInt();
     image = json['image']?.toString();
@@ -61,6 +65,7 @@ class CoursesModelCourses {
     final data = <String, dynamic>{};
     data['id'] = id;
     data['title'] = title;
+    data['intro_video'] = introVideo;
     data['thumbnail'] = thumbnail;
     data['annual_price'] = annualPrice;
     data['image'] = image;
@@ -89,6 +94,7 @@ class CoursesModel {
     {
       "id": 1,
       "title": "مادة الرياضيات",
+      "intro_video": "https://youtu.be/NsEReUrQoao?list=PLoXcfNwaVZDYuQ-rcKE9yXZL1O2vzUEt0",
       "thumbnail": "assets/images/courses/math-thumbnail.jpg",
       "annual_price": 500,
       "image": "assets/images/courses/math.jpg",
@@ -96,7 +102,7 @@ class CoursesModel {
         "اللغة العربية"
       ],
       "level_id": 1,
-      "is_enrolled": false,
+      "is_enrolled": true,
       "level_title": "الصف الاول الاعدادي"
     }
   ]

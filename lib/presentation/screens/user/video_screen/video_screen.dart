@@ -14,7 +14,6 @@ class VideoScreen extends StatelessWidget {
   const VideoScreen({super.key, this.arguments});
 
   final ScreenArguments? arguments;
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -41,8 +40,8 @@ class VideoScreen extends StatelessWidget {
                               height: 40.0,
                               width: 40.0,
                               child: FlatButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
+                                onPressed: (){
+                                    Navigator.pop(context);
                                 },
                                 tOrI: false,
                                 icon: Icons.arrow_back_ios,

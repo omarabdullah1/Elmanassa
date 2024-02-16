@@ -26,7 +26,7 @@ class _UnitCardState extends State<UnitCard> {
       shape: RoundedRectangleBorder(
         //<-- SEE HERE
         // side: BorderSide(width: 2),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(35),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -45,13 +45,13 @@ class _UnitCardState extends State<UnitCard> {
                 ),
               ),
             ),
-            leading: IconButton(
-              icon: Icon(
+            leading: GestureDetector(
+              child: Icon(
                 isExpanded ? Icons.expand_less : Icons.expand_more,
                 size: 35.0,
                 color: AppColor.indigoDye,
               ),
-              onPressed: () {
+              onTap: () {
                 setState(() {
                   isExpanded = !isExpanded;
                 });
@@ -195,7 +195,7 @@ class _UnitCardState extends State<UnitCard> {
             //     ),
             //   ),
           for (var ele in widget.courseDetailsModelCourseUnits.lessons!)
-            widget.courseDetailsModelCourseUnits.lessons!.indexOf(ele) == 0
+            ele.isAccessed != 0
                 ? InkWell(
                     onTap: () {
                       Navigator.pushNamed(

@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../business_logic/global_cubit/global_cubit.dart';
+import '../../../generated/assets.dart';
+import '../../../constants/screens.dart';
+import '../../styles/texts.dart';
 
 class EntryScreen extends StatelessWidget {
   const EntryScreen({super.key});
@@ -28,7 +31,7 @@ class EntryScreen extends StatelessWidget {
                     const Expanded(
                       child: Image(
                         image: AssetImage(
-                          'assets/images/videoPlay.png',
+                          Assets.imagesVideoPlay,
                         ),
                       ),
                     ),
@@ -58,53 +61,33 @@ class EntryScreen extends StatelessWidget {
                             height: 20.0,
                           ),
                           Image.asset(
-                            'assets/images/logo.png',
+                            Assets.imagesLogo,
                             height: 80,
                           ),
-                          const FittedBox(
+                          FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              'أول منصة تعليمية ألكترونية بالكامل',
-                              style: TextStyle(
-                                fontFamily: 'cairo',
-                                color: AppColor.indigoDye,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              Texts.entryTitle,
+                              style: TextStyles.entryTitleStyle,
                             ),
                           ),
                           const SizedBox(
                             height: 10.0,
                           ),
-                          const FittedBox(
+                          FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              'التعليم الجيد و المستمر هو مفتاحك لمستقبل أفضل',
-                              style: TextStyle(
-                                fontFamily: 'cairo',
-                                color: AppColor.indigoDye,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w500,
-                              ),
+                              Texts.entryBody1,
+                              style: TextStyles.entryBody1Style,
                             ),
                           ),
-                          const Text(
-                            '..مكان واحد تقدر تتعلم فيه كل المواد و الكورسات',
-                            style: TextStyle(
-                              fontFamily: 'cairo',
-                              color: AppColor.indigoDye,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w500,
-                            ),
+                          Text(
+                            Texts.entryBody2,
+                            style: TextStyles.entryBody2Style,
                           ),
-                          const Text(
-                            'ابدأ دلوقتي في المنصة',
-                            style: TextStyle(
-                              fontFamily: 'cairo',
-                              color: AppColor.indigoDye,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w500,
-                            ),
+                          Text(
+                            Texts.entryBody3,
+                            style: TextStyles.entryBody3Style,
                           ),
                           const SizedBox(
                             height: 20.0,
@@ -114,7 +97,8 @@ class EntryScreen extends StatelessWidget {
                             radius: 21.0,
                             opacity: 0.25,
                             child: MaterialButton(
-                              height: MediaQuery.of(context).size.height / 21.05,
+                              height:
+                                  MediaQuery.of(context).size.height / 21.05,
                               minWidth: MediaQuery.of(context).size.width / 3,
                               elevation: 5.0,
                               shape: RoundedRectangleBorder(
@@ -122,32 +106,41 @@ class EntryScreen extends StatelessWidget {
                               onPressed: () {
                                 Navigator.pushNamed(
                                   context,
-                                  '/login',
+                                  Screens.loginScreen,
                                 );
                               },
                               color: AppColor.roseMadder,
-                              child: const Text(
-                                'تسجيل الدخول',
+                              child: Text(
+                                Texts.loginButton,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: 'cairo',
-                                  fontWeight: FontWeight.w700,
-                                ),
+                                style: TextStyles.loginButtonStyle,
                               ),
                             ),
                           ),
                           const SizedBox(
                             height: 20.0,
                           ),
-                          const Text(
-                            'ان كنت طالب جديد بالنظام حساب جديد',
-                            style: TextStyle(
-                              fontFamily: 'cairo',
-                              color: AppColor.indigoDye,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w500,
+                          Text(
+                            Texts.registerHint,
+                            style: TextStyles.registerHintStyle,
+                          ),
+                          const SizedBox(
+                            height: 1.0,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                Screens.registerScreen,
+                              );
+                            },
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  AppColor.roseMadder, // Text Color
+                            ),
+                            child: Text(
+                              Texts.register,
+                              style: TextStyles.registerStyle,
                             ),
                           ),
                           const SizedBox(
@@ -157,44 +150,16 @@ class EntryScreen extends StatelessWidget {
                             onPressed: () {
                               Navigator.pushNamed(
                                 context,
-                                '/register',
+                                Screens.studentHomeScreen,
                               );
                             },
                             style: TextButton.styleFrom(
-                              foregroundColor: AppColor.roseMadder, // Text Color
+                              foregroundColor:
+                                  AppColor.roseMadder, // Text Color
                             ),
-                            child: const Text(
-                              'حساب جديد',
-                              style: TextStyle(
-                                // fontFamily: 'cairo',
-                                color: AppColor.roseMadder,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),const SizedBox(
-                            height: 1.0,
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/student_home',
-                              );
-                            },
-                            style: TextButton.styleFrom(
-                              foregroundColor: AppColor.roseMadder, // Text Color
-                            ),
-                            child: const Text(
-                              'تخطي',
-                              style: TextStyle(
-                                // fontFamily: 'cairo',
-                                color: AppColor.roseMadder,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                              ),
+                            child: Text(
+                              Texts.skip,
+                              style: TextStyles.skipStyle(AppColor.roseMadder),
                             ),
                           ),
                         ],

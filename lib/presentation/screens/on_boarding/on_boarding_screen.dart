@@ -1,10 +1,13 @@
 import 'package:edumaster/presentation/styles/colors.dart';
+import 'package:edumaster/presentation/styles/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../business_logic/global_cubit/global_cubit.dart';
 import '../../../data/local/cache_helper.dart';
+import '../../../generated/assets.dart';
+import '../../../constants/screens.dart';
 import '../../widget/custom_elevation.dart';
 
 class BoardingModel {
@@ -21,36 +24,39 @@ class BoardingModel {
   });
 }
 
-class OnBoardingScreen extends StatelessWidget {
-  OnBoardingScreen({super.key});
+class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({super.key});
 
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final boardController = PageController();
 
   final List<BoardingModel> boarding = [
     BoardingModel(
-      image: 'assets/images/onboard1.png',
-      title: 'أول منصة تعليمية ألكترونية بالكامل',
-      body:
-          'التعليم الجيد و المستمر هو مفتاحك لمستقبل أفضل\n   ..مكان واحد تقدر تتعلم فيه كل المواد و الكورسات    \n                          ابدأ دلوقتي في المنصة ',
+      image: Assets.onBoardOnboard1,
+      title: Texts.onBoardTitle1,
+      body: Texts.onBoardBody1,
       color: AppColor.roseMadder,
     ),
     BoardingModel(
-      image: 'assets/images/onboard2.png',
-      title: 'أول منصة تعليمية ألكترونية بالكامل',
-      body:
-          'التعليم الجيد و المستمر هو مفتاحك لمستقبل أفضل\n   ..مكان واحد تقدر تتعلم فيه كل المواد و الكورسات    \n                          ابدأ دلوقتي في المنصة ',
+      image: Assets.onBoardOnboard2,
+      title: Texts.onBoardTitle2,
+      body: Texts.onBoardBody2,
       color: AppColor.indigoDye,
     ),
     BoardingModel(
-      image: 'assets/images/onboard3.png',
-      title: 'أول منصة تعليمية ألكترونية بالكامل',
-      body:
-          'التعليم الجيد و المستمر هو مفتاحك لمستقبل أفضل\n   ..مكان واحد تقدر تتعلم فيه كل المواد و الكورسات    \n                          ابدأ دلوقتي في المنصة ',
+      image: Assets.onBoardOnboard3,
+      title: Texts.onBoardTitle3,
+      body: Texts.onBoardBody3,
       color: AppColor.honeyYellow,
     ),
   ];
 
   bool isLast = false;
+  bool isFirst = true;
 
   void submit(BuildContext context) {
     CacheHelper.saveDataSharedPreference(
@@ -60,7 +66,7 @@ class OnBoardingScreen extends StatelessWidget {
       if (value) {
         Navigator.pushNamedAndRemoveUntil(
           context,
-          '/entry',
+          Screens.entryScreen,
           (route) => false,
         );
       }
@@ -70,39 +76,42 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          GlobalCubit()..changeLanguageValueWithLang(context, 'en'),
+      create: (context) => GlobalCubit(),
       child: BlocConsumer<GlobalCubit, GlobalState>(
         listener: (context, state) {},
         builder: (context, state) {
           final GlobalCubit globalCubit = context.read<GlobalCubit>();
           return Scaffold(
-            body: Directionality(
-              textDirection: TextDirection.rtl,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: PageView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      controller: boardController,
-                      onPageChanged: (int index) {
-                        if (index == boarding.length - 1) {
-                          isLast = true;
-                          globalCubit.changeLocalState();
-                        } else {
-                          isLast = false;
-                          globalCubit.changeLocalState();
-                        }
-                      },
-                      itemBuilder: (context, index) => buildBoardingItem(
-                        boarding[index],
-                        context,
-                      ),
-                      itemCount: boarding.length,
+            body: Column(
+              children: [
+                Expanded(
+                  child: PageView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    controller: boardController,
+                    onPageChanged: (int index) {
+                      if (index == 0) {
+                        isFirst = true;
+                        globalCubit.changeLocalState();
+                      } else {
+                        isFirst = false;
+                        globalCubit.changeLocalState();
+                      }
+                      if (index == boarding.length - 1) {
+                        isLast = true;
+                        globalCubit.changeLocalState();
+                      } else {
+                        isLast = false;
+                        globalCubit.changeLocalState();
+                      }
+                    },
+                    itemBuilder: (context, index) => buildBoardingItem(
+                      boarding[index],
+                      context,
                     ),
+                    itemCount: boarding.length,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },
@@ -130,14 +139,9 @@ class OnBoardingScreen extends StatelessWidget {
                     height: 15.0,
                     color: model.color,
                   )),
-              const Text(
-                'مرحبا',
-                style: TextStyle(
-                  fontFamily: 'cairo',
-                  color: AppColor.black,
-                  fontSize: 45.0,
-                  fontWeight: FontWeight.bold,
-                ),
+              Text(
+                Texts.welcome,
+                style: TextStyles.welcomeStyle,
               ),
             ],
           ),
@@ -153,13 +157,12 @@ class OnBoardingScreen extends StatelessWidget {
                 children: [
                   FittedBox(
                     fit: BoxFit.scaleDown,
-                    child: Text(
-                      model.title,
-                      style: const TextStyle(
-                        fontFamily: 'cairo',
-                        color: AppColor.indigoDye,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                    child: Align(
+                      alignment: AlignmentDirectional.center,
+                      child: Text(
+                        model.title,
+                        style: TextStyles.borderingItemTitleStyle,
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
@@ -170,12 +173,8 @@ class OnBoardingScreen extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                     child: Text(
                       model.body,
-                      style: const TextStyle(
-                        fontFamily: 'cairo',
-                        color: AppColor.indigoDye,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: TextStyles.borderingItemBodyStyle,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(
@@ -188,30 +187,22 @@ class OnBoardingScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Directionality(
-                textDirection: TextDirection.ltr,
-                child: SizedBox(
-                  height: 30.0,
-                  width: 30.0,
-                  child: FloatingActionButton(
-                    heroTag: 'FB${model.color}',
-                    onPressed: () {
-                      boardController.previousPage(
-                        duration: const Duration(
-                          milliseconds: 750,
-                        ),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                      );
-                    },
-                    backgroundColor: model.color,
-                    mini: true,
-                    elevation: 1,
-                    child: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18.0,
-                    ),
-                  ),
+              IconButton(
+                onPressed: !isFirst
+                    ? () {
+                        boardController.previousPage(
+                          duration: const Duration(
+                            milliseconds: 750,
+                          ),
+                          curve: Curves.fastLinearToSlowEaseIn,
+                        );
+                      }
+                    : null,
+                icon: const Icon(
+                  Icons.arrow_circle_right_outlined,
                 ),
+                iconSize: 30.0,
+                color: !isFirst ? model.color : AppColor.carosalBG,
               ),
               const SizedBox(
                 width: 20.0,
@@ -234,33 +225,26 @@ class OnBoardingScreen extends StatelessWidget {
               const SizedBox(
                 width: 20.0,
               ),
-              Directionality(
-                textDirection: TextDirection.ltr,
-                child: SizedBox(
-                  height: 30.0,
-                  width: 30.0,
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      if (isLast) {
-                        submit(context);
-                      } else {
-                        boardController.nextPage(
-                          duration: const Duration(
-                            milliseconds: 750,
-                          ),
-                          curve: Curves.fastLinearToSlowEaseIn,
-                        );
-                      }
-                    },
-                    backgroundColor: model.color,
-                    mini: true,
-                    elevation: 1,
-                    child: Icon(
-                      isLast ? Icons.check : Icons.arrow_back_ios_new,
-                      size: 18.0,
-                    ),
-                  ),
+              IconButton(
+                onPressed: () {
+                  if (isLast) {
+                    submit(context);
+                  } else {
+                    boardController.nextPage(
+                      duration: const Duration(
+                        milliseconds: 750,
+                      ),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                    );
+                  }
+                },
+                icon: Icon(
+                  isLast
+                      ? Icons.check_circle_outlined
+                      : Icons.arrow_circle_left_outlined,
                 ),
+                iconSize: 30.0,
+                color: model.color,
               ),
             ],
           ),
@@ -273,16 +257,13 @@ class OnBoardingScreen extends StatelessWidget {
                     submit(context);
                   },
                   child: Text(
-                    'تخطي',
-                    style: TextStyle(
-                      color: model.color,
-                      fontSize: 18.0,
-                      fontFamily: 'cairo',
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ))
-              : Padding(
+                    Texts.skip,
+                    style: TextStyles.skipStyle(model.color),
+                  ),
+                )
+              : const SizedBox(),
+          isLast
+              ? Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: CustomElevation(
                     color: model.color,
@@ -298,19 +279,15 @@ class OnBoardingScreen extends StatelessWidget {
                         submit(context);
                       },
                       color: model.color,
-                      child: const Text(
-                        'أبدا الان',
+                      child: Text(
+                        Texts.startNow,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: 'cairo',
-                          fontWeight: FontWeight.w700,
-                        ),
+                        style: TextStyles.startNowStyle,
                       ),
                     ),
                   ),
-                ),
+                )
+              : const SizedBox(),
         ],
       );
 }
