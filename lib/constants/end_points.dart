@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
 const String domain = "https://droosakonline.com";
-const String baseURL = "$domain/api/";
+const String baseURL = "$domain/api/v1/";
 
 const courses = 'courses';
 const authCourses = 'student/courses';
