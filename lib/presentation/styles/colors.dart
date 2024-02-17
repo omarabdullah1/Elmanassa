@@ -20,6 +20,7 @@ class AppColor {
   static const Color indigoDye200 = Color(0xFFE9FBFF);
   static const Color indigoDye500 = Color(0xFF5186B2);
   static const Color indigoDye300 = Color(0xFF9EBCD5);
+  static const Color grey = Color(0xFF71717A);
 
   static const MaterialColor defaultColor = MaterialColor(
     0xFF005DA3,
