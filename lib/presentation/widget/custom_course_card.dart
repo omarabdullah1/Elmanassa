@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart'
     show CachedNetworkImage;
+import 'package:edumaster/main.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/local/args.dart';
@@ -161,22 +162,20 @@ class CustomMyCourseWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                      child: Text(
-                        course!.title!,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: AppColor.black,
-                          fontSize: 20,
-                          fontFamily: 'cairo',
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                  child: Text(
+                    course!.title!,
+                    textAlign: delegate.currentLocale.languageCode == 'en' ? TextAlign.left : TextAlign.right,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: const TextStyle(
+                      color: AppColor.black,
+                      fontSize: 20,
+                      fontFamily: 'cairo',
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
+                  ),
                 ),
 
                 //TODO make PRICE WIDGET HERE
