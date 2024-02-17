@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edumaster/data/models/course_dashboard_model.dart';
+import 'package:edumaster/main.dart';
 import 'package:edumaster/presentation/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -156,7 +157,8 @@ class CourseDashboardScreen extends StatelessWidget {
                                         studentHomeCubit.courseDashboardModel!
                                                 .course!.introVideo ??
                                             Texts
-                                                .studentHomeCourseDashboardVideoPathText,
+                                                .translate(Texts
+                                                .studentHomeCourseDashboardVideoPathText, context),
                                       ),
                                     );
                                   },
@@ -277,7 +279,8 @@ class CourseDashboardScreen extends StatelessWidget {
                                             alignment: Alignment.centerRight,
                                             child: Text(
                                               Texts
-                                                  .studentHomeCourseDashboardCourseDetailsText,
+                                                  .translate(Texts
+                                                  .studentHomeCourseDashboardCourseDetailsText, context),
                                               style: TextStyles
                                                   .studentHomeCourseDashboardCourseDetailsTextStyle,
                                             ),
@@ -379,7 +382,8 @@ class _ExpandableCardState extends State<ExpandableCard> {
                       children: [
                         Text(
                           Texts
-                              .studentHomeCourseDashboardExpandableCardLessonsText,
+                              .translate(Texts
+                              .studentHomeCourseDashboardExpandableCardLessonsText, context),
                           textAlign: TextAlign.center,
                           style: TextStyles
                               .studentHomeCourseDashboardExpandableCardLessonsTextStyle,
@@ -416,7 +420,7 @@ class _ExpandableCardState extends State<ExpandableCard> {
                               .isNotEmpty
                           ? widget.courseDashboardModelCourseUnits.duration
                               .toString()
-                          : 'notime',
+                          : delegate.currentLocale.languageCode == 'en' ? 'notime' : 'لا توجد وقت',
                       textAlign: TextAlign.center,
                       style: TextStyles
                           .studentHomeCourseDashboardExpandableCardLessonsTextStyle,
@@ -515,7 +519,7 @@ class _ExpandableCardState extends State<ExpandableCard> {
                           arguments: ScreenArguments(
                             ele.lesson!.title.toString(),
                             ele.lesson!.video ??
-                                Texts.studentHomeCourseDashboardVideoPathText,
+                                Texts.translate(Texts.studentHomeCourseDashboardVideoPathText, context),
                           ),
                         );
                       },

@@ -119,7 +119,7 @@ class LoginScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  Texts.loginHi,
+                                  Texts.translate(Texts.loginHi, context),
                                   style: TextStyles.loginHiStyle,
                                 ),
                                 const BackButtonWidget(
@@ -130,7 +130,7 @@ class LoginScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  Texts.loginWelcomeForYou,
+                                  Texts.translate(Texts.loginWelcomeForYou, context),
                                   textAlign: TextAlign.center,
                                   style: TextStyles.loginWelcomeForYouStyle,
                                 ),
@@ -195,7 +195,7 @@ class LoginScreen extends StatelessWidget {
                                                 }
                                               },
                                               onSubmit: (value) {},
-                                              label: Texts.loginEmailLabel,
+                                              label: Texts.translate(Texts.loginEmailLabel, context),
                                               labelColor: AppColor.babyBlue,
                                             ),
                                           ),
@@ -244,37 +244,37 @@ class LoginScreen extends StatelessWidget {
                                                       .toString();
                                                 }
                                               },
-                                              label: Texts.loginPasswordLabel,
+                                              label: Texts.translate(Texts.loginPasswordLabel, context),
                                               labelColor: AppColor.babyBlue,
                                               suffixIconColor:
                                                   AppColor.indigoDye,
                                             ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 55.0,
-                                            ),
-                                            child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: TextButton(
-                                                onPressed: () {
-                                                  // Navigator.pushNamed(
-                                                  //   context,
-                                                  //   loginScreen,
-                                                  // );
-                                                },
-                                                style: TextButton.styleFrom(
-                                                  foregroundColor: AppColor
-                                                      .roseMadder, // Text Color
-                                                ),
-                                                child: Text(
-                                                  Texts.loginForgetPassword,
-                                                  style: TextStyles
-                                                      .loginForgetPasswordStyle,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
+                                          // Padding(
+                                          //   padding: const EdgeInsets.symmetric(
+                                          //     horizontal: 55.0,
+                                          //   ),
+                                          //   child: Align(
+                                          //     alignment: Alignment.centerRight,
+                                          //     child: TextButton(
+                                          //       onPressed: () {
+                                          //         // Navigator.pushNamed(
+                                          //         //   context,
+                                          //         //   loginScreen,
+                                          //         // );
+                                          //       },
+                                          //       style: TextButton.styleFrom(
+                                          //         foregroundColor: AppColor
+                                          //             .roseMadder, // Text Color
+                                          //       ),
+                                          //       child: Text(
+                                          //         Texts.translate(Texts.loginForgetPassword, context),
+                                          //         style: TextStyles
+                                          //             .loginForgetPasswordStyle,
+                                          //       ),
+                                          //     ),
+                                          //   ),
+                                          // ),
                                           const SizedBox(
                                             height: 27.0,
                                           ),
@@ -334,7 +334,7 @@ class LoginScreen extends StatelessWidget {
                                                 },
                                                 color: AppColor.honeyYellow,
                                                 child: Text(
-                                                  Texts.continueText,
+                                                  Texts.translate(Texts.continueText, context),
                                                   textAlign: TextAlign.center,
                                                   style: TextStyles
                                                       .continueTextStyle,
@@ -377,7 +377,7 @@ class LoginScreen extends StatelessWidget {
                                                       ),
                                                       child: Center(
                                                         child: Text(
-                                                          Texts.parentText,
+                                                          Texts.translate(Texts.parentText, context),
                                                           style: TextStyles
                                                               .parentStyle(
                                                             globalCubit
@@ -411,7 +411,7 @@ class LoginScreen extends StatelessWidget {
                                                       ),
                                                       child: Center(
                                                         child: Text(
-                                                          Texts.studentText,
+                                                          Texts.translate(Texts.studentText, context),
                                                           style: TextStyles
                                                               .studentStyle(
                                                             globalCubit
@@ -429,7 +429,7 @@ class LoginScreen extends StatelessWidget {
                                             height: 20.0,
                                           ),
                                           Text(
-                                            Texts.loginHaveAccountText,
+                                            Texts.translate(Texts.loginHaveAccountText, context),
                                             style: TextStyles
                                                 .loginHaveAccountStyle,
                                           ),
@@ -450,7 +450,7 @@ class LoginScreen extends StatelessWidget {
                                                     .roseMadder, // Text Color
                                               ),
                                               child: Text(
-                                                Texts.register,
+                                                Texts.translate(Texts.register, context),
                                                 style: TextStyles.registerStyle,
                                               ),
                                             ),

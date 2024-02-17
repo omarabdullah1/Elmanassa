@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:edumaster/generated/assets.dart';
+import 'package:edumaster/presentation/widget/back_button.dart';
 import 'package:edumaster/presentation/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,28 +72,7 @@ class SubscriptionScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: SizedBox(
-                          height: 40.0,
-                          width: 40.0,
-                          child: FlatButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            tOrI: false,
-                            icon: Icons.arrow_back_ios,
-                            radius: 50.0,
-                            height: 5.0,
-                            minWidth: 5.0,
-                            iconSize: 15.0,
-                            iconColor: AppColor.roseMadder,
-                            color: AppColor.white,
-                            elevation: 0.0,
-                            iconWidgetState: false,
-                          ),
-                        ),
-                      ),
+                      const BackButtonWidget(),
                       const Spacer(),
                       Padding(
                         padding: const EdgeInsets.all(5.0),
@@ -101,7 +81,7 @@ class SubscriptionScreen extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Center(
                             child: Text(
-                              Texts.studentHomeCourseSubscribeScreenTitleText,
+                              Texts.translate(Texts.studentHomeCourseSubscribeScreenTitleText, context),
                               style: TextStyles.studentHomeHomepageStyle,
                             ),
                           ),
@@ -182,7 +162,8 @@ class SubscriptionScreen extends StatelessWidget {
                         children: [
                           Text(
                             Texts
-                                .studentHomeCourseSubscribeScreenEnterPaymentCodeText,
+                                .translate(Texts
+                                .studentHomeCourseSubscribeScreenEnterPaymentCodeText, context),
                             style: TextStyles
                                 .studentHomeCourseSubscriptionEnterPaymentCodeStyle,
                           ),
@@ -250,7 +231,8 @@ class SubscriptionScreen extends StatelessWidget {
                                     color: AppColor.roseMadder,
                                     child: Text(
                                       Texts
-                                          .studentHomeCourseSubscribeScreenPaymentConfirmButtonText,
+                                          .translate(Texts
+                                          .studentHomeCourseSubscribeScreenPaymentConfirmButtonText, context),
                                       textAlign: TextAlign.center,
                                       style: TextStyles
                                           .studentHomeCourseDetailsClickSubscribeCheckStyle,
@@ -308,7 +290,8 @@ class SubscriptionScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   Texts
-                                      .studentHomeCourseSubscribeScreenPaymentDetailsText,
+                                      .translate(Texts
+                                      .studentHomeCourseSubscribeScreenPaymentDetailsText, context),
                                   textAlign: TextAlign.center,
                                   style: TextStyles
                                       .studentHomeCourseSubscribeScreenPaymentDetailsTextStyle,
@@ -345,7 +328,8 @@ class SubscriptionScreen extends StatelessWidget {
                                           children: [
                                             Text(
                                               Texts
-                                                  .studentHomeCourseSubscribeScreenTotalCostText,
+                                                  .translate(Texts
+                                                  .studentHomeCourseSubscribeScreenTotalCostText, context),
                                               style: TextStyles
                                                   .studentHomeCourseSubscribeScreenTotlaCostTextStyle,
                                             ),
@@ -365,7 +349,8 @@ class SubscriptionScreen extends StatelessWidget {
                                           children: [
                                             Text(
                                               Texts
-                                                  .studentHomeCourseSubscribeScreenPaymentCodeText,
+                                                  .translate(Texts
+                                                  .studentHomeCourseSubscribeScreenPaymentCodeText, context),
                                               style: TextStyles
                                                   .studentHomeCourseSubscribeScreenTotlaCostTextStyle,
                                             ),
@@ -387,7 +372,8 @@ class SubscriptionScreen extends StatelessWidget {
                                       children: [
                                         Text(
                                           Texts
-                                              .studentHomeCourseSubscribeScreenTotalCostText,
+                                              .translate(Texts
+                                              .studentHomeCourseSubscribeScreenTotalCostText, context),
                                           style: TextStyles
                                               .studentHomeCourseSubscribeScreenTotlaCostTextStyle,
                                         ),
@@ -440,7 +426,7 @@ class SubscriptionScreen extends StatelessWidget {
                                         },
                                   color: AppColor.roseMadder,
                                   child: Text(
-                                    Texts.studentHomeGoCourseText,
+                                    Texts.translate(Texts.studentHomeGoCourseText, context),
                                     textAlign: TextAlign.center,
                                     style: TextStyles
                                         .studentHomeCourseDetailsClickSubscribeStyle,

@@ -71,13 +71,16 @@ class ProfileScreen extends StatelessWidget {
                   const BackButtonWidget(),
                   const Spacer(),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    child: Text(
-                      Texts.studentHomeProfilePageText,
-                      style: TextStyles.studentHomeHomepageStyle,
-                      maxLines: 1,
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text(
+                        Texts.translate(Texts.studentHomeProfilePageText, context),
+                        style: TextStyles.studentHomeHomepageStyle,
+                        maxLines: 1,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                   const Spacer(),
@@ -141,8 +144,8 @@ class ProfileScreen extends StatelessWidget {
                                           studentHomeCubit.profileModel!
                                                       .profile!.role ==
                                                   'student'
-                                              ? 'طالب'
-                                              : 'ولي أمر',
+                                              ? Texts.translate(Texts.studentText, context)
+                                              : Texts.translate(Texts.parentText, context),
                                           style: TextStyles
                                               .studentHomeProfileTypeTextStyle,
                                         )
@@ -201,12 +204,12 @@ class ProfileScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'حسابي الشخصي',
+                                                Texts.translate(Texts.studentHomeProfilePersonalAccountText, context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountTextStyle,
                                               ),
                                               Text(
-                                                'تعديل و تغيير حسابك الشخصي',
+                                                Texts.translate(Texts.studentHomeProfilePersonalAccountEditTextText, context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountEditTextStyle,
                                               ),
@@ -271,7 +274,7 @@ class ProfileScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                'رمز الاستجابة السريع',
+                                                Texts.translate(Texts.studentHomeProfileQrCodeText, context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountTextStyle,
                                               ),
@@ -321,12 +324,12 @@ class ProfileScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'رمز الاستجابة السريع',
+                                                Texts.translate(Texts.studentHomeProfileQrCodeText, context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountTextStyle,
                                               ),
                                               Text(
-                                                'عرض رمز الاسجابه السريعه (الكود) الخاص بك',
+                                                Texts.translate(Texts.studentHomeProfileQrCodeEditTextText, context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountEditTextStyle,
                                               ),
@@ -375,7 +378,7 @@ class ProfileScreen extends StatelessWidget {
                                                         ),
                                                       ),
                                                       Text(
-                                                        'رمز الاستجابة السريع',
+                                                        Texts.translate(Texts.studentHomeProfileQrCodeText, context),
                                                         style: TextStyles
                                                             .studentHomeProfilePersonalAccountTextStyle,
                                                       ),
@@ -438,12 +441,12 @@ class ProfileScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'تسجيل الخروج',
+                                                Texts.translate(Texts.studentHomeProfileLogOutText, context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountTextStyle,
                                               ),
                                               Text(
-                                                'الخروج نهائيا من حسابك الشخصي',
+                                                Texts.translate(Texts.studentHomeProfileLogOutEditTextText, context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountEditTextStyle,
                                               ),
@@ -472,7 +475,7 @@ class ProfileScreen extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Text(
-                                        'المزيد',
+                                        Texts.translate(Texts.studentHomeProfileMoreText, context),
                                         style: TextStyles
                                             .studentHomeProfilePersonalAccountTextStyle,
                                       ),
@@ -505,7 +508,7 @@ class ProfileScreen extends StatelessWidget {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 15.0),
                                           child: Text(
-                                            'المساعدة',
+                                            Texts.translate(Texts.studentHomeProfileHelpText, context),
                                             style: TextStyles
                                                 .studentHomeProfilePersonalAccountTextStyle,
                                           ),
@@ -568,7 +571,7 @@ class ProfileScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                'عن البرنامج',
+                                                Texts.translate(Texts.studentHomeProfileAboutUsText, context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountTextStyle,
                                               ),
@@ -578,7 +581,7 @@ class ProfileScreen extends StatelessWidget {
                                                   15.0,
                                                 ),
                                                 child: Text(
-                                                  '© 2024 جميع الحقوق محفوظه لدي شركة Codization',
+                                                  Texts.translate(Texts.studentHomeProfileAboutUsDetailsText, context),
                                                   style: TextStyles
                                                       .studentHomeProfilePersonalAccountTextStyle,
                                                 ),
@@ -608,7 +611,7 @@ class ProfileScreen extends StatelessWidget {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 15.0),
                                           child: Text(
-                                            'عن البرنامج',
+                                            Texts.translate(Texts.studentHomeProfileAboutUsText, context),
                                             style: TextStyles
                                                 .studentHomeProfilePersonalAccountTextStyle,
                                           ),
@@ -655,7 +658,7 @@ class ProfileScreen extends StatelessWidget {
                                                         ),
                                                       ),
                                                       Text(
-                                                        'عن البرنامج',
+                                                        Texts.translate(Texts.studentHomeProfileAboutUsText, context),
                                                         style: TextStyles
                                                             .studentHomeProfilePersonalAccountTextStyle,
                                                       ),
@@ -665,7 +668,7 @@ class ProfileScreen extends StatelessWidget {
                                                           15.0,
                                                         ),
                                                         child: Text(
-                                                          '© 2024 جميع الحقوق محفوظه لدي شركة Codization',
+                                                          Texts.translate(Texts.studentHomeProfileAboutUsDetailsText, context),
                                                           style: TextStyles
                                                               .studentHomeProfilePersonalAccountTextStyle,
                                                         ),

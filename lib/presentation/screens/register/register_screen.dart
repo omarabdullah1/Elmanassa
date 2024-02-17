@@ -143,7 +143,7 @@ class RegisterScreen extends StatelessWidget {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                Texts.registerNewParentText,
+                                                Texts.translate(Texts.registerNewParentText, context),
                                                 style: TextStyles
                                                     .registerNewParentStyle,
                                               ),
@@ -169,7 +169,8 @@ class RegisterScreen extends StatelessWidget {
                                                     }
                                                   },
                                                   label: Texts
-                                                      .registerFirstNameLabel,
+                                                      .translate(Texts
+                                                      .registerFirstNameLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.person_rounded,
                                                 ),
@@ -200,7 +201,7 @@ class RegisterScreen extends StatelessWidget {
                                                     }
                                                   },
                                                   label:
-                                                      Texts.registerLastNameLabel,
+                                                      Texts.translate(Texts.registerLastNameLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.person_rounded,
                                                 ),
@@ -231,7 +232,7 @@ class RegisterScreen extends StatelessWidget {
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts.registerEmailLabel,
+                                                  label: Texts.translate(Texts.registerEmailLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.email_outlined,
                                                 ),
@@ -267,7 +268,7 @@ class RegisterScreen extends StatelessWidget {
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts.registerPhoneLabel,
+                                                  label: Texts.translate(Texts.registerPhoneLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.phone_android,
                                                 ),
@@ -307,7 +308,7 @@ class RegisterScreen extends StatelessWidget {
                                                     }
                                                   },
                                                   label:
-                                                      Texts.registerPasswordLabel,
+                                                      Texts.translate(Texts.registerPasswordLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.lock_outline,
                                                 ),
@@ -358,7 +359,8 @@ class RegisterScreen extends StatelessWidget {
                                                     }
                                                   },
                                                   label: Texts
-                                                      .registerConfirmPasswordLabel,
+                                                      .translate(Texts
+                                                      .registerConfirmPasswordLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.lock_outline,
                                                 ),
@@ -380,7 +382,8 @@ class RegisterScreen extends StatelessWidget {
                                                         fit: BoxFit.scaleDown,
                                                         child: Text(
                                                           Texts
-                                                              .registerStudentCode,
+                                                              .translate(Texts
+                                                              .registerStudentCode, context),
                                                           style: TextStyles
                                                               .registerStudentCodeStyle,
                                                         ),
@@ -507,7 +510,8 @@ class RegisterScreen extends StatelessWidget {
                                                                     .scaleDown,
                                                                 child: Text(
                                                                   Texts
-                                                                      .registerScanCode,
+                                                                      .translate(Texts
+                                                                      .registerScanCode, context),
                                                                   textAlign:
                                                                       TextAlign
                                                                           .center,
@@ -549,7 +553,8 @@ class RegisterScreen extends StatelessWidget {
                                                         (globalCubit
                                                                 .qrList.isEmpty)
                                                             ? Texts
-                                                                .registerPleaseScanCodeText
+                                                                .translate(Texts
+                                                            .registerPleaseScanCodeText, context)
                                                             : '',
                                                         style: TextStyles
                                                             .registerPleaseScanCodeStyle,
@@ -638,9 +643,11 @@ class RegisterScreen extends StatelessWidget {
                                                       child: Text(
                                                         (globalCubit.selectedGender ==
                                                                 Texts
-                                                                    .registerSelectGenderText)
+                                                                    .translate(Texts
+                                                                    .registerSelectGenderText, context))
                                                             ? Texts
-                                                                .registerPleaseSelectGenderText
+                                                                .translate(Texts
+                                                            .registerPleaseSelectGenderText, context)
                                                             : '',
                                                         style: TextStyles
                                                             .registerPleaseSelectGenderStyle,
@@ -691,7 +698,8 @@ class RegisterScreen extends StatelessWidget {
                                                           globalCubit
                                                                   .selectedGender !=
                                                               Texts
-                                                                  .registerSelectGenderText &&
+                                                                  .translate(Texts
+                                                                  .registerSelectGenderText, context) &&
                                                           globalCubit.qrList
                                                               .isNotEmpty) {
                                                         globalCubit
@@ -722,7 +730,7 @@ class RegisterScreen extends StatelessWidget {
                                                     },
                                                     color: AppColor.honeyYellow,
                                                     child: Text(
-                                                      Texts.continueText,
+                                                      Texts.translate(Texts.continueText, context),
                                                       textAlign: TextAlign.center,
                                                       style: TextStyles
                                                           .continueTextStyle,
@@ -772,7 +780,7 @@ class RegisterScreen extends StatelessWidget {
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                Texts.parentText,
+                                                                Texts.translate(Texts.parentText, context),
                                                                 style: TextStyles
                                                                     .studentStyle(
                                                                   !globalCubit
@@ -808,7 +816,7 @@ class RegisterScreen extends StatelessWidget {
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                Texts.studentText,
+                                                                Texts.translate(Texts.studentText, context),
                                                                 style: TextStyles
                                                                     .studentStyle(
                                                                   globalCubit
@@ -831,7 +839,7 @@ class RegisterScreen extends StatelessWidget {
                                           child: Column(
                                             children: [
                                               Text(
-                                                Texts.registerNewStudentText,
+                                                Texts.translate(Texts.registerNewStudentText, context),
                                                 style: TextStyles
                                                     .registerNewStudentStyle,
                                               ),
@@ -858,7 +866,8 @@ class RegisterScreen extends StatelessWidget {
                                                     }
                                                   },
                                                   label: Texts
-                                                      .registerFirstNameLabel,
+                                                      .translate(Texts
+                                                      .registerFirstNameLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.person_rounded,
                                                 ),
@@ -888,7 +897,7 @@ class RegisterScreen extends StatelessWidget {
                                                     }
                                                   },
                                                   label:
-                                                      Texts.registerLastNameLabel,
+                                                      Texts.translate(Texts.registerLastNameLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.person_rounded,
                                                 ),
@@ -919,7 +928,7 @@ class RegisterScreen extends StatelessWidget {
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts.registerEmailLabel,
+                                                  label: Texts.translate(Texts.registerEmailLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.email_outlined,
                                                 ),
@@ -956,7 +965,7 @@ class RegisterScreen extends StatelessWidget {
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts.registerPhoneLabel,
+                                                  label: Texts.translate(Texts.registerPhoneLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.phone_android,
                                                 ),
@@ -995,7 +1004,7 @@ class RegisterScreen extends StatelessWidget {
                                                     }
                                                   },
                                                   label:
-                                                      Texts.registerPasswordLabel,
+                                                      Texts.translate(Texts.registerPasswordLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.lock_outline,
                                                 ),
@@ -1066,7 +1075,8 @@ class RegisterScreen extends StatelessWidget {
                                                     }
                                                   },
                                                   label: Texts
-                                                      .registerConfirmPasswordLabel,
+                                                      .translate(Texts
+                                                      .registerConfirmPasswordLabel, context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.lock_outline,
                                                 ),
@@ -1150,9 +1160,11 @@ class RegisterScreen extends StatelessWidget {
                                                     Text(
                                                       (globalCubit.selectedGender ==
                                                               Texts
-                                                                  .registerSelectGenderText)
+                                                                  .translate(Texts
+                                                                  .registerSelectGenderText, context))
                                                           ? Texts
-                                                              .registerPleaseSelectGenderText
+                                                              .translate(Texts
+                                                          .registerPleaseSelectGenderText, context)
                                                           : '',
                                                       style: TextStyles
                                                           .registerPleaseSelectGenderStyle,
@@ -1171,7 +1183,7 @@ class RegisterScreen extends StatelessWidget {
                                                   ),
                                                   isExpanded: false,
                                                   hint: Text(
-                                                    Texts.registerSelectLevelText,
+                                                    Texts.translate(Texts.registerSelectLevelText, context),
                                                     style: TextStyles
                                                         .registerSelectLevelStyle,
                                                   ),
@@ -1233,9 +1245,11 @@ class RegisterScreen extends StatelessWidget {
                                                       child: Text(
                                                         (globalCubit.selectedLevel ==
                                                                 Texts
-                                                                    .registerSelectLevelText)
+                                                                    .translate(Texts
+                                                                    .registerSelectLevelText, context))
                                                             ? Texts
-                                                                .registerPleaseSelectLevelText
+                                                                .translate(Texts
+                                                            .registerPleaseSelectLevelText, context)
                                                             : '',
                                                         style: TextStyles
                                                             .registerPleaseSelectLevelStyle,
@@ -1286,11 +1300,13 @@ class RegisterScreen extends StatelessWidget {
                                                           globalCubit
                                                                   .selectedLevel !=
                                                               Texts
-                                                                  .registerSelectLevelText &&
+                                                                  .translate(Texts
+                                                                  .registerSelectLevelText, context) &&
                                                           globalCubit
                                                                   .selectedGender !=
                                                               Texts
-                                                                  .registerSelectGenderText) {
+                                                                  .translate(Texts
+                                                                  .registerSelectGenderText, context)) {
                                                         globalCubit.userRegister(
                                                           email: globalCubit
                                                               .sEmailController
@@ -1315,10 +1331,10 @@ class RegisterScreen extends StatelessWidget {
                                                       }
                                                     },
                                                     color: AppColor.honeyYellow,
-                                                    child: const Text(
-                                                      'أستمرار',
+                                                    child: Text(
+                                                      Texts.translate(Texts.continueText, context),
                                                       textAlign: TextAlign.center,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 18,
                                                         fontFamily: 'cairo',
@@ -1373,7 +1389,7 @@ class RegisterScreen extends StatelessWidget {
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                'ولي أمر',
+                                                                Texts.translate(Texts.parentText, context),
                                                                 style: TextStyle(
                                                                   fontFamily:
                                                                       'cairo',
@@ -1420,7 +1436,7 @@ class RegisterScreen extends StatelessWidget {
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                'طالب',
+                                                                Texts.translate(Texts.studentText, context),
                                                                 style: TextStyle(
                                                                   fontFamily:
                                                                       'cairo',

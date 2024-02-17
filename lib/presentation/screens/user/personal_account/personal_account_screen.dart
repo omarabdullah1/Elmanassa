@@ -42,11 +42,11 @@ class PersonalAccountScreen extends StatelessWidget {
                   const BackButtonWidget(),
                   const Spacer(),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.4,
                     child: Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: Text(
-                        Texts.studentHomeProfilePageText,
+                        Texts.translate(Texts.studentHomeProfilePageText, context),
                         style: TextStyles.studentHomeHomepageStyle,
                       ),
                     ),
@@ -115,8 +115,8 @@ class PersonalAccountScreen extends StatelessWidget {
                                           studentHomeCubit.profileModel!
                                                       .profile!.role ==
                                                   'student'
-                                              ? 'طالب'
-                                              : 'ولي أمر',
+                                              ? Texts.translate(Texts.studentText, context)
+                                              : Texts.translate(Texts.parentText, context),
                                           style: TextStyles
                                               .studentHomeProfileTypeTextStyle,
                                         )
@@ -156,7 +156,7 @@ class PersonalAccountScreen extends StatelessWidget {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'البيانات الاساسية',
+                                          Texts.translate(Texts.studentHomeProfilePersonalAccountDetailsText, context),
                                           style: TextStyles
                                               .studentHomeProfilePersonalAccountTextStyle,
                                         ),
@@ -182,7 +182,7 @@ class PersonalAccountScreen extends StatelessWidget {
                                               .toString();
                                         }
                                       },
-                                      label: Texts.registerFirstNameLabel,
+                                      label: Texts.translate(Texts.registerFirstNameLabel, context),
                                       labelColor: AppColor.babyBlue,
                                       prefix: Icons.person_rounded,
                                     ),
@@ -210,7 +210,7 @@ class PersonalAccountScreen extends StatelessWidget {
                                               .toString();
                                         }
                                       },
-                                      label: Texts.registerLastNameLabel,
+                                      label: Texts.translate(Texts.registerLastNameLabel, context),
                                       labelColor: AppColor.babyBlue,
                                       prefix: Icons.person_rounded,
                                     ),
@@ -238,7 +238,7 @@ class PersonalAccountScreen extends StatelessWidget {
                                               .toString();
                                         }
                                       },
-                                      label: Texts.registerEmailLabel,
+                                      label: Texts.translate(Texts.registerEmailLabel, context),
                                       labelColor: AppColor.babyBlue,
                                       prefix: Icons.email_outlined,
                                     ),
@@ -271,7 +271,7 @@ class PersonalAccountScreen extends StatelessWidget {
                                               .toString();
                                         }
                                       },
-                                      label: Texts.registerPhoneLabel,
+                                      label: Texts.translate(Texts.registerPhoneLabel, context),
                                       labelColor: AppColor.babyBlue,
                                       prefix: Icons.phone_android,
                                     ),
@@ -372,7 +372,7 @@ class PersonalAccountScreen extends StatelessWidget {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'المزيد',
+                                          Texts.translate(Texts.studentHomeProfileMoreText, context),
                                           style: TextStyles
                                               .studentHomeProfilePersonalAccountTextStyle,
                                         ),
@@ -443,9 +443,10 @@ class PersonalAccountScreen extends StatelessWidget {
                                       children: [
                                         Text(
                                           (studentHomeCubit.selectedGender ==
-                                              Texts.registerSelectGenderText)
+                                              Texts.translate(Texts.registerSelectGenderText, context))
                                               ? Texts
-                                              .registerPleaseSelectGenderText
+                                              .translate(Texts
+                                              .registerPleaseSelectGenderText, context)
                                               : '',
                                           style: TextStyles
                                               .registerPleaseSelectGenderStyle,
@@ -464,7 +465,7 @@ class PersonalAccountScreen extends StatelessWidget {
                                       ),
                                       isExpanded: false,
                                       hint: Text(
-                                        Texts.registerSelectLevelText,
+                                        Texts.translate(Texts.registerSelectLevelText, context),
                                         style:
                                         TextStyles.registerSelectLevelStyle,
                                       ),
@@ -513,9 +514,10 @@ class PersonalAccountScreen extends StatelessWidget {
                                         ),
                                         child: Text(
                                           (studentHomeCubit.selectedLevel ==
-                                              Texts.registerSelectLevelText)
+                                              Texts.translate(Texts.registerSelectLevelText, context))
                                               ? Texts
-                                              .registerPleaseSelectLevelText
+                                              .translate(Texts
+                                              .registerPleaseSelectLevelText, context)
                                               : '',
                                           style: TextStyles
                                               .registerPleaseSelectLevelStyle,
@@ -551,10 +553,11 @@ class PersonalAccountScreen extends StatelessWidget {
                                               .formKey.currentState!
                                               .validate() &&
                                               studentHomeCubit.selectedLevel !=
-                                                  Texts.registerSelectLevelText &&
+                                                  Texts.translate(Texts.registerSelectLevelText, context) &&
                                               studentHomeCubit.selectedGender !=
                                                   Texts
-                                                      .registerSelectGenderText) {
+                                                      .translate(Texts
+                                                      .registerSelectGenderText, context)) {
                                             studentHomeCubit.userUpdate(
                                               email: studentHomeCubit
                                                   .sEmailController.text,
@@ -572,15 +575,10 @@ class PersonalAccountScreen extends StatelessWidget {
                                           }
                                         },
                                         color: AppColor.honeyYellow,
-                                        child: const Text(
-                                          'أستمرار',
+                                        child: Text(
+                                          Texts.translate(Texts.continueText, context),
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontFamily: 'cairo',
-                                            fontWeight: FontWeight.w700,
-                                          ),
+                                          style: TextStyles.continueTextStyle,
                                         ),
                                       ),
                                     ),

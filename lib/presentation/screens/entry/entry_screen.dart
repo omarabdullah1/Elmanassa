@@ -67,7 +67,7 @@ class EntryScreen extends StatelessWidget {
                           FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              Texts.entryTitle,
+                              Texts.translate(Texts.entryTitle, context),
                               style: TextStyles.entryTitleStyle,
                             ),
                           ),
@@ -77,16 +77,16 @@ class EntryScreen extends StatelessWidget {
                           FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              Texts.entryBody1,
+                              Texts.translate(Texts.entryBody1, context),
                               style: TextStyles.entryBody1Style,
                             ),
                           ),
                           Text(
-                            Texts.entryBody2,
+                            Texts.translate(Texts.entryBody2, context),
                             style: TextStyles.entryBody2Style,
                           ),
                           Text(
-                            Texts.entryBody3,
+                            Texts.translate(Texts.entryBody3, context)  ,
                             style: TextStyles.entryBody3Style,
                           ),
                           const SizedBox(
@@ -111,7 +111,7 @@ class EntryScreen extends StatelessWidget {
                               },
                               color: AppColor.roseMadder,
                               child: Text(
-                                Texts.loginButton,
+                                Texts.translate(Texts.loginButton, context),
                                 textAlign: TextAlign.center,
                                 style: TextStyles.loginButtonStyle,
                               ),
@@ -121,7 +121,7 @@ class EntryScreen extends StatelessWidget {
                             height: 20.0,
                           ),
                           Text(
-                            Texts.registerHint,
+                            Texts.translate(Texts.registerHint, context),
                             style: TextStyles.registerHintStyle,
                           ),
                           const SizedBox(
@@ -139,7 +139,7 @@ class EntryScreen extends StatelessWidget {
                                   AppColor.roseMadder, // Text Color
                             ),
                             child: Text(
-                              Texts.register,
+                              Texts.translate(Texts.register, context),
                               style: TextStyles.registerStyle,
                             ),
                           ),
@@ -158,7 +158,7 @@ class EntryScreen extends StatelessWidget {
                                   AppColor.roseMadder, // Text Color
                             ),
                             child: Text(
-                              Texts.skip,
+                              Texts.translate(Texts.skip, context),
                               style: TextStyles.skipStyle(AppColor.roseMadder),
                             ),
                           ),

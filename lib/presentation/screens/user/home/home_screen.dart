@@ -301,7 +301,8 @@ class HomeScreen extends StatelessWidget {
                                         children: [
                                           Text(
                                             Texts
-                                                .studentHomeNoCoursesForThisLevelText,
+                                                .translate(Texts
+                                                .studentHomeNoCoursesForThisLevelText, context),
                                           ),
                                         ],
                                       )

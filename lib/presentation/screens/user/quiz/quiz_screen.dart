@@ -53,7 +53,7 @@ class QuizScreen extends StatelessWidget {
                     child: Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: Text(
-                        Texts.studentHomeQuizScreenText,
+                        Texts.translate(Texts.studentHomeQuizScreenText, context),
                         style: TextStyles.studentHomeHomepageStyle,
                       ),
                     ),
@@ -97,7 +97,7 @@ class QuizScreen extends StatelessWidget {
                                       vertical: 20.0,
                                     ),
                                     child: Text(
-                                      'أدخل كود الاختبار',
+                                      Texts.translate(Texts.studentHomeQuizPleaseEnterQuizCodeText, context),
                                       textAlign: TextAlign.center,
                                       style: TextStyles
                                           .studentHomeQuizScreenTitleTextStyle,
@@ -168,7 +168,8 @@ class QuizScreen extends StatelessWidget {
                                               color: AppColor.roseMadder,
                                               child: Text(
                                                 Texts
-                                                    .studentHomeCourseSubscribeScreenPaymentConfirmButtonText,
+                                                    .translate(Texts
+                                                    .studentHomeCourseSubscribeScreenPaymentConfirmButtonText, context),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyles
                                                     .studentHomeCourseDetailsClickSubscribeCheckStyle,
@@ -242,7 +243,8 @@ class QuizScreen extends StatelessWidget {
                                         color: AppColor.roseMadder,
                                         child: Text(
                                           Texts
-                                              .studentHomeQuizCodeScreenGoToQuizButtonText,
+                                              .translate(Texts
+                                              .studentHomeQuizCodeScreenGoToQuizButtonText, context),
                                           textAlign: TextAlign.center,
                                           style: TextStyles
                                               .studentHomeCourseDetailsClickSubscribeCheckStyle,

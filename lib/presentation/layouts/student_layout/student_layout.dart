@@ -1,6 +1,7 @@
 import 'package:edumaster/presentation/styles/icons.dart';
 import 'package:edumaster/presentation/widget/custom_app_bar.dart';
 import 'package:edumaster/presentation/widget/custom_elevation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../business_logic/student_home_cubit/student_home_cubit.dart';
@@ -92,28 +93,36 @@ class StudentLayoutScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.23,
                     ),
                     Text(
-                      studentHomeCubit
-                          .screenTitles(context, studentHomeCubit.screenIndex),
+                      studentHomeCubit.screenTitles(
+                          context, studentHomeCubit.screenIndex),
                       style: TextStyles.studentHomeHomepageStyle,
                     ),
                   ],
                 )),
                 body: studentHomeCubit.screens[studentHomeCubit.screenIndex],
                 drawer: Align(
-                  alignment: delegate.currentLocale.languageCode == 'en'? Alignment.centerLeft : Alignment.centerRight,
+                  alignment: delegate.currentLocale.languageCode == 'en'
+                      ? Alignment.centerLeft
+                      : Alignment.centerRight,
                   child: SafeArea(
                     child: Drawer(
                       width: 100.0,
-                      shape:  RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                          topLeft:
-                          delegate.currentLocale.languageCode == 'en'? const Radius.circular(0) : const Radius.circular(35),
+                          topLeft: delegate.currentLocale.languageCode == 'en'
+                              ? const Radius.circular(0)
+                              : const Radius.circular(35),
                           bottomLeft:
-                          delegate.currentLocale.languageCode == 'en' ? const Radius.circular(0) : const Radius.circular(35),
-                          topRight:
-                          delegate.currentLocale.languageCode == 'en' ? const Radius.circular(35) : const Radius.circular(0),
+                              delegate.currentLocale.languageCode == 'en'
+                                  ? const Radius.circular(0)
+                                  : const Radius.circular(35),
+                          topRight: delegate.currentLocale.languageCode == 'en'
+                              ? const Radius.circular(35)
+                              : const Radius.circular(0),
                           bottomRight:
-                          delegate.currentLocale.languageCode == 'en' ? const Radius.circular(35) : const Radius.circular(0),
+                              delegate.currentLocale.languageCode == 'en'
+                                  ? const Radius.circular(35)
+                                  : const Radius.circular(0),
                         ),
                       ),
                       child: SafeArea(
@@ -164,8 +173,7 @@ class StudentLayoutScreen extends StatelessWidget {
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Image.asset(
                                       Assets.iconImgQuiz,
@@ -174,10 +182,11 @@ class StudentLayoutScreen extends StatelessWidget {
                                       width: 36.53,
                                     ),
                                     Text(
-                                      Texts.studentHomeQuizText,
+                                      Texts.translate(
+                                          Texts.studentHomeQuizText, context),
                                       textAlign: TextAlign.center,
-                                      style: TextStyles
-                                          .studentHomeIconsTextStyle,
+                                      style:
+                                          TextStyles.studentHomeIconsTextStyle,
                                     ),
                                   ],
                                 ),
@@ -201,8 +210,7 @@ class StudentLayoutScreen extends StatelessWidget {
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Image.asset(
                                       Assets.iconImgTrueFalse,
@@ -211,10 +219,12 @@ class StudentLayoutScreen extends StatelessWidget {
                                       width: 36.53,
                                     ),
                                     Text(
-                                      Texts.studentHomeResultsText,
+                                      Texts.translate(
+                                          Texts.studentHomeResultsText,
+                                          context),
                                       textAlign: TextAlign.center,
-                                      style: TextStyles
-                                          .studentHomeIconsTextStyle,
+                                      style:
+                                          TextStyles.studentHomeIconsTextStyle,
                                     ),
                                   ],
                                 ),
@@ -263,10 +273,11 @@ class StudentLayoutScreen extends StatelessWidget {
                                       width: 36.53,
                                     ),
                                     Text(
-                                      Texts.studentHomeHelpText,
+                                      Texts.translate(
+                                          Texts.studentHomeHelpText, context),
                                       textAlign: TextAlign.center,
-                                      style: TextStyles
-                                          .studentHomeIconsTextStyle,
+                                      style:
+                                          TextStyles.studentHomeIconsTextStyle,
                                     ),
                                   ],
                                 ),
@@ -288,7 +299,8 @@ class StudentLayoutScreen extends StatelessWidget {
                                       width: 36.53,
                                     ),
                                     Text(
-                                      Texts.studentHomeLogoutText,
+                                      Texts.translate(
+                                          Texts.studentHomeLogoutText, context),
                                       textAlign: TextAlign.center,
                                       style:
                                           TextStyles.studentHomeIconsTextStyle,
@@ -297,54 +309,34 @@ class StudentLayoutScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            InkWell(
-                              onTap: () {
-                                studentHomeCubit.changeLanguageValue(context);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      Assets.iconImgLogout,
-                                      fit: BoxFit.contain,
-                                      height: 36.53,
-                                      width: 36.53,
-                                    ),
-                                    Text(
-                                      'ar',
-                                      textAlign: TextAlign.center,
-                                      style:
-                                          TextStyles.studentHomeIconsTextStyle,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),InkWell(
-                              onTap: () {
-                                studentHomeCubit.changeLanguageValue(context);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      Assets.iconImgLogout,
-                                      fit: BoxFit.contain,
-                                      height: 36.53,
-                                      width: 36.53,
-                                    ),
-                                    Text(
-                                      'en',
-                                      textAlign: TextAlign.center,
-                                      style:
-                                          TextStyles.studentHomeIconsTextStyle,
-                                    ),
-                                  ],
-                                ),
-                              ),
+                            const SizedBox(
+                              height: 15.0,
                             ),
-                            // DrawerHeader
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'ar',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyles.studentHomeIconsTextStyle,
+                                ),
+                                CupertinoSwitch(
+                                  // This bool value toggles the switch.
+                                  value: studentHomeCubit.switchValue,
+                                  activeColor: AppColor.indigoDye,
+                                  onChanged: (bool? value) {
+                                    // This is called when the user toggles the switch.
+                                    studentHomeCubit
+                                        .changeLanguageValue(context);
+                                  },
+                                ),
+                                Text(
+                                  'en',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyles.studentHomeIconsTextStyle,
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -352,7 +344,9 @@ class StudentLayoutScreen extends StatelessWidget {
                   ),
                 ),
                 bottomNavigationBar: Directionality(
-                  textDirection: delegate.currentLocale.languageCode == 'en' ? TextDirection.rtl : TextDirection.ltr,
+                  textDirection: delegate.currentLocale.languageCode == 'en'
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
                   child: BottomNavigationBar(
                     showSelectedLabels: false,
                     showUnselectedLabels: false,
@@ -432,8 +426,7 @@ class StudentLayoutScreen extends StatelessWidget {
                 ),
               );
             }
-          }
-          else {
+          } else {
             if (studentHomeCubit.coursesModel != null &&
                 studentHomeCubit.bannersModel != null &&
                 studentHomeCubit.levelsModel != null) {
@@ -453,28 +446,35 @@ class StudentLayoutScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.23,
                     ),
                     Text(
-                      studentHomeCubit
-                          .screenTitles(context, studentHomeCubit.screenIndex),
+                      studentHomeCubit.screenTitles(
+                          context, studentHomeCubit.screenIndex),
                       style: TextStyles.studentHomeHomepageStyle,
                     ),
                   ],
                 )),
                 body: studentHomeCubit.screens[studentHomeCubit.screenIndex],
                 drawer: Align(
-                  alignment: Alignment.centerRight,
-                  child: SafeArea(
+                  alignment: delegate.currentLocale.languageCode == 'en'
+                      ? Alignment.centerLeft
+                      : Alignment.centerRight,                  child: SafeArea(
                     child: Drawer(
                       width: 100.0,
-                      shape:  RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                          topLeft:
-                          delegate.currentLocale.languageCode == 'en'? const Radius.circular(0) : const Radius.circular(35),
+                          topLeft: delegate.currentLocale.languageCode == 'en'
+                              ? const Radius.circular(0)
+                              : const Radius.circular(35),
                           bottomLeft:
-                          delegate.currentLocale.languageCode == 'en' ? const Radius.circular(0) : const Radius.circular(35),
-                          topRight:
-                          delegate.currentLocale.languageCode == 'en' ? const Radius.circular(35) : const Radius.circular(0),
+                              delegate.currentLocale.languageCode == 'en'
+                                  ? const Radius.circular(0)
+                                  : const Radius.circular(35),
+                          topRight: delegate.currentLocale.languageCode == 'en'
+                              ? const Radius.circular(35)
+                              : const Radius.circular(0),
                           bottomRight:
-                          delegate.currentLocale.languageCode == 'en' ? const Radius.circular(35) : const Radius.circular(0),
+                              delegate.currentLocale.languageCode == 'en'
+                                  ? const Radius.circular(35)
+                                  : const Radius.circular(0),
                         ),
                       ),
                       child: SafeArea(
@@ -608,7 +608,8 @@ class StudentLayoutScreen extends StatelessWidget {
                                       width: 36.53,
                                     ),
                                     Text(
-                                      Texts.studentHomeHelpText,
+                                      Texts.translate(
+                                          Texts.studentHomeHelpText, context),
                                       textAlign: TextAlign.center,
                                       style:
                                           TextStyles.studentHomeIconsTextStyle,
@@ -616,6 +617,34 @@ class StudentLayoutScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
+                            ),
+                            const SizedBox(
+                              height: 15.0,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'ar',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyles.studentHomeIconsTextStyle,
+                                ),
+                                CupertinoSwitch(
+                                  // This bool value toggles the switch.
+                                  value: studentHomeCubit.switchValue,
+                                  activeColor: AppColor.indigoDye,
+                                  onChanged: (bool? value) {
+                                    // This is called when the user toggles the switch.
+                                    studentHomeCubit
+                                        .changeLanguageValue(context);
+                                  },
+                                ),
+                                Text(
+                                  'en',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyles.studentHomeIconsTextStyle,
+                                ),
+                              ],
                             ),
                             // DrawerHeader
                             // InkWell(
@@ -648,74 +677,79 @@ class StudentLayoutScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                bottomNavigationBar: BottomNavigationBar(
-                  showSelectedLabels: false,
-                  showUnselectedLabels: false,
-                  onTap: (index) {
-                    if (index <= 2) {
-                      studentHomeCubit.changeScreenIndexState(index);
-                    } else {
-                      studentHomeCubit.scaffoldKey.currentState?.openDrawer();
-                    }
-                  },
-                  currentIndex: studentHomeCubit.screenIndex,
-                  items: const [
-                    BottomNavigationBarItem(
-                      activeIcon: Icon(
-                        Icons.home,
-                        color: AppColor.indigoDye,
+                bottomNavigationBar: Directionality(
+                  textDirection: delegate.currentLocale.languageCode == 'en'
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  child: BottomNavigationBar(
+                    showSelectedLabels: false,
+                    showUnselectedLabels: false,
+                    onTap: (index) {
+                      if (index <= 2) {
+                        studentHomeCubit.changeScreenIndexState(index);
+                      } else {
+                        studentHomeCubit.scaffoldKey.currentState?.openDrawer();
+                      }
+                    },
+                    currentIndex: studentHomeCubit.screenIndex,
+                    items: const [
+                      BottomNavigationBarItem(
+                        activeIcon: Icon(
+                          Icons.home,
+                          color: AppColor.indigoDye,
+                        ),
+                        icon: Icon(
+                          Icons.home,
+                          color: AppColor.babyBlue,
+                        ),
+                        label: 'Home',
                       ),
-                      icon: Icon(
-                        Icons.home,
-                        color: AppColor.babyBlue,
+                      BottomNavigationBarItem(
+                        activeIcon: Icon(
+                          Icons.menu_book,
+                          color: AppColor.indigoDye,
+                        ),
+                        icon: Icon(
+                          Icons.menu_book,
+                          color: AppColor.babyBlue,
+                        ),
+                        label: 'My Courses',
                       ),
-                      label: 'Home',
-                    ),
-                    BottomNavigationBarItem(
-                      activeIcon: Icon(
-                        Icons.menu_book,
-                        color: AppColor.indigoDye,
+                      BottomNavigationBarItem(
+                        activeIcon: Icon(
+                          Icons.notification_important_sharp,
+                          color: AppColor.indigoDye,
+                        ),
+                        icon: Icon(
+                          Icons.notification_important_sharp,
+                          color: AppColor.babyBlue,
+                        ),
+                        label: 'Notification',
                       ),
-                      icon: Icon(
-                        Icons.menu_book,
-                        color: AppColor.babyBlue,
+                      // BottomNavigationBarItem(
+                      //   activeIcon: Icon(
+                      //     Icons.person,
+                      //     color: AppColor.indigoDye,
+                      //   ),
+                      //   icon: Icon(
+                      //     Icons.person,
+                      //     color: AppColor.babyBlue,
+                      //   ),
+                      //   label: 'Profile',
+                      // ),
+                      BottomNavigationBarItem(
+                        activeIcon: Icon(
+                          Icons.menu,
+                          color: AppColor.indigoDye,
+                        ),
+                        icon: Icon(
+                          Icons.menu,
+                          color: AppColor.babyBlue,
+                        ),
+                        label: 'drag',
                       ),
-                      label: 'My Courses',
-                    ),
-                    BottomNavigationBarItem(
-                      activeIcon: Icon(
-                        Icons.notification_important_sharp,
-                        color: AppColor.indigoDye,
-                      ),
-                      icon: Icon(
-                        Icons.notification_important_sharp,
-                        color: AppColor.babyBlue,
-                      ),
-                      label: 'Notification',
-                    ),
-                    // BottomNavigationBarItem(
-                    //   activeIcon: Icon(
-                    //     Icons.person,
-                    //     color: AppColor.indigoDye,
-                    //   ),
-                    //   icon: Icon(
-                    //     Icons.person,
-                    //     color: AppColor.babyBlue,
-                    //   ),
-                    //   label: 'Profile',
-                    // ),
-                    BottomNavigationBarItem(
-                      activeIcon: Icon(
-                        Icons.menu,
-                        color: AppColor.indigoDye,
-                      ),
-                      icon: Icon(
-                        Icons.menu,
-                        color: AppColor.babyBlue,
-                      ),
-                      label: 'drag',
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             } else {

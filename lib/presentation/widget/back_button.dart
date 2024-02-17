@@ -1,3 +1,4 @@
+import 'package:edumaster/main.dart';
 import 'package:flutter/material.dart';
 
 import '../styles/colors.dart';
@@ -27,9 +28,9 @@ class BackButtonWidget extends StatelessWidget {
             //   ),
             // ],
           ),
-          child: const Center(
+          child:  Center(
             child: Icon(
-              Icons.arrow_back_ios_new,
+              delegate.currentLocale == 'ar' ? Icons.arrow_back_ios_new:Icons.arrow_forward_ios,
               size: 20.0,
               color: AppColor.roseMadder,
             ),

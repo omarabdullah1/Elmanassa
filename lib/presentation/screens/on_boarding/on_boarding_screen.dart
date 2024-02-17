@@ -34,26 +34,38 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final boardController = PageController();
 
-  final List<BoardingModel> boarding = [
-    BoardingModel(
-      image: Assets.onBoardOnboard1,
-      title: Texts.onBoardTitle1,
-      body: Texts.onBoardBody1,
-      color: AppColor.roseMadder,
-    ),
-    BoardingModel(
-      image: Assets.onBoardOnboard2,
-      title: Texts.onBoardTitle2,
-      body: Texts.onBoardBody2,
-      color: AppColor.indigoDye,
-    ),
-    BoardingModel(
-      image: Assets.onBoardOnboard3,
-      title: Texts.onBoardTitle3,
-      body: Texts.onBoardBody3,
-      color: AppColor.honeyYellow,
-    ),
-  ];
+    BoardingModel boarding(context,index) {
+      switch (index) {
+        case 0:
+          return BoardingModel(
+            image: Assets.onBoardOnboard1,
+            title: Texts.translate(Texts.onBoardTitle1, context),
+            body: Texts.translate(Texts.onBoardBody1, context),
+            color: AppColor.roseMadder,
+          );
+        case 1:
+          return BoardingModel(
+            image: Assets.onBoardOnboard2,
+            title: Texts.translate(Texts.onBoardTitle2, context),
+            body: Texts.translate(Texts.onBoardBody2, context),
+            color: AppColor.indigoDye,
+          );
+        case 2:
+          return BoardingModel(
+            image: Assets.onBoardOnboard3,
+            title: Texts.translate(Texts.onBoardTitle3, context),
+            body: Texts.translate(Texts.onBoardBody3, context),
+            color: AppColor.honeyYellow,
+          );
+        default:
+          return BoardingModel(
+            image: Assets.onBoardOnboard1,
+            title: Texts.translate(Texts.onBoardTitle1, context),
+            body: Texts.translate(Texts.onBoardBody1, context),
+            color: AppColor.roseMadder,
+          );
+      }
+    }
 
   bool isLast = false;
   bool isFirst = true;
@@ -96,7 +108,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         isFirst = false;
                         globalCubit.changeLocalState();
                       }
-                      if (index == boarding.length - 1) {
+                      if (index == 2) {
                         isLast = true;
                         globalCubit.changeLocalState();
                       } else {
@@ -105,10 +117,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       }
                     },
                     itemBuilder: (context, index) => buildBoardingItem(
-                      boarding[index],
+                      boarding(context,index),
                       context,
                     ),
-                    itemCount: boarding.length,
+                    itemCount: 3,
                   ),
                 ),
               ],
@@ -140,7 +152,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     color: model.color,
                   )),
               Text(
-                Texts.welcome,
+                Texts.translate(Texts.welcome, context),
                 style: TextStyles.welcomeStyle,
               ),
             ],
@@ -148,9 +160,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           const SizedBox(
             height: 30.0,
           ),
-          Directionality(
-            textDirection: TextDirection.rtl,
-            child: SizedBox(
+            SizedBox(
               height: 200.0,
               width: double.infinity,
               child: Column(
@@ -183,7 +193,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ],
               ),
             ),
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -199,7 +208,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       }
                     : null,
                 icon: const Icon(
-                  Icons.arrow_circle_right_outlined,
+                  Icons.arrow_circle_left_outlined,
                 ),
                 iconSize: 30.0,
                 color: !isFirst ? model.color : AppColor.carosalBG,
@@ -207,20 +216,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               const SizedBox(
                 width: 20.0,
               ),
-              Directionality(
-                textDirection: TextDirection.rtl,
-                child: SmoothPageIndicator(
-                  controller: boardController,
-                  effect: ExpandingDotsEffect(
-                    dotColor: model.color.withOpacity(0.3),
-                    activeDotColor: model.color,
-                    dotHeight: 10,
-                    expansionFactor: 4,
-                    dotWidth: 10,
-                    spacing: 5.0,
-                  ),
-                  count: boarding.length,
+              SmoothPageIndicator(
+                controller: boardController,
+                effect: ExpandingDotsEffect(
+                  dotColor: model.color.withOpacity(0.3),
+                  activeDotColor: model.color,
+                  dotHeight: 10,
+                  expansionFactor: 4,
+                  dotWidth: 10,
+                  spacing: 5.0,
                 ),
+                count: 3,
               ),
               const SizedBox(
                 width: 20.0,
@@ -241,7 +247,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 icon: Icon(
                   isLast
                       ? Icons.check_circle_outlined
-                      : Icons.arrow_circle_left_outlined,
+                      : Icons.arrow_circle_right_outlined,
                 ),
                 iconSize: 30.0,
                 color: model.color,
@@ -257,7 +263,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     submit(context);
                   },
                   child: Text(
-                    Texts.skip,
+                    Texts.translate(Texts.skip, context),
                     style: TextStyles.skipStyle(model.color),
                   ),
                 )
@@ -280,7 +286,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       },
                       color: model.color,
                       child: Text(
-                        Texts.startNow,
+                        Texts.translate(Texts.startNow, context),
                         textAlign: TextAlign.center,
                         style: TextStyles.startNowStyle,
                       ),

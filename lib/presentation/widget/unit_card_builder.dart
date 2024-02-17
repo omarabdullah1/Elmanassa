@@ -1,8 +1,10 @@
+import 'package:edumaster/main.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/local/args.dart';
 import '../../data/models/course_details_model.dart';
 import '../styles/colors.dart';
+import '../styles/texts.dart';
 
 class UnitCard extends StatefulWidget {
   const UnitCard({
@@ -69,15 +71,12 @@ class _UnitCardState extends State<UnitCard> {
                   children: [
                     Row(
                       children: [
-                        const Text(
-                          'دروس ',
+                        Text(
+                          Texts
+                              .translate(Texts
+                              .studentHomeCourseDashboardExpandableCardLessonsText, context),
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColor.indigoDye,
-                            fontSize: 16,
-                            fontFamily: 'Tajawal',
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyles.studentHomeCourseDashboardExpandableCardLessonsTextStyle,
                         ),
                         Text(
                           widget.courseDetailsModelCourseUnits.lessons!
@@ -114,7 +113,7 @@ class _UnitCardState extends State<UnitCard> {
                       widget.courseDetailsModelCourseUnits.lessons!.isNotEmpty
                           ? widget.courseDetailsModelCourseUnits.duration
                               .toString()
-                          : 'notime',
+                          : delegate.currentLocale.languageCode == 'en' ? 'notime' : 'لا توجد وقت',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: AppColor.indigoDye,
@@ -223,7 +222,7 @@ class _UnitCardState extends State<UnitCard> {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      ele!.title!.toString(),
+                                      ele.title!.toString(),
                                       textAlign: TextAlign.start,
                                       style: const TextStyle(
                                         color: AppColor.roseMadder,
@@ -279,7 +278,7 @@ class _UnitCardState extends State<UnitCard> {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      ele!.title!.toString(),
+                                      ele.title!.toString(),
                                       textAlign: TextAlign.start,
                                       style: const TextStyle(
                                         color: AppColor.black,

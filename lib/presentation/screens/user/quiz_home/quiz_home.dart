@@ -250,7 +250,7 @@ class QuizQuestion extends StatelessWidget {
                         : null,
                     color: AppColor.honeyYellow,
                     child: Text(
-                      Texts.studentHomeQuizPreviousButtonText,
+                      Texts.translate(Texts.studentHomeQuizPreviousButtonText, context),
                       textAlign: TextAlign.center,
                       style: TextStyles.studentHomeQuizPreviousButtonTextStyle,
                     ),
@@ -355,7 +355,8 @@ class QuizQuestion extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   Texts
-                                                      .studentHomeQuizCodeScreenSendTheQuizMessageText,
+                                                      .translate(Texts
+                                                      .studentHomeQuizCodeScreenSendTheQuizMessageText, context),
                                                   style: TextStyles
                                                       .studentHomeProfilePersonalAccountTextStyle,
                                                 ),
@@ -398,7 +399,8 @@ class QuizQuestion extends StatelessWidget {
                                                     color: AppColor.roseMadder,
                                                     child: Text(
                                                       Texts
-                                                          .studentHomeQuizCodeScreenSendTheQuizButtonText,
+                                                          .translate(Texts
+                                                          .studentHomeQuizCodeScreenSendTheQuizButtonText, context),
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyles
@@ -460,8 +462,8 @@ class QuizQuestion extends StatelessWidget {
                         color: AppColor.roseMadder,
                         child: Text(
                           context.read<StudentHomeCubit>().isQuizLast
-                              ? Texts.studentHomeQuizConfirmButtonText
-                              : Texts.studentHomeQuizNextButtonText,
+                              ? Texts.translate(Texts.studentHomeQuizConfirmButtonText, context)
+                              : Texts.translate(Texts.studentHomeQuizNextButtonText, context),
                           textAlign: TextAlign.center,
                           style:
                               TextStyles.studentHomeQuizConfirmButtonTextStyle,

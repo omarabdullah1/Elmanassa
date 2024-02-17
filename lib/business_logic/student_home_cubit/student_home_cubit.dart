@@ -84,6 +84,7 @@ class StudentHomeCubit extends Cubit<StudentHomeState> {
 
   bool isQuizLast = false;
   bool isQuizFirst = true;
+  String language = '';
   Map<int, int> quizQuestionSelectedValues = {};
   List<int> quizQuestionSelectedValuesList = [];
 
@@ -109,6 +110,8 @@ class StudentHomeCubit extends Cubit<StudentHomeState> {
   bool paymentButtonState = false;
   bool quizButtonState = false;
 
+  bool switchValue = CacheHelper.sharedPreferences.getString('language') == 'en';
+
   List<String>? allBanners = [];
   List<String>? allLevelsOrder = [];
 
@@ -117,18 +120,20 @@ class StudentHomeCubit extends Cubit<StudentHomeState> {
     const MyCoursesScreen(),
     const NotificationScreen(),
   ];
-  String screenTitles(context,index) {
-   switch(index){
-     case 0:
-       return Texts.translate('studentHomeHomepageText', context);
-     case 1:
-       return Texts.translate('studentHomeMyCoursesText', context);
-     case 2:
-       return Texts.translate('studentHomeNotificationText', context);
-     default:
-       return '';
-   }
+
+  String screenTitles(context, index) {
+    switch (index) {
+      case 0:
+        return Texts.translate('studentHomeHomepageText', context);
+      case 1:
+        return Texts.translate('studentHomeMyCoursesText', context);
+      case 2:
+        return Texts.translate('studentHomeNotificationText', context);
+      default:
+        return '';
+    }
   }
+
   int screenIndex = 0;
   int drawerScreenIndex = 0;
   int selectedPackage = 0;
@@ -616,19 +621,29 @@ class StudentHomeCubit extends Cubit<StudentHomeState> {
       token: CacheHelper.sharedPreferences.get('token').toString(),
       body: {},
     ).then((value) async {
-      await CacheHelper.sharedPreferences.clear().then((value) async {
-        await CacheHelper.sharedPreferences.remove('token').then((value) {
-          Navigator.pushNamed(
-            context,
-            Screens.entryScreen,
-          );
+       await getLanguage().then((value) async {
+        await CacheHelper.sharedPreferences.clear().then((value) async {
+          await CacheHelper.sharedPreferences.remove('token').then((value) {
+            CacheHelper.sharedPreferences
+                .setString('language', language)
+                .then((value) => Navigator.pushNamed(
+                      context,
+                      Screens.entryScreen,
+                    ));
+          });
         });
       });
+
       emit(LogoutSuccessState());
     }).catchError((error) {
       print(error.toString());
       emit(LogoutErrorState(error.toString()));
     });
+  }
+
+  Future<String> getLanguage() async {
+    language= await CacheHelper.sharedPreferences.getString('language') ?? '';
+    return language;
   }
 
   Future<void> getQuizDetails({
@@ -936,11 +951,20 @@ class StudentHomeCubit extends Cubit<StudentHomeState> {
   }
 
   changeLanguageValue(context) async {
-    delegate.changeLocale(delegate.currentLocale.languageCode == 'ar'
-        ? const Locale('en')
-        : const Locale('ar'));
+    if (delegate.currentLocale.languageCode == 'ar') {
+      delegate.changeLocale(const Locale('en'));
+      CacheHelper.sharedPreferences.setString('language', 'en');
+      switchValue = delegate.currentLocale.languageCode == 'en';
+    } else {
+      delegate.changeLocale(const Locale('ar'));
+      CacheHelper.sharedPreferences.setString('language', 'ar');
+      switchValue = delegate.currentLocale.languageCode == 'en';
+    }
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      Screens.splashScreen,
+      (route) => false,
+    );
     emit(AppChangeLocalState());
   }
-
-
 }

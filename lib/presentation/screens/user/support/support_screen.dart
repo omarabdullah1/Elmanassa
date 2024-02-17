@@ -1,3 +1,4 @@
+import 'package:edumaster/main.dart';
 import 'package:edumaster/presentation/widget/back_button.dart';
 import 'package:edumaster/presentation/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -37,11 +38,11 @@ class SupportScreen extends StatelessWidget {
                   const BackButtonWidget(),
                   const Spacer(),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     child: Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: Text(
-                        Texts.studentHomeSupportScreenText,
+                        Texts.translate(Texts.studentHomeSupportScreenText, context),
                         style: TextStyles.studentHomeHomepageStyle,
                       ),
                     ),
@@ -78,8 +79,8 @@ class SupportScreen extends StatelessWidget {
                                 vertical: 20.0,
                               ),
                               child: Text(
-                                Texts.studentHomeSupportSubtitleText,
-                                textAlign: TextAlign.right,
+                                Texts.translate(Texts.studentHomeSupportSubtitleText, context),
+                                textAlign: delegate.currentLocale.languageCode == 'ar' ? TextAlign.right : TextAlign.left,
                                 style: TextStyles
                                     .studentHomeSupportSubtitleTextStyle,
                               ),

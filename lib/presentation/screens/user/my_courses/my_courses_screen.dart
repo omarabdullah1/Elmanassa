@@ -40,7 +40,7 @@ class MyCoursesScreen extends StatelessWidget {
                                 children: [
                                   Center(
                                     child: Text(
-                                      Texts.studentHomePleaseLoginText,
+                                      Texts.translate(Texts.studentHomePleaseLoginText, context),
                                     ),
                                   ),
                                   const SizedBox(
@@ -70,7 +70,7 @@ class MyCoursesScreen extends StatelessWidget {
                                       },
                                       color: AppColor.roseMadder,
                                       child: Text(
-                                        Texts.loginButton,
+                                        Texts.translate(Texts.loginButton, context),
                                         textAlign: TextAlign.center,
                                         style: TextStyles.loginButtonStyle,
                                       ),
@@ -102,7 +102,7 @@ class MyCoursesScreen extends StatelessWidget {
                                                 vertical: 20.0,
                                               ),
                                               child: Text(
-                                                Texts.studentHomeMyCoursesText,
+                                                Texts.translate(Texts.studentHomeMyCoursesText, context),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyles
                                                     .studentHomeMyCoursesTextStyle,
@@ -161,7 +161,8 @@ class MyCoursesScreen extends StatelessWidget {
                                                                     ),
                                                                     child: Text(
                                                                       Texts
-                                                                          .studentHomeMyCoursesText,
+                                                                          .translate(Texts
+                                                                          .studentHomeMyCoursesText, context),
                                                                       textAlign:
                                                                           TextAlign
                                                                               .center,
@@ -214,7 +215,8 @@ class MyCoursesScreen extends StatelessWidget {
                                                   )
                                                 : Text(
                                                     Texts
-                                                        .studentHomeNoCoursesNowPleaseSubscribeText,
+                                                        .translate(Texts
+                                                        .studentHomeNoCoursesNowPleaseSubscribeText, context),
                                                   )
                                             : const Center(
                                                 child:
@@ -252,7 +254,7 @@ class MyCoursesScreen extends StatelessWidget {
                                         children: [
                                           Center(
                                             child: Text(
-                                              Texts.studentHomePleaseLoginText,
+                                              Texts.translate(Texts.studentHomePleaseLoginText, context),
                                             ),
                                           ),
                                           const SizedBox(
@@ -286,7 +288,7 @@ class MyCoursesScreen extends StatelessWidget {
                                               },
                                               color: AppColor.roseMadder,
                                               child: Text(
-                                                Texts.loginButton,
+                                                Texts.translate(Texts.loginButton, context),
                                                 textAlign: TextAlign.center,
                                                 style:
                                                     TextStyles.loginButtonStyle,
@@ -348,7 +350,8 @@ class MyCoursesScreen extends StatelessWidget {
                                                             children: [
                                                               Text(
                                                                 Texts
-                                                                    .studentHomeMyCoursesNoCoursesEnrolledNowText,
+                                                                    .translate(Texts
+                                                                    .studentHomeMyCoursesNoCoursesEnrolledNowText, context),
                                                                 style: TextStyles
                                                                     .studentHomeMyCoursesNoCoursesStyle,
                                                               )

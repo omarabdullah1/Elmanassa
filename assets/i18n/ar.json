@@ -111,5 +111,18 @@
   "studentHomeQuizCodeScreenGoToQuizButtonText": "ابدأ الان",
   "studentHomeQuizCodeScreenSendTheQuizButtonText": "ارسال الامتحان",
   "studentHomeQuizCodeScreenSendTheQuizMessageText": "هل تريد ارسال الامتحان",
-  "studentHomeQuizThereIsNoDegreesUntilNowText": "لا توجد نتائج الي الان"
+  "studentHomeQuizThereIsNoDegreesUntilNowText": "لا توجد نتائج الي الان",
+  "studentHomeQuizDegreesScreen": "لا توجد نتائج الي الان",
+  "studentHomeProfilePersonalAccountText": "حسابي الشخصي",
+  "studentHomeProfilePersonalAccountEditTextText": "تعديل و تغيير حسابك الشخصي",
+  "studentHomeProfileQrCodeText": "رمز الاستجابة السريع",
+  "studentHomeProfileQrCodeEditTextText": "عرض رمز الاسجابه السريعه (الكود) الخاص بك",
+  "studentHomeProfileLogOutText": "تسجيل الخروج",
+  "studentHomeProfileLogOutEditTextText": "الخروج نهائيا من حسابك الشخصي",
+  "studentHomeProfileMoreText": "المزيد",
+  "studentHomeProfileHelpText": "المساعدة",
+  "studentHomeProfileAboutUsText": "عن البرنامج",
+  "studentHomeProfileAboutUsDetailsText": "© 2024 جميع الحقوق محفوظه لدي شركة Codization",
+  "studentHomeProfilePersonalAccountDetailsText": "البيانات الاساسية",
+  "studentHomeQuizPleaseEnterQuizCodeText": "أدخل كود الاختبار"
 }

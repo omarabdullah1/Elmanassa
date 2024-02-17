@@ -34,7 +34,7 @@ class NotificationScreen extends StatelessWidget {
                         children: [
                           Center(
                             child: Text(
-                              Texts.studentHomePleaseLoginText,
+                              Texts.translate(Texts.studentHomePleaseLoginText, context),
                             ),
                           ),
                           const SizedBox(
@@ -59,7 +59,7 @@ class NotificationScreen extends StatelessWidget {
                               },
                               color: AppColor.roseMadder,
                               child: Text(
-                                Texts.loginButton,
+                                Texts.translate(Texts.loginButton, context),
                                 textAlign: TextAlign.center,
                                 style: TextStyles.loginButtonStyle,
                               ),
@@ -126,7 +126,8 @@ class NotificationScreen extends StatelessWidget {
                                   : Center(
                                       child: Text(
                                         Texts
-                                            .studentHomeThereIsNoNotificationUntillNowText,
+                                            .translate(Texts
+                                            .studentHomeThereIsNoNotificationUntillNowText, context),
                                       ),
                                     ),
                             ],

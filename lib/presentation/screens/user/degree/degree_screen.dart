@@ -37,7 +37,7 @@ class DegreesScreen extends StatelessWidget {
                     child: Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: Text(
-                        Texts.studentHomeQuizDegreesScreenText,
+                        Texts.translate(Texts.studentHomeDegreesScreenText, context),
                         style: TextStyles.studentHomeHomepageStyle,
                       ),
                     ),
@@ -102,7 +102,8 @@ class DegreesScreen extends StatelessWidget {
                                         Center(
                                           child: Text(
                                             Texts
-                                                .studentHomeQuizThereIsNoDegreesUntilNowText,
+                                                .translate(Texts
+                                                .studentHomeQuizThereIsNoDegreesUntilNowText, context),
                                           ),
                                         ),
                                       ],

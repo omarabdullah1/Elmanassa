@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:edumaster/data/local/cache_helper.dart';
+import 'package:edumaster/presentation/widget/back_button.dart';
 import 'package:edumaster/presentation/widget/custom_app_bar.dart';
 import 'package:edumaster/presentation/widget/unit_card_builder.dart';
 import 'package:flutter/material.dart';
@@ -33,12 +34,12 @@ class CourseDetailsScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is SubscribeSuccessState) {
             state.subscribeModel.message.toString() ==
-                    Texts.studentHomeSubscribeModelFailMessageText
+                    Texts.translate(Texts.studentHomeSubscribeModelFailMessageText, context)
                 ? AwesomeDialog(
                     context: context,
                     dialogType: DialogType.info,
                     animType: AnimType.scale,
-                    title: Texts.studentHomeRequestFailTitleText,
+                    title: Texts.translate(Texts.studentHomeRequestFailTitleText, context),
                     desc: state.subscribeModel.message.toString(),
                     // btnCancelOnPress: () {},
                     btnOkOnPress: () {
@@ -53,7 +54,7 @@ class CourseDetailsScreen extends StatelessWidget {
                     context: context,
                     dialogType: DialogType.success,
                     animType: AnimType.scale,
-                    title: Texts.studentHomeRequestSuccessTitleText,
+                    title: Texts.translate(Texts.studentHomeRequestSuccessTitleText, context),
                     desc: state.subscribeModel.message.toString(),
                     // btnCancelOnPress: () {},
                     btnOkOnPress: () {
@@ -96,7 +97,7 @@ class CourseDetailsScreen extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.33,
                           child: Center(
                             child: Text(
-                              Texts.studentHomeCourseDetailsText,
+                              Texts.translate(Texts.studentHomeCourseDetailsText, context),
                               style:
                                   TextStyles.studentHomeCourseDetailsTextStyle,
                             ),
@@ -104,28 +105,7 @@ class CourseDetailsScreen extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: SizedBox(
-                          height: 40.0,
-                          width: 40.0,
-                          child: FlatButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            tOrI: false,
-                            icon: Icons.arrow_back_ios,
-                            radius: 50.0,
-                            height: 5.0,
-                            minWidth: 5.0,
-                            iconSize: 15.0,
-                            iconColor: AppColor.roseMadder,
-                            color: AppColor.white,
-                            elevation: 0.0,
-                            iconWidgetState: false,
-                          ),
-                        ),
-                      ),
+                      const BackButtonWidget(),
                     ],
                   ),
                 ),
@@ -227,7 +207,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                         ),
                                         child: Center(
                                           child: Text(
-                                            Texts.studentHomeDetailsText,
+                                            Texts.translate(Texts.studentHomeDetailsText, context),
                                             style: TextStyles
                                                 .studentHomeDetailsTextStyle(
                                               studentHomeCubit.isVideos,
@@ -258,7 +238,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                         ),
                                         child: Center(
                                           child: Text(
-                                            Texts.studentHomeVideosText,
+                                            Texts.translate(Texts.studentHomeVideosText, context),
                                             style: TextStyles
                                                 .studentHomeVideosTextStyle(
                                               studentHomeCubit.isVideos,
@@ -384,7 +364,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          Texts.studentHomeCourseDetailsCostText,
+                                          Texts.translate(Texts.studentHomeCourseDetailsCostText, context),
                                           textAlign: TextAlign.center,
                                           style: TextStyles.studentHomeCourseDetailsTitleStyle,
                                         ),
@@ -409,7 +389,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 22.0),
                                         child: Text(
-                                          Texts.studentHomeCourseDetailsDescriptionText,
+                                          Texts.translate(Texts.studentHomeCourseDetailsDescriptionText, context),
                                           textAlign: TextAlign.center,
                                           style: TextStyles.studentHomeCourseDetailsTitleStyle,
                                         ),
@@ -483,7 +463,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                             },
                                             color: AppColor.roseMadder,
                                             child: Text(
-                                              Texts.studentHomeCourseDetailsClickSubscribeText,
+                                              Texts.translate(Texts.studentHomeCourseDetailsClickSubscribeText, context),
                                               textAlign: TextAlign.center,
                                               style: TextStyles.studentHomeCourseDetailsClickSubscribeStyle,
                                             ),
@@ -528,7 +508,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                                                 .courseDetailsModel!
                                                                 .course!
                                                                 .units!
-                                                                .indexOf(e)]!,
+                                                                .indexOf(e)],
                                                   ),
                                                 )
                                                 .toList()),
