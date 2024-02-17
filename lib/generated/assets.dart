@@ -8,7 +8,6 @@ class Assets {
   static const String fontsTajawalRegular = 'assets/fonts/Tajawal-Regular.ttf';
   static const String i18nAr = 'assets/i18n/ar.json';
   static const String i18nEn = 'assets/i18n/en.json';
-<<<<<<< HEAD
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesLogo02 = 'assets/images/Logo-02.jpg';
   static const String imagesLogo2 = 'assets/images/logo2.png';
@@ -17,7 +16,6 @@ class Assets {
   static const String imagesOnboard3 = 'assets/images/onboard3.png';
   static const String imagesPerson = 'assets/images/person.png';
   static const String imagesVideoPlay = 'assets/images/videoPlay.png';
-=======
   static const String iconImgHelp = 'assets/images/icon_img/Help.png';
   static const String iconImgLogout = 'assets/images/icon_img/Logout.png';
   static const String iconImgPerson = 'assets/images/icon_img/person.png';
@@ -26,8 +24,6 @@ class Assets {
   static const String iconImgStudent = 'assets/images/icon_img/student.png';
   static const String iconImgTrueFalse = 'assets/images/icon_img/true_false.png';
   static const String iconsEduMasterIcons = 'assets/icons/EduMasterIcons.ttf';
-  static const String imagesLogo = 'assets/images/logo.png';
-  static const String imagesVideoPlay = 'assets/images/videoPlay.png';
   static const String mOCUPAppleIPhone11ProMaxScreenshot0 = 'assets/MOCUP/Apple_iPhone_11_Pro_Max_Screenshot_0.png';
   static const String mOCUPAppleIPhone11ProMaxScreenshot1 = 'assets/MOCUP/Apple_iPhone_11_Pro_Max_Screenshot_1.png';
   static const String mOCUPAppleIPhone11ProMaxScreenshot2 = 'assets/MOCUP/Apple_iPhone_11_Pro_Max_Screenshot_2.png';
@@ -50,6 +46,5 @@ class Assets {
   static const String onBoardOnboard1 = 'assets/images/on_board/onboard1.png';
   static const String onBoardOnboard2 = 'assets/images/on_board/onboard2.png';
   static const String onBoardOnboard3 = 'assets/images/on_board/onboard3.png';
->>>>>>> master
 
 }

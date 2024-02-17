@@ -14,7 +14,12 @@ class AppColor {
   static const Color black = Color(0xFF000000);
   static const Color carosalBG = Color(0xFFAAAAAA);
   static const Color cardGray = Color(0xFFE2E2E2);
-
+  static const Color green = Color(0xFF4BB543);
+  static const Color green200 = Color(0xFFC6E1CF);
+  static const Color indigoDye100 = Color(0xFFE5ECF2);
+  static const Color indigoDye200 = Color(0xFFE9FBFF);
+  static const Color indigoDye500 = Color(0xFF5186B2);
+  static const Color indigoDye300 = Color(0xFF9EBCD5);
 
   static const MaterialColor defaultColor = MaterialColor(
     0xFF005DA3,
