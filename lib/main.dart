@@ -26,7 +26,7 @@ Future<void> main() async {
   DioHelper.init();
   await CacheHelper.init();
   final locale =
-      CacheHelper.getDataFromSharedPreference(key: 'language') ?? "en";
+      CacheHelper.getDataFromSharedPreference(key: 'language') ?? "ar";
   delegate = await LocalizationDelegate.create(
     fallbackLocale: locale,
     supportedLocales: ['ar', 'en'],
@@ -85,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                 LayoutBuilder(builder: (context, constraints) {
                   return MaterialApp(
                     // debugShowCheckedModeBanner: false,
-                    title: 'EDU-MASTER',
+                    title: 'Droosak Online',
                     localizationsDelegates: [
                       AppLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,
@@ -95,13 +95,22 @@ class _MyAppState extends State<MyApp> {
                       delegate,
                     ],
                     locale: delegate.currentLocale,
+
                     supportedLocales: delegate.supportedLocales,
                     onGenerateRoute: widget.appRouter.onGenerateRoute,
                     theme: ThemeData(
                       fontFamily: 'cairo',
-                      primaryColor: AppColor.indigoDye,
+                      progressIndicatorTheme: const ProgressIndicatorThemeData(
+                          color: AppColor.babyBlue),
                       primarySwatch: AppColor.defaultColor,
-                      progressIndicatorTheme: const ProgressIndicatorThemeData(color: AppColor.indigoDye),
+                      textSelectionTheme: const TextSelectionThemeData(
+                        selectionHandleColor: AppColor.babyBlue,
+                        cursorColor: AppColor.babyBlue,
+                        selectionColor: AppColor.babyBlue,
+                      ),
+                      radioTheme: RadioThemeData(fillColor: MaterialStateColor.resolveWith(
+                        (states) => AppColor.indigoDye,
+                      )),
                       // splashColor: AppColor.indigoDye,
                       //scaffoldBackgroundColor: AppColors.white,
                       appBarTheme: const AppBarTheme(

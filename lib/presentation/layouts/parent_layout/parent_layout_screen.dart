@@ -1,8 +1,6 @@
 import 'package:edumaster/business_logic/parent_home_cubit/parent_home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/local/cache_helper.dart';
-import '../../../main.dart';
 import '../../styles/colors.dart';
 
 class ParentLayoutScreen extends StatelessWidget {
@@ -12,9 +10,6 @@ class ParentLayoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ParentHomeCubit()
-        // ..changeLang(
-        //   () => delegate.changeLocale(const Locale('ar')),
-        // )
         ..getStudents(),
       child: BlocConsumer<ParentHomeCubit, ParentHomeState>(
         listener: (context, state) async {

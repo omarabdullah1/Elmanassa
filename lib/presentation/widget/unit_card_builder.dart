@@ -1,8 +1,10 @@
+import 'package:edumaster/main.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/local/args.dart';
 import '../../data/models/course_details_model.dart';
 import '../styles/colors.dart';
+import '../styles/texts.dart';
 
 class UnitCard extends StatefulWidget {
   const UnitCard({
@@ -26,7 +28,7 @@ class _UnitCardState extends State<UnitCard> {
       shape: RoundedRectangleBorder(
         //<-- SEE HERE
         // side: BorderSide(width: 2),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(35),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -45,13 +47,13 @@ class _UnitCardState extends State<UnitCard> {
                 ),
               ),
             ),
-            leading: IconButton(
-              icon: Icon(
+            leading: GestureDetector(
+              child: Icon(
                 isExpanded ? Icons.expand_less : Icons.expand_more,
                 size: 35.0,
                 color: AppColor.indigoDye,
               ),
-              onPressed: () {
+              onTap: () {
                 setState(() {
                   isExpanded = !isExpanded;
                 });
@@ -69,15 +71,12 @@ class _UnitCardState extends State<UnitCard> {
                   children: [
                     Row(
                       children: [
-                        const Text(
-                          'دروس ',
+                        Text(
+                          Texts
+                              .translate(Texts
+                              .studentHomeCourseDashboardExpandableCardLessonsText, context),
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColor.indigoDye,
-                            fontSize: 16,
-                            fontFamily: 'Tajawal',
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyles.studentHomeCourseDashboardExpandableCardLessonsTextStyle,
                         ),
                         Text(
                           widget.courseDetailsModelCourseUnits.lessons!
@@ -114,7 +113,7 @@ class _UnitCardState extends State<UnitCard> {
                       widget.courseDetailsModelCourseUnits.lessons!.isNotEmpty
                           ? widget.courseDetailsModelCourseUnits.duration
                               .toString()
-                          : 'notime',
+                          : delegate.currentLocale.languageCode == 'en' ? 'notime' : 'لا توجد وقت',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: AppColor.indigoDye,
@@ -195,7 +194,7 @@ class _UnitCardState extends State<UnitCard> {
             //     ),
             //   ),
           for (var ele in widget.courseDetailsModelCourseUnits.lessons!)
-            widget.courseDetailsModelCourseUnits.lessons!.indexOf(ele) == 0
+            ele.isAccessed != 0
                 ? InkWell(
                     onTap: () {
                       Navigator.pushNamed(
@@ -217,17 +216,25 @@ class _UnitCardState extends State<UnitCard> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  ele!.title.toString(),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    color: AppColor.roseMadder,
-                                    // fontSize: 22,
-                                    fontFamily: 'Tajawal',
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width*0.6,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      ele.title!.toString(),
+                                      textAlign: TextAlign.start,
+                                      style: const TextStyle(
+                                        color: AppColor.roseMadder,
+                                        // fontSize: 22,
+                                        fontFamily: 'Tajawal',
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textDirection: TextDirection.rtl,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
                                 ),
                               ),
                               Text(
@@ -265,34 +272,37 @@ class _UnitCardState extends State<UnitCard> {
                           ),
                           Row(
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Text(
-                                      ele!.title!.toString(),
-                                      textAlign: TextAlign.center,
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width*0.6,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      ele.title!.toString(),
+                                      textAlign: TextAlign.start,
                                       style: const TextStyle(
                                         color: AppColor.black,
                                         fontFamily: 'Tajawal',
                                         fontWeight: FontWeight.bold,
                                       ),
+                                      textDirection: TextDirection.rtl,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
                                     ),
-                                  ),
-                                  Text(
-                                    ele
-                                        .videoDuration!
-                                        .toString(),
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: AppColor.indigoDye,
-                                      fontSize: 18.0,
-                                      fontFamily: 'Tajawal',
-                                      fontWeight: FontWeight.bold,
+                                    Text(
+                                      ele
+                                          .videoDuration!
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        color: AppColor.indigoDye,
+                                        fontSize: 18.0,
+                                        fontFamily: 'Tajawal',
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               const Icon(
                                 Icons.play_circle,

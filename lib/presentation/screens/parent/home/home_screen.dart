@@ -19,6 +19,7 @@ class ParentHomeScreen extends StatelessWidget {
             ? Builder(
                 builder: (context) => SafeArea(
                   child: RefreshIndicator(
+                    color: AppColor.indigoDye,
                     onRefresh: () async {
                       // Future.delayed(Duration(seconds: 2));
                       await parentHomeCubit.getStudents();

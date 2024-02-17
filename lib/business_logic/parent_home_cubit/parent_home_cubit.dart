@@ -43,9 +43,9 @@ class ParentHomeCubit extends Cubit<ParentHomeState> {
         'password': password,
       },
     ).then((value) {
-      log(value.data.toString());
+      // log(value.data.toString());
       parentModel = ParentModel.fromJson(value.data);
-      log(parentModel!.user!.firstName.toString());
+      // log(parentModel!.user!.firstName.toString());
       emit(LoginParentSuccessState(parentModel!));
     }).catchError((error) {
       log(error.toString());

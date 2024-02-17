@@ -19,6 +19,40 @@ part 'global_state.dart';
 class GlobalCubit extends Cubit<GlobalState> {
   GlobalCubit() : super(GlobalInitial());
 
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
+
+  final sFirstNameController = TextEditingController();
+
+  final sSecondNameController = TextEditingController();
+
+  final sEmailController = TextEditingController();
+
+  final sPhoneController = TextEditingController();
+
+  final sPasswordController = TextEditingController();
+
+  final sConfirmPasswordController = TextEditingController();
+
+  final pFirstNameController = TextEditingController();
+
+  final pSecondNameController = TextEditingController();
+
+  final pEmailController = TextEditingController();
+
+  final pPhoneController = TextEditingController();
+
+  final pPasswordController = TextEditingController();
+
+  final pConfirmPasswordController = TextEditingController();
+
+  final pStudentCodeController = TextEditingController();
+
+  final registerFormKey = GlobalKey<FormState>();
+
   AccountModel? loginModel;
   ParentModel? parentModel;
   StudentRegisterModel? studentRegisterModel;
@@ -63,7 +97,7 @@ class GlobalCubit extends Cubit<GlobalState> {
     ).then((value) {
       log(value.data.toString());
       loginModel = AccountModel.fromJson(value.data);
-      log(loginModel!.user!.firstName.toString());
+      log(loginModel!.userData!.user!.firstName.toString());
       fToast.init(context);
       showToast(AppLocalizations.of(context)!
           .translate('loginSuccessfully')
@@ -84,6 +118,7 @@ class GlobalCubit extends Cubit<GlobalState> {
     required String password,
     required context,
   }) {
+    // log("Iam heeeeeeeeeeeere");
     emit(LoginParentLoadingState());
 
     DioHelper.postData(
@@ -93,9 +128,9 @@ class GlobalCubit extends Cubit<GlobalState> {
         'password': password,
       },
     ).then((value) {
-      log(value.data.toString());
+      // log(value.data.toString());
       parentModel = ParentModel.fromJson(value.data);
-      log(parentModel!.user!.firstName.toString());
+      // log(parentModel!.user!.firstName.toString());
       fToast.init(context);
       showToast(AppLocalizations.of(context)!
           .translate('loginSuccessfully')
@@ -216,12 +251,19 @@ class GlobalCubit extends Cubit<GlobalState> {
     });
   }
 
-  IconData suffix = Icons.visibility;
-  bool isPassword = true;
+  IconData suffixOne = Icons.visibility;
+  IconData suffixTwo = Icons.visibility;
+  bool isPasswordOne = true;
+  bool isPasswordTwo = true;
 
-  changePasswordVisibility() {
-    isPassword = !isPassword;
-    suffix = isPassword ? Icons.visibility : Icons.visibility_off;
+  changePasswordOneVisibility() {
+    isPasswordOne = !isPasswordOne;
+    suffixOne = isPasswordOne ? Icons.visibility : Icons.visibility_off;
+    emit(ChangePasswordVisibilityState());
+  }
+  changePasswordTwoVisibility() {
+    isPasswordTwo = !isPasswordTwo;
+    suffixTwo = isPasswordTwo ? Icons.visibility : Icons.visibility_off;
     emit(ChangePasswordVisibilityState());
   }
 
@@ -278,5 +320,12 @@ class GlobalCubit extends Cubit<GlobalState> {
 
   void changeLocalState() {
     emit(AppChangeLocalState());
+  }
+
+  @override
+  Future<void> close() {
+  passwordController.clear();
+  emailController.clear();
+    return super.close();
   }
 }

@@ -20,8 +20,13 @@ dependencies:
   conditional_builder_null_safety: ^0.0.6
   smooth_page_indicator: ^1.1.0
   dropdown_button2: ^2.3.9
+  dots_indicator: ^3.0.0
   carousel_slider: ^4.2.1
   cached_network_image: ^3.3.0
+  font_awesome_flutter: ^10.7.0
+  timer_count_down: ^2.2.2
+  url_launcher: ^6.2.4
+
 
 
   video_player: ^2.8.1
@@ -56,6 +61,8 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/on_board/
+    - assets/images/icon_img/
     - assets/i18n/
 
   fonts:
@@ -67,3 +74,7 @@ flutter:
         - asset: assets/fonts/Tajawal-Bold.ttf
         - asset: assets/fonts/Tajawal-Medium.ttf
         - asset: assets/fonts/Tajawal-Regular.ttf
+
+    - family: EduMasterIcons
+      fonts:
+        - asset: assets/icons/EduMasterIcons.ttf

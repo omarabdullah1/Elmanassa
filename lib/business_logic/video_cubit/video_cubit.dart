@@ -1,5 +1,4 @@
 // video_cubit.dart
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -9,7 +8,7 @@ part 'video_state.dart';
 class VideoCubit extends Cubit<VideoState> {
 
   VideoCubit() : super(VideoInitialState());
-  // static VideoCubit get(context) => BlocProvider.of(context);
+  static VideoCubit get(context) => BlocProvider.of(context);
   late YoutubePlayerController controller;
 
   void initializeController(String url) {
