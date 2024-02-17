@@ -35,8 +35,8 @@ const logoutStudentPath = 'logout';
 
 
 //////////////////////// PARENT ///////////////////////////////////////////
-const parentRegisterPath = 'auth/parent/register';
-const parentLoginPath = 'auth/parent/login';
-const addStudentPath = 'auth/parent/add-student';
-const getStudentPath = 'auth/parent/get-parent-students';
+const parentRegisterPath = 'parent/register';
+const parentLoginPath = 'login';
+const addStudentPath = 'parent/add-student';
+const getStudentPath = 'parent/get-parent-students';
 ////////////////////////////////////////////////////////////////////////////
