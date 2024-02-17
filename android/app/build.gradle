@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.edumasterr"
+    namespace "com.example.edumaster"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion  "25.1.8937393"
 //    flutter.ndkVersion
