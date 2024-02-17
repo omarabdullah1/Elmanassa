@@ -3,10 +3,12 @@ const String domain = "https://edumaster.mabdelsamie.online";
 const String baseURL = "$domain/api/";
 
 const courses = 'courses';
+const authCourses = 'student/courses';
 const banners = 'banners';
 const levels = 'levels';
-const courseDetails = 'courses/details';
-const courseFiltered = 'courses/filter';
+const courseDetails = 'courses/course-details';
+const courseFiltered = 'student/courses/filtered';
+const supportPath = 'support-info';
 ///////////////////////////////////////////////////////////////////////////
 
 
