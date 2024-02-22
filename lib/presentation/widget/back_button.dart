@@ -5,8 +5,9 @@ import '../styles/colors.dart';
 
 class BackButtonWidget extends StatelessWidget {
   final double? height;
+  final bool? direction;
 
-  const BackButtonWidget({super.key, this.height});
+  const BackButtonWidget({super.key, this.height, this.direction});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +29,15 @@ class BackButtonWidget extends StatelessWidget {
             //   ),
             // ],
           ),
-          child:  Center(
+          child: Center(
             child: Icon(
-              delegate.currentLocale == 'ar' ? Icons.arrow_back_ios_new:Icons.arrow_forward_ios,
+              direction != null
+                  ? direction==true
+                      ? Icons.arrow_back_ios_new
+                      : Icons.arrow_forward_ios
+                  : delegate.currentLocale == 'ar'
+                      ? Icons.arrow_back_ios_new
+                      : Icons.arrow_forward_ios,
               size: 20.0,
               color: AppColor.roseMadder,
             ),

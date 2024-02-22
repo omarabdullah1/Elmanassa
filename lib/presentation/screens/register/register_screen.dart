@@ -9,6 +9,7 @@ import '../../../business_logic/app_localization.dart';
 import '../../../business_logic/global_cubit/global_cubit.dart';
 import '../../../data/local/cache_helper.dart';
 import '../../../constants/screens.dart';
+import '../../../main.dart';
 import '../../styles/colors.dart';
 import '../../styles/texts.dart';
 import '../../widget/custom_elevation.dart';
@@ -94,13 +95,9 @@ class RegisterScreen extends StatelessWidget {
           final GlobalCubit globalCubit = context.read<GlobalCubit>();
           return Scaffold(
             backgroundColor: AppColor.babyBlue,
-            appBar: const CustomAppBar(
-              appBarWidget: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  BackButtonWidget(),
-                ],
-              ),
+            appBar: AppBar(
+              leading: BackButtonWidget(direction: delegate.currentLocale == 'ar'?false:true,),
+              backgroundColor: AppColor.babyBlue,
             ),
             body: state is GetLevelsLoadingState
                 ? const Center(
@@ -114,7 +111,9 @@ class RegisterScreen extends StatelessWidget {
                     return SingleChildScrollView(
                       child: SizedBox(
                         width: width,
-                        height: height+200.0,
+                        height: globalCubit.isParentRegister
+                            ? height * 1.450
+                            : height * 1.350,
                         child: Stack(
                           children: [
                             Positioned(
@@ -123,7 +122,9 @@ class RegisterScreen extends StatelessWidget {
                                   : 100.0,
                               child: Container(
                                 width: width,
-                                height: height+110.0,
+                                height: globalCubit.isParentRegister
+                                    ? height * 1.350
+                                    : height * 1.350,
                                 decoration: const BoxDecoration(
                                   color: AppColor.white,
                                   borderRadius: BorderRadius.only(
@@ -132,8 +133,10 @@ class RegisterScreen extends StatelessWidget {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 80.0,
+                                  padding: EdgeInsets.only(
+                                    top: globalCubit.isParentRegister
+                                        ? 0.0
+                                        : height * 0.1,
                                   ),
                                   child: globalCubit.isParentRegister
                                       ? Form(
@@ -143,7 +146,9 @@ class RegisterScreen extends StatelessWidget {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                Texts.translate(Texts.registerNewParentText, context),
+                                                Texts.translate(
+                                                    Texts.registerNewParentText,
+                                                    context),
                                                 style: TextStyles
                                                     .registerNewParentStyle,
                                               ),
@@ -160,17 +165,18 @@ class RegisterScreen extends StatelessWidget {
                                                   borderRadius: 10,
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourFullName',
                                                           )
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts
-                                                      .translate(Texts
-                                                      .registerFirstNameLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts
+                                                          .registerFirstNameLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.person_rounded,
                                                 ),
@@ -192,16 +198,18 @@ class RegisterScreen extends StatelessWidget {
                                                   borderRadius: 10,
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourFullName',
                                                           )
                                                           .toString();
                                                     }
                                                   },
-                                                  label:
-                                                      Texts.translate(Texts.registerLastNameLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts
+                                                          .registerLastNameLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.person_rounded,
                                                 ),
@@ -217,22 +225,24 @@ class RegisterScreen extends StatelessWidget {
                                                 child: dynamicFormField(
                                                   controller: globalCubit
                                                       .pEmailController,
-                                                  type:
-                                                      TextInputType.emailAddress,
+                                                  type: TextInputType
+                                                      .emailAddress,
                                                   isValidate: true,
                                                   isLabel: true,
                                                   borderRadius: 10,
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourEmailAddress',
                                                           )
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts.translate(Texts.registerEmailLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts.registerEmailLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.email_outlined,
                                                 ),
@@ -253,8 +263,8 @@ class RegisterScreen extends StatelessWidget {
                                                   borderRadius: 10,
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourPhone',
                                                           )
@@ -262,13 +272,16 @@ class RegisterScreen extends StatelessWidget {
                                                     } else if (value.length <
                                                             11 ||
                                                         value.length > 15) {
-                                                      return AppLocalizations.of(
-                                                              context)!
-                                                          .translate('phoneWrong')
+                                                      return AppLocalizations
+                                                              .of(context)!
+                                                          .translate(
+                                                              'phoneWrong')
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts.translate(Texts.registerPhoneLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts.registerPhoneLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.phone_android,
                                                 ),
@@ -299,16 +312,18 @@ class RegisterScreen extends StatelessWidget {
                                                   },
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourPassword',
                                                           )
                                                           .toString();
                                                     }
                                                   },
-                                                  label:
-                                                      Texts.translate(Texts.registerPasswordLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts
+                                                          .registerPasswordLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.lock_outline,
                                                 ),
@@ -340,8 +355,8 @@ class RegisterScreen extends StatelessWidget {
                                                   },
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourPassword',
                                                           )
@@ -350,17 +365,18 @@ class RegisterScreen extends StatelessWidget {
                                                             .pPasswordController
                                                             .text !=
                                                         value) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'passwordNotMatch',
                                                           )
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts
-                                                      .translate(Texts
-                                                      .registerConfirmPasswordLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts
+                                                          .registerConfirmPasswordLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.lock_outline,
                                                 ),
@@ -381,9 +397,10 @@ class RegisterScreen extends StatelessWidget {
                                                       FittedBox(
                                                         fit: BoxFit.scaleDown,
                                                         child: Text(
-                                                          Texts
-                                                              .translate(Texts
-                                                              .registerStudentCode, context),
+                                                          Texts.translate(
+                                                              Texts
+                                                                  .registerStudentCode,
+                                                              context),
                                                           style: TextStyles
                                                               .registerStudentCodeStyle,
                                                         ),
@@ -400,10 +417,9 @@ class RegisterScreen extends StatelessWidget {
                                                                   .separated(
                                                                 scrollDirection:
                                                                     Axis.horizontal,
-                                                                itemBuilder:
-                                                                    (context,
-                                                                            index) =>
-                                                                        Container(
+                                                                itemBuilder: (context,
+                                                                        index) =>
+                                                                    Container(
                                                                   width: 100.0,
                                                                   height: 35.0,
                                                                   decoration:
@@ -416,21 +432,23 @@ class RegisterScreen extends StatelessWidget {
                                                                       20.0,
                                                                     ),
                                                                   ),
-                                                                  child: Padding(
+                                                                  child:
+                                                                      Padding(
                                                                     padding:
                                                                         const EdgeInsets
                                                                             .only(
-                                                                      right: 8.0,
+                                                                      right:
+                                                                          8.0,
                                                                     ),
                                                                     child:
                                                                         FittedBox(
                                                                       fit: BoxFit
                                                                           .scaleDown,
-                                                                      child: Row(
+                                                                      child:
+                                                                          Row(
                                                                         children: [
                                                                           Text(
-                                                                            globalCubit
-                                                                                .qrList[index],
+                                                                            globalCubit.qrList[index],
                                                                             style:
                                                                                 TextStyles.registerQrCodeStyle,
                                                                           ),
@@ -439,13 +457,11 @@ class RegisterScreen extends StatelessWidget {
                                                                                 15.0,
                                                                           ),
                                                                           IconButton(
-                                                                              onPressed:
-                                                                                  () {
+                                                                              onPressed: () {
                                                                                 globalCubit.qrList.remove(globalCubit.qrList[index]);
                                                                                 globalCubit.removeQrUpdateState();
                                                                               },
-                                                                              icon:
-                                                                                  const Icon(
+                                                                              icon: const Icon(
                                                                                 Icons.close,
                                                                                 color: AppColor.white,
                                                                               ))
@@ -476,17 +492,18 @@ class RegisterScreen extends StatelessWidget {
                                                       // const Spacer(),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets.all(
-                                                                8.0),
+                                                            const EdgeInsets
+                                                                .all(8.0),
                                                         child: CustomElevation(
-                                                          color:
-                                                              AppColor.roseMadder,
+                                                          color: AppColor
+                                                              .roseMadder,
                                                           radius: 8.0,
                                                           opacity: 0.8,
                                                           child: SizedBox(
                                                             height: 35.0,
                                                             width: 80.0,
-                                                            child: MaterialButton(
+                                                            child:
+                                                                MaterialButton(
                                                               // height: 35.0,
                                                               elevation: 5.0,
                                                               shape:
@@ -509,9 +526,10 @@ class RegisterScreen extends StatelessWidget {
                                                                 fit: BoxFit
                                                                     .scaleDown,
                                                                 child: Text(
-                                                                  Texts
-                                                                      .translate(Texts
-                                                                      .registerScanCode, context),
+                                                                  Texts.translate(
+                                                                      Texts
+                                                                          .registerScanCode,
+                                                                      context),
                                                                   textAlign:
                                                                       TextAlign
                                                                           .center,
@@ -552,9 +570,10 @@ class RegisterScreen extends StatelessWidget {
                                                       child: Text(
                                                         (globalCubit
                                                                 .qrList.isEmpty)
-                                                            ? Texts
-                                                                .translate(Texts
-                                                            .registerPleaseScanCodeText, context)
+                                                            ? Texts.translate(
+                                                                Texts
+                                                                    .registerPleaseScanCodeText,
+                                                                context)
                                                             : '',
                                                         style: TextStyles
                                                             .registerPleaseScanCodeStyle,
@@ -606,7 +625,8 @@ class RegisterScreen extends StatelessWidget {
                                                   },
                                                   buttonStyleData:
                                                       const ButtonStyleData(
-                                                    padding: EdgeInsets.symmetric(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
                                                       horizontal: 40.0,
                                                     ),
                                                     height: 40,
@@ -642,12 +662,14 @@ class RegisterScreen extends StatelessWidget {
                                                       ),
                                                       child: Text(
                                                         (globalCubit.selectedGender ==
+                                                                Texts.translate(
+                                                                    Texts
+                                                                        .registerSelectGenderText,
+                                                                    context))
+                                                            ? Texts.translate(
                                                                 Texts
-                                                                    .translate(Texts
-                                                                    .registerSelectGenderText, context))
-                                                            ? Texts
-                                                                .translate(Texts
-                                                            .registerPleaseSelectGenderText, context)
+                                                                    .registerPleaseSelectGenderText,
+                                                                context)
                                                             : '',
                                                         style: TextStyles
                                                             .registerPleaseSelectGenderStyle,
@@ -674,17 +696,19 @@ class RegisterScreen extends StatelessWidget {
                                                   radius: 21.0,
                                                   opacity: 0.8,
                                                   child: MaterialButton(
-                                                    height: MediaQuery.of(context)
-                                                            .size
-                                                            .height /
-                                                        17.0,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            17.0,
                                                     minWidth:
                                                         MediaQuery.of(context)
                                                                 .size
                                                                 .width /
                                                             3,
                                                     elevation: 5.0,
-                                                    shape: RoundedRectangleBorder(
+                                                    shape:
+                                                        RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                         21.0,
@@ -697,9 +721,10 @@ class RegisterScreen extends StatelessWidget {
                                                               .validate() &&
                                                           globalCubit
                                                                   .selectedGender !=
-                                                              Texts
-                                                                  .translate(Texts
-                                                                  .registerSelectGenderText, context) &&
+                                                              Texts.translate(
+                                                                  Texts
+                                                                      .registerSelectGenderText,
+                                                                  context) &&
                                                           globalCubit.qrList
                                                               .isNotEmpty) {
                                                         globalCubit
@@ -723,15 +748,19 @@ class RegisterScreen extends StatelessWidget {
                                                               .selectedGender
                                                               .toString(),
                                                           studentsCodes:
-                                                              globalCubit.qrList,
+                                                              globalCubit
+                                                                  .qrList,
                                                           context: context,
                                                         );
                                                       }
                                                     },
                                                     color: AppColor.honeyYellow,
                                                     child: Text(
-                                                      Texts.translate(Texts.continueText, context),
-                                                      textAlign: TextAlign.center,
+                                                      Texts.translate(
+                                                          Texts.continueText,
+                                                          context),
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyles
                                                           .continueTextStyle,
                                                     ),
@@ -770,7 +799,8 @@ class RegisterScreen extends StatelessWidget {
                                                                 BoxDecoration(
                                                               color: globalCubit
                                                                       .isParentRegister
-                                                                  ? AppColor.white
+                                                                  ? AppColor
+                                                                      .white
                                                                   : AppColor
                                                                       .roseMadder,
                                                               borderRadius:
@@ -780,7 +810,10 @@ class RegisterScreen extends StatelessWidget {
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                Texts.translate(Texts.parentText, context),
+                                                                Texts.translate(
+                                                                    Texts
+                                                                        .parentText,
+                                                                    context),
                                                                 style: TextStyles
                                                                     .studentStyle(
                                                                   !globalCubit
@@ -806,7 +839,8 @@ class RegisterScreen extends StatelessWidget {
                                                                 BoxDecoration(
                                                               color: !globalCubit
                                                                       .isParentRegister
-                                                                  ? AppColor.white
+                                                                  ? AppColor
+                                                                      .white
                                                                   : AppColor
                                                                       .roseMadder,
                                                               borderRadius:
@@ -816,7 +850,10 @@ class RegisterScreen extends StatelessWidget {
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                Texts.translate(Texts.studentText, context),
+                                                                Texts.translate(
+                                                                    Texts
+                                                                        .studentText,
+                                                                    context),
                                                                 style: TextStyles
                                                                     .studentStyle(
                                                                   globalCubit
@@ -839,7 +876,10 @@ class RegisterScreen extends StatelessWidget {
                                           child: Column(
                                             children: [
                                               Text(
-                                                Texts.translate(Texts.registerNewStudentText, context),
+                                                Texts.translate(
+                                                    Texts
+                                                        .registerNewStudentText,
+                                                    context),
                                                 style: TextStyles
                                                     .registerNewStudentStyle,
                                               ),
@@ -857,17 +897,18 @@ class RegisterScreen extends StatelessWidget {
                                                   borderRadius: 10,
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourFullName',
                                                           )
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts
-                                                      .translate(Texts
-                                                      .registerFirstNameLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts
+                                                          .registerFirstNameLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.person_rounded,
                                                 ),
@@ -888,16 +929,18 @@ class RegisterScreen extends StatelessWidget {
                                                   borderRadius: 10,
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourFullName',
                                                           )
                                                           .toString();
                                                     }
                                                   },
-                                                  label:
-                                                      Texts.translate(Texts.registerLastNameLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts
+                                                          .registerLastNameLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.person_rounded,
                                                 ),
@@ -913,22 +956,24 @@ class RegisterScreen extends StatelessWidget {
                                                 child: dynamicFormField(
                                                   controller: globalCubit
                                                       .sEmailController,
-                                                  type:
-                                                      TextInputType.emailAddress,
+                                                  type: TextInputType
+                                                      .emailAddress,
                                                   isValidate: true,
                                                   isLabel: true,
                                                   borderRadius: 10,
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourEmailAddress',
                                                           )
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts.translate(Texts.registerEmailLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts.registerEmailLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.email_outlined,
                                                 ),
@@ -950,8 +995,8 @@ class RegisterScreen extends StatelessWidget {
                                                   borderRadius: 10,
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourPhone',
                                                           )
@@ -959,13 +1004,16 @@ class RegisterScreen extends StatelessWidget {
                                                     } else if (value.length <
                                                             11 ||
                                                         value.length > 15) {
-                                                      return AppLocalizations.of(
-                                                              context)!
-                                                          .translate('phoneWrong')
+                                                      return AppLocalizations
+                                                              .of(context)!
+                                                          .translate(
+                                                              'phoneWrong')
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts.translate(Texts.registerPhoneLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts.registerPhoneLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.phone_android,
                                                 ),
@@ -995,16 +1043,18 @@ class RegisterScreen extends StatelessWidget {
                                                   },
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourPassword',
                                                           )
                                                           .toString();
                                                     }
                                                   },
-                                                  label:
-                                                      Texts.translate(Texts.registerPasswordLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts
+                                                          .registerPasswordLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.lock_outline,
                                                 ),
@@ -1056,8 +1106,8 @@ class RegisterScreen extends StatelessWidget {
                                                   },
                                                   validate: (String value) {
                                                     if (value.isEmpty) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'pleaseEnterYourPassword',
                                                           )
@@ -1066,17 +1116,18 @@ class RegisterScreen extends StatelessWidget {
                                                             .sPasswordController
                                                             .text !=
                                                         value) {
-                                                      return AppLocalizations.of(
-                                                              context)!
+                                                      return AppLocalizations
+                                                              .of(context)!
                                                           .translate(
                                                             'passwordNotMatch',
                                                           )
                                                           .toString();
                                                     }
                                                   },
-                                                  label: Texts
-                                                      .translate(Texts
-                                                      .registerConfirmPasswordLabel, context),
+                                                  label: Texts.translate(
+                                                      Texts
+                                                          .registerConfirmPasswordLabel,
+                                                      context),
                                                   labelColor: AppColor.babyBlue,
                                                   prefix: Icons.lock_outline,
                                                 ),
@@ -1127,7 +1178,8 @@ class RegisterScreen extends StatelessWidget {
                                                   },
                                                   buttonStyleData:
                                                       const ButtonStyleData(
-                                                    padding: EdgeInsets.symmetric(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
                                                       horizontal: 40.0,
                                                     ),
                                                     height: 40,
@@ -1159,12 +1211,14 @@ class RegisterScreen extends StatelessWidget {
                                                   children: [
                                                     Text(
                                                       (globalCubit.selectedGender ==
+                                                              Texts.translate(
+                                                                  Texts
+                                                                      .registerSelectGenderText,
+                                                                  context))
+                                                          ? Texts.translate(
                                                               Texts
-                                                                  .translate(Texts
-                                                                  .registerSelectGenderText, context))
-                                                          ? Texts
-                                                              .translate(Texts
-                                                          .registerPleaseSelectGenderText, context)
+                                                                  .registerPleaseSelectGenderText,
+                                                              context)
                                                           : '',
                                                       style: TextStyles
                                                           .registerPleaseSelectGenderStyle,
@@ -1183,7 +1237,10 @@ class RegisterScreen extends StatelessWidget {
                                                   ),
                                                   isExpanded: false,
                                                   hint: Text(
-                                                    Texts.translate(Texts.registerSelectLevelText, context),
+                                                    Texts.translate(
+                                                        Texts
+                                                            .registerSelectLevelText,
+                                                        context),
                                                     style: TextStyles
                                                         .registerSelectLevelStyle,
                                                   ),
@@ -1210,7 +1267,8 @@ class RegisterScreen extends StatelessWidget {
                                                   },
                                                   buttonStyleData:
                                                       const ButtonStyleData(
-                                                    padding: EdgeInsets.symmetric(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
                                                       horizontal: 40.0,
                                                     ),
                                                     height: 40,
@@ -1244,12 +1302,14 @@ class RegisterScreen extends StatelessWidget {
                                                       ),
                                                       child: Text(
                                                         (globalCubit.selectedLevel ==
+                                                                Texts.translate(
+                                                                    Texts
+                                                                        .registerSelectLevelText,
+                                                                    context))
+                                                            ? Texts.translate(
                                                                 Texts
-                                                                    .translate(Texts
-                                                                    .registerSelectLevelText, context))
-                                                            ? Texts
-                                                                .translate(Texts
-                                                            .registerPleaseSelectLevelText, context)
+                                                                    .registerPleaseSelectLevelText,
+                                                                context)
                                                             : '',
                                                         style: TextStyles
                                                             .registerPleaseSelectLevelStyle,
@@ -1276,17 +1336,19 @@ class RegisterScreen extends StatelessWidget {
                                                   radius: 21.0,
                                                   opacity: 0.8,
                                                   child: MaterialButton(
-                                                    height: MediaQuery.of(context)
-                                                            .size
-                                                            .height /
-                                                        17.0,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            17.0,
                                                     minWidth:
                                                         MediaQuery.of(context)
                                                                 .size
                                                                 .width /
                                                             3,
                                                     elevation: 5.0,
-                                                    shape: RoundedRectangleBorder(
+                                                    shape:
+                                                        RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                         21.0,
@@ -1299,15 +1361,18 @@ class RegisterScreen extends StatelessWidget {
                                                               .validate() &&
                                                           globalCubit
                                                                   .selectedLevel !=
-                                                              Texts
-                                                                  .translate(Texts
-                                                                  .registerSelectLevelText, context) &&
+                                                              Texts.translate(
+                                                                  Texts
+                                                                      .registerSelectLevelText,
+                                                                  context) &&
                                                           globalCubit
                                                                   .selectedGender !=
-                                                              Texts
-                                                                  .translate(Texts
-                                                                  .registerSelectGenderText, context)) {
-                                                        globalCubit.userRegister(
+                                                              Texts.translate(
+                                                                  Texts
+                                                                      .registerSelectGenderText,
+                                                                  context)) {
+                                                        globalCubit
+                                                            .userRegister(
                                                           email: globalCubit
                                                               .sEmailController
                                                               .text,
@@ -1332,8 +1397,11 @@ class RegisterScreen extends StatelessWidget {
                                                     },
                                                     color: AppColor.honeyYellow,
                                                     child: Text(
-                                                      Texts.translate(Texts.continueText, context),
-                                                      textAlign: TextAlign.center,
+                                                      Texts.translate(
+                                                          Texts.continueText,
+                                                          context),
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: const TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 18,
@@ -1378,7 +1446,8 @@ class RegisterScreen extends StatelessWidget {
                                                                 BoxDecoration(
                                                               color: globalCubit
                                                                       .isParentRegister
-                                                                  ? AppColor.white
+                                                                  ? AppColor
+                                                                      .white
                                                                   : AppColor
                                                                       .roseMadder,
                                                               borderRadius:
@@ -1389,17 +1458,21 @@ class RegisterScreen extends StatelessWidget {
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                Texts.translate(Texts.parentText, context),
-                                                                style: TextStyle(
+                                                                Texts.translate(
+                                                                    Texts
+                                                                        .parentText,
+                                                                    context),
+                                                                style:
+                                                                    TextStyle(
                                                                   fontFamily:
                                                                       'cairo',
-                                                                  color: globalCubit
-                                                                          .isParentRegister
+                                                                  color: globalCubit.isParentRegister
                                                                       ? AppColor
                                                                           .indigoDye
                                                                       : AppColor
                                                                           .white,
-                                                                  fontSize: 16.0,
+                                                                  fontSize:
+                                                                      16.0,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
@@ -1426,7 +1499,8 @@ class RegisterScreen extends StatelessWidget {
                                                                 BoxDecoration(
                                                               color: !globalCubit
                                                                       .isParentRegister
-                                                                  ? AppColor.white
+                                                                  ? AppColor
+                                                                      .white
                                                                   : AppColor
                                                                       .roseMadder,
                                                               borderRadius:
@@ -1436,17 +1510,21 @@ class RegisterScreen extends StatelessWidget {
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                Texts.translate(Texts.studentText, context),
-                                                                style: TextStyle(
+                                                                Texts.translate(
+                                                                    Texts
+                                                                        .studentText,
+                                                                    context),
+                                                                style:
+                                                                    TextStyle(
                                                                   fontFamily:
                                                                       'cairo',
-                                                                  color: !globalCubit
-                                                                          .isParentRegister
+                                                                  color: !globalCubit.isParentRegister
                                                                       ? AppColor
                                                                           .indigoDye
                                                                       : AppColor
                                                                           .white,
-                                                                  fontSize: 16.0,
+                                                                  fontSize:
+                                                                      16.0,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
@@ -1474,7 +1552,8 @@ class RegisterScreen extends StatelessWidget {
                                             .bottom ==
                                         0
                                     ? MediaQuery.of(context).size.height * 0.208
-                                    : MediaQuery.of(context).size.height * 0.208,
+                                    : MediaQuery.of(context).size.height *
+                                        0.208,
                                 width: MediaQuery.of(context).size.width,
                                 child: const CircleAvatar(
                                   backgroundColor: AppColor.babyBlue,
