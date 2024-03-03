@@ -90,17 +90,15 @@ class CourseDetailsScreen extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: SizedBox(
-                          height: 35.0,
-                          width: MediaQuery.of(context).size.width * 0.33,
-                          child: Center(
-                            child: Text(
-                              Texts.translate(Texts.studentHomeCourseDetailsText, context),
-                              style:
-                                  TextStyles.studentHomeCourseDetailsTextStyle,
-                            ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: Center(
+                          child: Text(
+                            Texts.translate(Texts.studentHomeCourseDetailsText, context),
+                            style:
+                                TextStyles.studentHomeCourseDetailsTextStyle,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ),

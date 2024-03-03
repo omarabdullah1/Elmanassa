@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edumaster/data/models/course_dashboard_model.dart';
 import 'package:edumaster/main.dart';
+import 'package:edumaster/presentation/widget/back_button.dart';
 import 'package:edumaster/presentation/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,6 +49,7 @@ class CourseDashboardScreen extends StatelessWidget {
                 appBarWidget: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(5.0),
@@ -61,48 +63,25 @@ class CourseDashboardScreen extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: SizedBox(
-                          height: 35.0,
-                          width: MediaQuery.of(context).size.width * 0.33,
-                          child: Center(
-                            child: Text(
-                              studentHomeCubit
-                                  .courseDashboardModel!.course!.title!,
-                              style: const TextStyle(
-                                fontFamily: 'cairo',
-                                color: AppColor.indigoDye,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: Center(
+                          child: Text(
+                            studentHomeCubit
+                                .courseDashboardModel!.course!.title!,
+                            style: const TextStyle(
+                              fontFamily: 'cairo',
+                              color: AppColor.indigoDye,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
                             ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ),
                       const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: SizedBox(
-                          height: 40.0,
-                          width: 40.0,
-                          child: FlatButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            tOrI: false,
-                            icon: Icons.arrow_back_ios,
-                            radius: 50.0,
-                            height: 5.0,
-                            minWidth: 5.0,
-                            iconSize: 15.0,
-                            iconColor: AppColor.roseMadder,
-                            color: AppColor.white,
-                            elevation: 0.0,
-                            iconWidgetState: false,
-                          ),
-                        ),
-                      ),
+                      const BackButtonWidget(),
                     ],
                   ),
                 ),
@@ -156,9 +135,10 @@ class CourseDashboardScreen extends StatelessWidget {
                                             .toString(),
                                         studentHomeCubit.courseDashboardModel!
                                                 .course!.introVideo ??
-                                            Texts
-                                                .translate(Texts
-                                                .studentHomeCourseDashboardVideoPathText, context),
+                                            Texts.translate(
+                                                Texts
+                                                    .studentHomeCourseDashboardVideoPathText,
+                                                context),
                                       ),
                                     );
                                   },
@@ -278,9 +258,10 @@ class CourseDashboardScreen extends StatelessWidget {
                                           title: Align(
                                             alignment: Alignment.centerRight,
                                             child: Text(
-                                              Texts
-                                                  .translate(Texts
-                                                  .studentHomeCourseDashboardCourseDetailsText, context),
+                                              Texts.translate(
+                                                  Texts
+                                                      .studentHomeCourseDashboardCourseDetailsText,
+                                                  context),
                                               style: TextStyles
                                                   .studentHomeCourseDashboardCourseDetailsTextStyle,
                                             ),
@@ -381,9 +362,10 @@ class _ExpandableCardState extends State<ExpandableCard> {
                     Row(
                       children: [
                         Text(
-                          Texts
-                              .translate(Texts
-                              .studentHomeCourseDashboardExpandableCardLessonsText, context),
+                          Texts.translate(
+                              Texts
+                                  .studentHomeCourseDashboardExpandableCardLessonsText,
+                              context),
                           textAlign: TextAlign.center,
                           style: TextStyles
                               .studentHomeCourseDashboardExpandableCardLessonsTextStyle,
@@ -420,7 +402,9 @@ class _ExpandableCardState extends State<ExpandableCard> {
                               .isNotEmpty
                           ? widget.courseDashboardModelCourseUnits.duration
                               .toString()
-                          : delegate.currentLocale.languageCode == 'en' ? 'notime' : 'لا توجد وقت',
+                          : delegate.currentLocale.languageCode == 'en'
+                              ? 'notime'
+                              : 'لا توجد وقت',
                       textAlign: TextAlign.center,
                       style: TextStyles
                           .studentHomeCourseDashboardExpandableCardLessonsTextStyle,
@@ -519,7 +503,10 @@ class _ExpandableCardState extends State<ExpandableCard> {
                           arguments: ScreenArguments(
                             ele.lesson!.title.toString(),
                             ele.lesson!.video ??
-                                Texts.translate(Texts.studentHomeCourseDashboardVideoPathText, context),
+                                Texts.translate(
+                                    Texts
+                                        .studentHomeCourseDashboardVideoPathText,
+                                    context),
                           ),
                         );
                       },

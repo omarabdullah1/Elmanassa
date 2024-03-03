@@ -4,12 +4,14 @@ import 'package:edumaster/presentation/widget/custom_elevation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../../business_logic/student_home_cubit/student_home_cubit.dart';
 import '../../../business_logic/student_home_cubit/student_home_state.dart';
 import '../../../constants/screens.dart';
 import '../../../data/local/cache_helper.dart';
 import '../../../generated/assets.dart';
 import '../../../main.dart';
+import '../../screens/shared/placeholders.dart';
 import '../../styles/colors.dart';
 import '../../styles/texts.dart';
 
@@ -420,13 +422,56 @@ class StudentLayoutScreen extends StatelessWidget {
                 ),
               );
             } else {
-              return const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
+              return Scaffold(
+                body: SafeArea(
+                  child: Shimmer.fromColors(
+                      baseColor: Colors.grey.shade300,
+                      highlightColor: Colors.grey.shade100,
+                      enabled: true,
+                      child: const SingleChildScrollView(
+                        physics: NeverScrollableScrollPhysics(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            BannerPlaceholder(),
+                            TitlePlaceholder(width: double.infinity),
+                            SizedBox(height: 16.0),
+                            ContentPlaceholder(
+                              lineType: ContentLineType.threeLines,
+                            ),
+                            SizedBox(height: 16.0),
+                            TitlePlaceholder(width: 200.0),
+                            SizedBox(height: 16.0),
+                            ContentPlaceholder(
+                              lineType: ContentLineType.twoLines,
+                            ),
+                            SizedBox(height: 16.0),
+                            TitlePlaceholder(width: 200.0),
+                            SizedBox(height: 16.0),
+                            ContentPlaceholder(
+                              lineType: ContentLineType.twoLines,
+                            ),
+                            SizedBox(height: 16.0),
+                            TitlePlaceholder(width: 200.0),
+                            SizedBox(height: 16.0),
+                            ContentPlaceholder(
+                              lineType: ContentLineType.twoLines,
+                            ),
+                            SizedBox(height: 16.0),
+                            TitlePlaceholder(width: 200.0),
+                            SizedBox(height: 16.0),
+                            ContentPlaceholder(
+                              lineType: ContentLineType.twoLines,
+                            ),
+                          ],
+                        ),
+                      )),
                 ),
               );
             }
-          } else {
+          }
+          else {
             if (studentHomeCubit.coursesModel != null &&
                 studentHomeCubit.bannersModel != null &&
                 studentHomeCubit.levelsModel != null) {
@@ -753,9 +798,51 @@ class StudentLayoutScreen extends StatelessWidget {
                 ),
               );
             } else {
-              return const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
+              return Scaffold(
+                body: SafeArea(
+                  child: Shimmer.fromColors(
+                      baseColor: Colors.grey.shade300,
+                      highlightColor: Colors.grey.shade100,
+                      enabled: true,
+                      child: const SingleChildScrollView(
+                        physics: NeverScrollableScrollPhysics(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            BannerPlaceholder(),
+                            TitlePlaceholder(width: double.infinity),
+                            SizedBox(height: 16.0),
+                            ContentPlaceholder(
+                              lineType: ContentLineType.threeLines,
+                            ),
+                            SizedBox(height: 16.0),
+                            TitlePlaceholder(width: 200.0),
+                            SizedBox(height: 16.0),
+                            ContentPlaceholder(
+                              lineType: ContentLineType.twoLines,
+                            ),
+                            SizedBox(height: 16.0),
+                            TitlePlaceholder(width: 200.0),
+                            SizedBox(height: 16.0),
+                            ContentPlaceholder(
+                              lineType: ContentLineType.twoLines,
+                            ),
+                            SizedBox(height: 16.0),
+                            TitlePlaceholder(width: 200.0),
+                            SizedBox(height: 16.0),
+                            ContentPlaceholder(
+                              lineType: ContentLineType.twoLines,
+                            ),
+                            SizedBox(height: 16.0),
+                            TitlePlaceholder(width: 200.0),
+                            SizedBox(height: 16.0),
+                            ContentPlaceholder(
+                              lineType: ContentLineType.twoLines,
+                            ),
+                          ],
+                        ),
+                      )),
                 ),
               );
             }

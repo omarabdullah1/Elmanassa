@@ -44,21 +44,24 @@ class QuizScreen extends StatelessWidget {
           return Scaffold(
             appBar: CustomAppBar(
               appBarWidget: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const BackButtonWidget(),
+                  const SizedBox(
+                    width: 40.0,
+                  ),
                   const Spacer(),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    child: Align(
-                      alignment: AlignmentDirectional.centerStart,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Center(
                       child: Text(
-                        Texts.translate(Texts.studentHomeQuizScreenText, context),
+                        Texts.translate(
+                            Texts.studentHomeQuizScreenText, context),
                         style: TextStyles.studentHomeHomepageStyle,
                       ),
                     ),
                   ),
                   const Spacer(),
+                  const BackButtonWidget(),
                 ],
               ),
             ),
@@ -97,7 +100,10 @@ class QuizScreen extends StatelessWidget {
                                       vertical: 20.0,
                                     ),
                                     child: Text(
-                                      Texts.translate(Texts.studentHomeQuizPleaseEnterQuizCodeText, context),
+                                      Texts.translate(
+                                          Texts
+                                              .studentHomeQuizPleaseEnterQuizCodeText,
+                                          context),
                                       textAlign: TextAlign.center,
                                       style: TextStyles
                                           .studentHomeQuizScreenTitleTextStyle,
@@ -167,9 +173,10 @@ class QuizScreen extends StatelessWidget {
                                                     },
                                               color: AppColor.roseMadder,
                                               child: Text(
-                                                Texts
-                                                    .translate(Texts
-                                                    .studentHomeCourseSubscribeScreenPaymentConfirmButtonText, context),
+                                                Texts.translate(
+                                                    Texts
+                                                        .studentHomeCourseSubscribeScreenPaymentConfirmButtonText,
+                                                    context),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyles
                                                     .studentHomeCourseDetailsClickSubscribeCheckStyle,
@@ -242,9 +249,10 @@ class QuizScreen extends StatelessWidget {
                                         },
                                         color: AppColor.roseMadder,
                                         child: Text(
-                                          Texts
-                                              .translate(Texts
-                                              .studentHomeQuizCodeScreenGoToQuizButtonText, context),
+                                          Texts.translate(
+                                              Texts
+                                                  .studentHomeQuizCodeScreenGoToQuizButtonText,
+                                              context),
                                           textAlign: TextAlign.center,
                                           style: TextStyles
                                               .studentHomeCourseDetailsClickSubscribeCheckStyle,

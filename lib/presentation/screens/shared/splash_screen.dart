@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     var isParent = CacheHelper.getDataFromSharedPreference(key: 'isParent');
     timer = Timer(
         const Duration(
-          seconds: 3,
+          seconds: 1,
         ),
         () => Navigator.pushNamedAndRemoveUntil(
             context,
@@ -38,15 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: AppColor.white,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/logo.png'),
-            const CircularProgressIndicator(
-              color: AppColor.honeyYellow,
-            ),
-          ],
-        ),
+        child: Image.asset('assets/images/logo.png'),
       ),
     );
   }

@@ -66,24 +66,25 @@ class ProfileScreen extends StatelessWidget {
               backgroundColor: AppColor.babyBlue,
               appBar: CustomAppBar(
                   appBarWidget: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const BackButtonWidget(),
+                  const SizedBox(
+                    width: 40.0,
+                  ),
                   const Spacer(),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Text(
-                        Texts.translate(Texts.studentHomeProfilePageText, context),
-                        style: TextStyles.studentHomeHomepageStyle,
-                        maxLines: 1,
-                        softWrap: true,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Text(
+                      Texts.translate(
+                          Texts.studentHomeProfilePageText, context),
+                      style: TextStyles.studentHomeHomepageStyle,
+                      maxLines: 1,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   const Spacer(),
+                  const BackButtonWidget(),
                 ],
               )),
               body: LayoutBuilder(builder: (context, constraints) {
@@ -130,7 +131,7 @@ class ProfileScreen extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15.0),
                                   child: SizedBox(
-                                    height: 40.0,
+                                    height: height * 0.07,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -144,8 +145,10 @@ class ProfileScreen extends StatelessWidget {
                                           studentHomeCubit.profileModel!
                                                       .profile!.role ==
                                                   'student'
-                                              ? Texts.translate(Texts.studentText, context)
-                                              : Texts.translate(Texts.parentText, context),
+                                              ? Texts.translate(
+                                                  Texts.studentText, context)
+                                              : Texts.translate(
+                                                  Texts.parentText, context),
                                           style: TextStyles
                                               .studentHomeProfileTypeTextStyle,
                                         )
@@ -204,12 +207,18 @@ class ProfileScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                Texts.translate(Texts.studentHomeProfilePersonalAccountText, context),
+                                                Texts.translate(
+                                                    Texts
+                                                        .studentHomeProfilePersonalAccountText,
+                                                    context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountTextStyle,
                                               ),
                                               Text(
-                                                Texts.translate(Texts.studentHomeProfilePersonalAccountEditTextText, context),
+                                                Texts.translate(
+                                                    Texts
+                                                        .studentHomeProfilePersonalAccountEditTextText,
+                                                    context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountEditTextStyle,
                                               ),
@@ -226,7 +235,8 @@ class ProfileScreen extends StatelessWidget {
                                           },
                                           icon: Icon(
                                             Icons.arrow_forward_ios,
-                                            color: AppColor.grey.withOpacity(0.6),
+                                            color:
+                                                AppColor.grey.withOpacity(0.6),
                                           ),
                                         ),
                                       ],
@@ -247,21 +257,20 @@ class ProfileScreen extends StatelessWidget {
                                               width: 2.0,
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(20),
+                                                BorderRadius.circular(20),
                                             color: AppColor.white,
                                             boxShadow: <BoxShadow>[
                                               BoxShadow(
                                                 color: AppColor.black
                                                     .withOpacity(0.4),
                                                 blurRadius: 35,
-                                                offset:
-                                                const Offset(0, 0),
+                                                offset: const Offset(0, 0),
                                               ),
                                             ],
                                           ),
                                           child: Column(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                             children: [
                                               CircleAvatar(
                                                 backgroundColor: AppColor
@@ -269,28 +278,27 @@ class ProfileScreen extends StatelessWidget {
                                                     .withOpacity(0.1),
                                                 child: const Icon(
                                                   Icons.qr_code_outlined,
-                                                  color:
-                                                  AppColor.roseMadder,
+                                                  color: AppColor.roseMadder,
                                                 ),
                                               ),
                                               Text(
-                                                Texts.translate(Texts.studentHomeProfileQrCodeText, context),
+                                                Texts.translate(
+                                                    Texts
+                                                        .studentHomeProfileQrCodeText,
+                                                    context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountTextStyle,
                                               ),
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.all(
-                                                    15.0),
+                                                    const EdgeInsets.all(15.0),
                                                 child: BarcodeWidget(
                                                   data: studentHomeCubit
                                                       .profileModel!
                                                       .profile!
                                                       .code!,
-                                                  barcode:
-                                                  Barcode.qrCode(),
-                                                  color:
-                                                  AppColor.indigoDye,
+                                                  barcode: Barcode.qrCode(),
+                                                  color: AppColor.indigoDye,
                                                   width: 200,
                                                   height: 200,
                                                 ),
@@ -324,12 +332,18 @@ class ProfileScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                Texts.translate(Texts.studentHomeProfileQrCodeText, context),
+                                                Texts.translate(
+                                                    Texts
+                                                        .studentHomeProfileQrCodeText,
+                                                    context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountTextStyle,
                                               ),
                                               Text(
-                                                Texts.translate(Texts.studentHomeProfileQrCodeEditTextText, context),
+                                                Texts.translate(
+                                                    Texts
+                                                        .studentHomeProfileQrCodeEditTextText,
+                                                    context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountEditTextStyle,
                                               ),
@@ -347,11 +361,13 @@ class ProfileScreen extends StatelessWidget {
                                                   width: width * 0.5,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(
-                                                      color: AppColor.roseMadder,
+                                                      color:
+                                                          AppColor.roseMadder,
                                                       width: 2.0,
                                                     ),
                                                     borderRadius:
-                                                        BorderRadius.circular(20),
+                                                        BorderRadius.circular(
+                                                            20),
                                                     color: AppColor.white,
                                                     boxShadow: <BoxShadow>[
                                                       BoxShadow(
@@ -365,27 +381,33 @@ class ProfileScreen extends StatelessWidget {
                                                   ),
                                                   child: Column(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       CircleAvatar(
-                                                        backgroundColor: AppColor
-                                                            .roseMadder
-                                                            .withOpacity(0.1),
+                                                        backgroundColor:
+                                                            AppColor.roseMadder
+                                                                .withOpacity(
+                                                                    0.1),
                                                         child: const Icon(
-                                                          Icons.qr_code_outlined,
-                                                          color:
-                                                              AppColor.roseMadder,
+                                                          Icons
+                                                              .qr_code_outlined,
+                                                          color: AppColor
+                                                              .roseMadder,
                                                         ),
                                                       ),
                                                       Text(
-                                                        Texts.translate(Texts.studentHomeProfileQrCodeText, context),
+                                                        Texts.translate(
+                                                            Texts
+                                                                .studentHomeProfileQrCodeText,
+                                                            context),
                                                         style: TextStyles
                                                             .studentHomeProfilePersonalAccountTextStyle,
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets.all(
-                                                                15.0),
+                                                            const EdgeInsets
+                                                                .all(15.0),
                                                         child: BarcodeWidget(
                                                           data: studentHomeCubit
                                                               .profileModel!
@@ -393,8 +415,8 @@ class ProfileScreen extends StatelessWidget {
                                                               .code!,
                                                           barcode:
                                                               Barcode.qrCode(),
-                                                          color:
-                                                              AppColor.indigoDye,
+                                                          color: AppColor
+                                                              .indigoDye,
                                                           width: 200,
                                                           height: 200,
                                                         ),
@@ -407,7 +429,8 @@ class ProfileScreen extends StatelessWidget {
                                           },
                                           icon: Icon(
                                             Icons.arrow_forward_ios,
-                                            color: AppColor.grey.withOpacity(0.6),
+                                            color:
+                                                AppColor.grey.withOpacity(0.6),
                                           ),
                                         ),
                                       ],
@@ -441,12 +464,18 @@ class ProfileScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                Texts.translate(Texts.studentHomeProfileLogOutText, context),
+                                                Texts.translate(
+                                                    Texts
+                                                        .studentHomeProfileLogOutText,
+                                                    context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountTextStyle,
                                               ),
                                               Text(
-                                                Texts.translate(Texts.studentHomeProfileLogOutEditTextText, context),
+                                                Texts.translate(
+                                                    Texts
+                                                        .studentHomeProfileLogOutEditTextText,
+                                                    context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountEditTextStyle,
                                               ),
@@ -460,7 +489,8 @@ class ProfileScreen extends StatelessWidget {
                                           },
                                           icon: Icon(
                                             Icons.arrow_forward_ios,
-                                            color: AppColor.grey.withOpacity(0.6),
+                                            color:
+                                                AppColor.grey.withOpacity(0.6),
                                           ),
                                         ),
                                       ],
@@ -475,7 +505,9 @@ class ProfileScreen extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Text(
-                                        Texts.translate(Texts.studentHomeProfileMoreText, context),
+                                        Texts.translate(
+                                            Texts.studentHomeProfileMoreText,
+                                            context),
                                         style: TextStyles
                                             .studentHomeProfilePersonalAccountTextStyle,
                                       ),
@@ -508,7 +540,10 @@ class ProfileScreen extends StatelessWidget {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 15.0),
                                           child: Text(
-                                            Texts.translate(Texts.studentHomeProfileHelpText, context),
+                                            Texts.translate(
+                                                Texts
+                                                    .studentHomeProfileHelpText,
+                                                context),
                                             style: TextStyles
                                                 .studentHomeProfilePersonalAccountTextStyle,
                                           ),
@@ -523,7 +558,8 @@ class ProfileScreen extends StatelessWidget {
                                           },
                                           icon: Icon(
                                             Icons.arrow_forward_ios,
-                                            color: AppColor.grey.withOpacity(0.6),
+                                            color:
+                                                AppColor.grey.withOpacity(0.6),
                                           ),
                                         ),
                                       ],
@@ -544,21 +580,20 @@ class ProfileScreen extends StatelessWidget {
                                               width: 2.0,
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(20),
+                                                BorderRadius.circular(20),
                                             color: AppColor.white,
                                             boxShadow: <BoxShadow>[
                                               BoxShadow(
                                                 color: AppColor.black
                                                     .withOpacity(0.4),
                                                 blurRadius: 35,
-                                                offset:
-                                                const Offset(0, 0),
+                                                offset: const Offset(0, 0),
                                               ),
                                             ],
                                           ),
                                           child: Column(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                             children: [
                                               CircleAvatar(
                                                 backgroundColor: AppColor
@@ -566,22 +601,26 @@ class ProfileScreen extends StatelessWidget {
                                                     .withOpacity(0.1),
                                                 child: const FaIcon(
                                                   FontAwesomeIcons.heart,
-                                                  color:
-                                                  AppColor.roseMadder,
+                                                  color: AppColor.roseMadder,
                                                 ),
                                               ),
                                               Text(
-                                                Texts.translate(Texts.studentHomeProfileAboutUsText, context),
+                                                Texts.translate(
+                                                    Texts
+                                                        .studentHomeProfileAboutUsText,
+                                                    context),
                                                 style: TextStyles
                                                     .studentHomeProfilePersonalAccountTextStyle,
                                               ),
                                               Padding(
-                                                padding:
-                                                const EdgeInsets.all(
+                                                padding: const EdgeInsets.all(
                                                   15.0,
                                                 ),
                                                 child: Text(
-                                                  Texts.translate(Texts.studentHomeProfileAboutUsDetailsText, context),
+                                                  Texts.translate(
+                                                      Texts
+                                                          .studentHomeProfileAboutUsDetailsText,
+                                                      context),
                                                   style: TextStyles
                                                       .studentHomeProfilePersonalAccountTextStyle,
                                                 ),
@@ -611,7 +650,10 @@ class ProfileScreen extends StatelessWidget {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 15.0),
                                           child: Text(
-                                            Texts.translate(Texts.studentHomeProfileAboutUsText, context),
+                                            Texts.translate(
+                                                Texts
+                                                    .studentHomeProfileAboutUsText,
+                                                context),
                                             style: TextStyles
                                                 .studentHomeProfilePersonalAccountTextStyle,
                                           ),
@@ -627,11 +669,13 @@ class ProfileScreen extends StatelessWidget {
                                                   width: width * 0.9,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(
-                                                      color: AppColor.roseMadder,
+                                                      color:
+                                                          AppColor.roseMadder,
                                                       width: 2.0,
                                                     ),
                                                     borderRadius:
-                                                        BorderRadius.circular(20),
+                                                        BorderRadius.circular(
+                                                            20),
                                                     color: AppColor.white,
                                                     boxShadow: <BoxShadow>[
                                                       BoxShadow(
@@ -645,30 +689,40 @@ class ProfileScreen extends StatelessWidget {
                                                   ),
                                                   child: Column(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       CircleAvatar(
-                                                        backgroundColor: AppColor
-                                                            .roseMadder
-                                                            .withOpacity(0.1),
+                                                        backgroundColor:
+                                                            AppColor.roseMadder
+                                                                .withOpacity(
+                                                                    0.1),
                                                         child: const FaIcon(
-                                                          FontAwesomeIcons.heart,
-                                                          color:
-                                                              AppColor.roseMadder,
+                                                          FontAwesomeIcons
+                                                              .heart,
+                                                          color: AppColor
+                                                              .roseMadder,
                                                         ),
                                                       ),
                                                       Text(
-                                                        Texts.translate(Texts.studentHomeProfileAboutUsText, context),
+                                                        Texts.translate(
+                                                            Texts
+                                                                .studentHomeProfileAboutUsText,
+                                                            context),
                                                         style: TextStyles
                                                             .studentHomeProfilePersonalAccountTextStyle,
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets.all(
+                                                            const EdgeInsets
+                                                                .all(
                                                           15.0,
                                                         ),
                                                         child: Text(
-                                                          Texts.translate(Texts.studentHomeProfileAboutUsDetailsText, context),
+                                                          Texts.translate(
+                                                              Texts
+                                                                  .studentHomeProfileAboutUsDetailsText,
+                                                              context),
                                                           style: TextStyles
                                                               .studentHomeProfilePersonalAccountTextStyle,
                                                         ),
@@ -681,7 +735,8 @@ class ProfileScreen extends StatelessWidget {
                                           },
                                           icon: Icon(
                                             Icons.arrow_forward_ios,
-                                            color: AppColor.grey.withOpacity(0.6),
+                                            color:
+                                                AppColor.grey.withOpacity(0.6),
                                           ),
                                         ),
                                       ],
