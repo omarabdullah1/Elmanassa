@@ -1,9 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:edumaster/data/models/course_dashboard_model.dart';
-import 'package:edumaster/main.dart';
-import 'package:edumaster/presentation/widget/back_button.dart';
-import 'package:edumaster/presentation/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,9 +8,13 @@ import '../../../../business_logic/student_home_cubit/student_home_state.dart';
 import '../../../../constants/end_points.dart';
 import '../../../../data/local/args.dart';
 import '../../../../constants/screens.dart';
+import '../../../../data/models/course_dashboard_model.dart';
 import '../../../../generated/assets.dart';
+import '../../../../main.dart';
 import '../../../styles/colors.dart';
 import '../../../styles/texts.dart';
+import '../../../widget/back_button.dart';
+import '../../../widget/custom_app_bar.dart';
 import '../../../widget/flat_button.dart';
 
 class CourseDashboardScreen extends StatelessWidget {

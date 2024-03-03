@@ -1,6 +1,3 @@
-import 'package:edumaster/presentation/styles/icons.dart';
-import 'package:edumaster/presentation/widget/custom_app_bar.dart';
-import 'package:edumaster/presentation/widget/custom_elevation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +11,8 @@ import '../../../main.dart';
 import '../../screens/shared/placeholders.dart';
 import '../../styles/colors.dart';
 import '../../styles/texts.dart';
+import '../../widget/custom_app_bar.dart';
+import '../../widget/custom_elevation.dart';
 
 class StudentLayoutScreen extends StatelessWidget {
   const StudentLayoutScreen({Key? key}) : super(key: key);

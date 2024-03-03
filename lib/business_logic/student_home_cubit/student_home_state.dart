@@ -1,14 +1,14 @@
-import 'package:edumaster/data/models/course_dashboard_model.dart';
-import 'package:edumaster/data/models/course_details_model.dart';
-import 'package:edumaster/data/models/course_subscriptions_model.dart';
-import 'package:edumaster/data/models/levels_model.dart';
-import 'package:edumaster/data/models/quiz_model.dart';
-import 'package:edumaster/data/models/quizs_degrees_model.dart';
-import 'package:edumaster/data/models/subscribe_model.dart';
-import 'package:edumaster/data/models/support_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/account_model.dart';
+import '../../data/models/course_dashboard_model.dart';
+import '../../data/models/course_details_model.dart';
+import '../../data/models/course_subscriptions_model.dart';
+import '../../data/models/levels_model.dart';
+import '../../data/models/quiz_model.dart';
+import '../../data/models/quizs_degrees_model.dart';
+import '../../data/models/subscribe_model.dart';
+import '../../data/models/support_model.dart';
 
 @immutable
 abstract class StudentHomeState {}

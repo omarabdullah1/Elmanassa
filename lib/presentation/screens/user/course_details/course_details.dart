@@ -1,10 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:edumaster/data/local/cache_helper.dart';
-import 'package:edumaster/presentation/widget/back_button.dart';
-import 'package:edumaster/presentation/widget/custom_app_bar.dart';
-import 'package:edumaster/presentation/widget/unit_card_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,12 +8,15 @@ import '../../../../business_logic/student_home_cubit/student_home_cubit.dart';
 import '../../../../business_logic/student_home_cubit/student_home_state.dart';
 import '../../../../constants/end_points.dart';
 import '../../../../data/local/args.dart';
+import '../../../../data/local/cache_helper.dart';
 import '../../../../generated/assets.dart';
 import '../../../../constants/screens.dart';
 import '../../../styles/colors.dart';
 import '../../../styles/texts.dart';
+import '../../../widget/back_button.dart';
+import '../../../widget/custom_app_bar.dart';
 import '../../../widget/custom_elevation.dart';
-import '../../../widget/flat_button.dart';
+import '../../../widget/unit_card_builder.dart';
 
 class CourseDetailsScreen extends StatelessWidget {
   const CourseDetailsScreen({

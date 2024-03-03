@@ -1,5 +1,3 @@
-import 'package:edumaster/presentation/screens/user/personal_account/personal_account_screen.dart';
-import 'package:edumaster/presentation/screens/user/support/support_screen.dart';
 import 'package:flutter/material.dart';
 import '../../data/local/args.dart';
 import '../layouts/parent_layout/parent_layout_screen.dart';
@@ -12,10 +10,12 @@ import '../screens/shared/splash_screen.dart';
 import '../screens/user/course_dashboard/course_dashboard.dart';
 import '../screens/user/course_details/course_details.dart';
 import '../screens/user/degree/degree_screen.dart';
+import '../screens/user/personal_account/personal_account_screen.dart';
 import '../screens/user/profile/profile_screen.dart';
 import '../screens/user/quiz/quiz_screen.dart';
 import '../screens/user/quiz_home/quiz_home.dart';
 import '../screens/user/subscription/subscription_screen.dart';
+import '../screens/user/support/support_screen.dart';
 import '../screens/user/video_screen/video_screen.dart';
 import '../../constants/screens.dart';
 

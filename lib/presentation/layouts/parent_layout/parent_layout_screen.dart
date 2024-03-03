@@ -1,6 +1,6 @@
-import 'package:edumaster/business_logic/parent_home_cubit/parent_home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../business_logic/parent_home_cubit/parent_home_cubit.dart';
 import '../../styles/colors.dart';
 
 class ParentLayoutScreen extends StatelessWidget {

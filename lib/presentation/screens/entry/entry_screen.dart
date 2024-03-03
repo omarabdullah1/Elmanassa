@@ -1,12 +1,12 @@
-import 'package:edumaster/presentation/styles/colors.dart';
-import 'package:edumaster/presentation/widget/custom_elevation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../business_logic/global_cubit/global_cubit.dart';
 import '../../../generated/assets.dart';
 import '../../../constants/screens.dart';
+import '../../styles/colors.dart';
 import '../../styles/texts.dart';
+import '../../widget/custom_elevation.dart';
 
 class EntryScreen extends StatelessWidget {
   const EntryScreen({super.key});
