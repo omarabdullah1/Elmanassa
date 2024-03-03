@@ -1,8 +1,8 @@
-import 'package:edumaster/main.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/local/args.dart';
 import '../../data/models/course_details_model.dart';
+import '../../main.dart';
 import '../styles/colors.dart';
 import '../styles/texts.dart';
 

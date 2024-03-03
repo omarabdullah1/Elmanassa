@@ -1,9 +1,10 @@
 import 'package:barcode_widget/barcode_widget.dart';
-import 'package:edumaster/business_logic/parent_home_cubit/parent_home_cubit.dart';
-import 'package:edumaster/data/local/cache_helper.dart';
-import 'package:edumaster/presentation/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../business_logic/parent_home_cubit/parent_home_cubit.dart';
+import '../../../../data/local/cache_helper.dart';
+import '../../../styles/colors.dart';
 
 class ParentHomeScreen extends StatelessWidget {
   const ParentHomeScreen({Key? key}) : super(key: key);

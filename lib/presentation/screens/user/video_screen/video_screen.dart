@@ -1,5 +1,4 @@
 // video_screen.dart
-import 'package:edumaster/presentation/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +6,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../business_logic/video_cubit/video_cubit.dart';
 import '../../../../data/local/args.dart';
+import '../../../styles/colors.dart';
 import '../../../widget/custom_app_bar.dart';
 import '../../../widget/flat_button.dart';
 

@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:edumaster/presentation/router/app_router.dart';
-import 'package:edumaster/presentation/styles/colors.dart';
-import 'package:edumaster/presentation/widget/toast.dart';
+import 'package:droosak/presentation/router/app_router.dart';
+import 'package:droosak/presentation/styles/colors.dart';
+import 'package:droosak/presentation/widget/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

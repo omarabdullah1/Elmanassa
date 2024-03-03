@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:edumaster/data/local/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../../../business_logic/student_home_cubit/student_home_cubit.dart';
 import '../../../../business_logic/student_home_cubit/student_home_state.dart';
 import '../../../../constants/end_points.dart';

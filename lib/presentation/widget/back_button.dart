@@ -1,6 +1,6 @@
-import 'package:edumaster/main.dart';
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
 import '../styles/colors.dart';
 
 class BackButtonWidget extends StatelessWidget {

@@ -1,19 +1,17 @@
 import 'package:barcode_widget/barcode_widget.dart';
-import 'package:edumaster/presentation/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../business_logic/student_home_cubit/student_home_cubit.dart';
 import '../../../../business_logic/student_home_cubit/student_home_state.dart';
-import '../../../../data/local/cache_helper.dart';
 import '../../../../constants/screens.dart';
 import '../../../../generated/assets.dart';
 import '../../../styles/colors.dart';
 import '../../../styles/texts.dart';
 import '../../../widget/back_button.dart';
-import '../../../widget/custom_elevation.dart';
-import '../../../widget/flat_button.dart';
+import '../../../widget/custom_app_bar.dart';
+
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);

@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart'
     show CachedNetworkImage;
-import 'package:edumaster/main.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/local/args.dart';
 import '../../data/local/cache_helper.dart';
 import '../../data/models/courses_model.dart';
 import '../../constants/screens.dart';
+import '../../main.dart';
 import '../styles/colors.dart';
 import '../styles/texts.dart';
 import 'custom_elevation.dart';

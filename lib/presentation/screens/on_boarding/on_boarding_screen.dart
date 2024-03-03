@@ -1,5 +1,3 @@
-import 'package:edumaster/presentation/styles/colors.dart';
-import 'package:edumaster/presentation/styles/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -9,6 +7,8 @@ import '../../../data/local/cache_helper.dart';
 import '../../../generated/assets.dart';
 import '../../../constants/screens.dart';
 import '../../../main.dart';
+import '../../styles/colors.dart';
+import '../../styles/texts.dart';
 import '../../widget/custom_elevation.dart';
 
 class BoardingModel {
