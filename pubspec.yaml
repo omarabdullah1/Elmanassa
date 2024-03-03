@@ -1,4 +1,4 @@
-name: edumaster
+name: droosak
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -27,6 +27,7 @@ dependencies:
   timer_count_down: ^2.2.2
   url_launcher: ^6.2.4
   shimmer: ^3.0.0
+
 
 
   video_player: ^2.8.1
