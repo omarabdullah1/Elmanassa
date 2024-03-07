@@ -85,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                 LayoutBuilder(builder: (context, constraints) {
                   return MaterialApp(
                     // debugShowCheckedModeBanner: false,
-                    title: 'Elmanassa',
+                    title: 'Droosak Online',
                     localizationsDelegates: [
                       AppLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,
@@ -108,11 +108,9 @@ class _MyAppState extends State<MyApp> {
                         cursorColor: AppColor.babyBlue,
                         selectionColor: AppColor.babyBlue,
                       ),
-                      radioTheme: RadioThemeData(
-                        fillColor: MaterialStateColor.resolveWith(
-                          (states) => AppColor.indigoDye,
-                        ),
-                      ),
+                      radioTheme: RadioThemeData(fillColor: MaterialStateColor.resolveWith(
+                        (states) => AppColor.indigoDye,
+                      )),
                       // splashColor: AppColor.indigoDye,
                       //scaffoldBackgroundColor: AppColors.white,
                       appBarTheme: const AppBarTheme(
