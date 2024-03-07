@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../business_logic/student_home_cubit/student_home_cubit.dart';
 import '../../../../business_logic/student_home_cubit/student_home_state.dart';
 import '../../../../constants/end_points.dart';
