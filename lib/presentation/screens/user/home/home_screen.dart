@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../business_logic/student_home_cubit/student_home_cubit.dart';
 import '../../../../business_logic/student_home_cubit/student_home_state.dart';
 import '../../../../constants/end_points.dart';
+import '../../../../data/local/cache_helper.dart';
 import '../../../../generated/assets.dart';
 import '../../../styles/colors.dart';
 import '../../../styles/texts.dart';
@@ -30,6 +31,8 @@ class HomeScreen extends StatelessWidget {
               child: RefreshIndicator(
                 color: AppColor.indigoDye,
                 onRefresh: () async {
+                  // print(CacheHelper.sharedPreferences.get('token').toString());
+                  // print(CacheHelper.sharedPreferences.get('id').toString());
                   await Future.wait([
                     studentHomeCubit.getCourses(),
                     studentHomeCubit.getBanners(),

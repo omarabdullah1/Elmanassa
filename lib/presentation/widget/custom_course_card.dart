@@ -59,7 +59,7 @@ class CustomMyCourseWidget extends StatelessWidget {
                           fit: StackFit.expand,
                           children: [
                             CachedNetworkImage(
-                              imageUrl: '$domain/${course!.thumbnail!}',
+                              imageUrl: '$domain/${course!.image!}',
                               fit: BoxFit.cover,
                               // progressIndicatorBuilder: (context, url, downloadProgress) =>
                               //     CircularProgressIndicator(value: downloadProgress.progress),

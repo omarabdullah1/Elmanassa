@@ -71,22 +71,6 @@ class SubscriptionScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
                     children: [
-                      const BackButtonWidget(),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: SizedBox(
-                          height: 35.0,
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: Center(
-                            child: Text(
-                              Texts.translate(Texts.studentHomeCourseSubscribeScreenTitleText, context),
-                              style: TextStyles.studentHomeHomepageStyle,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
                       Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: SizedBox(
@@ -98,6 +82,25 @@ class SubscriptionScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: SizedBox(
+                          height: 35.0,
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Center(
+                            child: Text(
+                              Texts.translate(Texts.studentHomeCourseSubscribeScreenTitleText, context),
+                              style: TextStyles.studentHomeHomepageStyle,
+                              maxLines: 1,
+                              softWrap: true,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      const BackButtonWidget(),
                     ],
                   ),
                 ),
@@ -268,7 +271,7 @@ class SubscriptionScreen extends StatelessWidget {
                     Container(
                       width: width,
                       constraints: BoxConstraints(
-                        minHeight: height * 0.52,
+                        minHeight: height -350,
                       ),
                       decoration: const BoxDecoration(
                         color: AppColor.white,

@@ -752,6 +752,8 @@ class StudentHomeCubit extends Cubit<StudentHomeState> {
       print(quizQuestionSelectedValuesList);
       CacheHelper.sharedPreferences.setString('quizQuestionSelectedValuesList',
           quizQuestionSelectedValuesList.toString());
+      print(value.data.toString());
+
       emit(SubmitQuizQuesSuccessState());
     }).catchError((error) {
       print(error.toString());

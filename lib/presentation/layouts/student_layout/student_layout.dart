@@ -374,11 +374,11 @@ class StudentLayoutScreen extends StatelessWidget {
                       ),
                       BottomNavigationBarItem(
                         activeIcon: Icon(
-                          Icons.book,
+                          Icons.menu_book_outlined,
                           color: AppColor.indigoDye,
                         ),
                         icon: Icon(
-                          Icons.menu_book_outlined,
+                          Icons.book,
                           color: AppColor.babyBlue,
                         ),
                         label: 'My Courses',
@@ -754,7 +754,7 @@ class StudentLayoutScreen extends StatelessWidget {
                           color: AppColor.indigoDye,
                         ),
                         icon: Icon(
-                          Icons.menu_book,
+                          Icons.book,
                           color: AppColor.babyBlue,
                         ),
                         label: 'My Courses',

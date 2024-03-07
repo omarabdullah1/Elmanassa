@@ -71,13 +71,16 @@ class ProfileScreen extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
-                    child: Text(
-                      Texts.translate(
-                          Texts.studentHomeProfilePageText, context),
-                      style: TextStyles.studentHomeHomepageStyle,
-                      maxLines: 1,
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
+                    child: Align(
+                      alignment: AlignmentDirectional.center,
+                      child: Text(
+                        Texts.translate(
+                            Texts.studentHomeProfilePageText, context),
+                        style: TextStyles.studentHomeHomepageStyle,
+                        maxLines: 1,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                   const Spacer(),

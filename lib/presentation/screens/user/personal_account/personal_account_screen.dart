@@ -32,21 +32,27 @@ class PersonalAccountScreen extends StatelessWidget {
               backgroundColor: AppColor.babyBlue,
               appBar: CustomAppBar(
                   appBarWidget: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const BackButtonWidget(),
+                  const SizedBox(
+                    width: 40.0,
+                  ),
                   const Spacer(),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.4,
+                    width: MediaQuery.of(context).size.width * 0.5,
                     child: Align(
-                      alignment: AlignmentDirectional.centerStart,
+                      alignment: AlignmentDirectional.center,
                       child: Text(
                         Texts.translate(Texts.studentHomeProfilePageText, context),
                         style: TextStyles.studentHomeHomepageStyle,
+                        maxLines: 1,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
                   const Spacer(),
+                  const BackButtonWidget(),
                 ],
               )),
               body: LayoutBuilder(builder: (context, constraints) {
@@ -95,28 +101,25 @@ class PersonalAccountScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15.0),
-                                  child: SizedBox(
-                                    height: 40.0,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '${studentHomeCubit.profileModel!.profile!.firstName!} ${studentHomeCubit.profileModel!.profile!.lastName!}',
-                                          style: TextStyles
-                                              .studentHomeProfileNameTextStyle,
-                                        ),
-                                        Text(
-                                          studentHomeCubit.profileModel!
-                                                      .profile!.role ==
-                                                  'student'
-                                              ? Texts.translate(Texts.studentText, context)
-                                              : Texts.translate(Texts.parentText, context),
-                                          style: TextStyles
-                                              .studentHomeProfileTypeTextStyle,
-                                        )
-                                      ],
-                                    ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${studentHomeCubit.profileModel!.profile!.firstName!} ${studentHomeCubit.profileModel!.profile!.lastName!}',
+                                        style: TextStyles
+                                            .studentHomeProfileNameTextStyle,
+                                      ),
+                                      Text(
+                                        studentHomeCubit.profileModel!
+                                                    .profile!.role ==
+                                                'student'
+                                            ? Texts.translate(Texts.studentText, context)
+                                            : Texts.translate(Texts.parentText, context),
+                                        style: TextStyles
+                                            .studentHomeProfileTypeTextStyle,
+                                      )
+                                    ],
                                   ),
                                 )
                               ],

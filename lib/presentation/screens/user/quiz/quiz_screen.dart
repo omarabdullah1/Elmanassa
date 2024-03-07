@@ -50,11 +50,15 @@ class QuizScreen extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
-                    child: Center(
+                    child: Align(
+                      alignment: AlignmentDirectional.center,
                       child: Text(
                         Texts.translate(
                             Texts.studentHomeQuizScreenText, context),
                         style: TextStyles.studentHomeHomepageStyle,
+                        maxLines: 1,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
@@ -188,7 +192,7 @@ class QuizScreen extends StatelessWidget {
                                     SizedBox(
                                       width: MediaQuery.of(context).size.width *
                                           0.6,
-                                      height: 40.0,
+                                      // height: 40.0,
                                       child: CustomFormField(
                                         controller:
                                             studentHomeCubit.quizCodeController,

@@ -29,21 +29,28 @@ class SupportScreen extends StatelessWidget {
               backgroundColor: AppColor.babyBlue,
               appBar: CustomAppBar(
                   appBarWidget: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const BackButtonWidget(),
+                  const SizedBox(
+                    width: 40.0,
+                  ),
                   const Spacer(),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.35,
                     child: Align(
-                      alignment: AlignmentDirectional.centerStart,
+                      alignment: AlignmentDirectional.center,
                       child: Text(
-                        Texts.translate(Texts.studentHomeSupportScreenText, context),
+                        Texts.translate(
+                            Texts.studentHomeSupportScreenText, context),
                         style: TextStyles.studentHomeHomepageStyle,
+                        maxLines: 1,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
                   const Spacer(),
+                  const BackButtonWidget(),
                 ],
               )),
               body: RefreshIndicator(
@@ -75,8 +82,13 @@ class SupportScreen extends StatelessWidget {
                                 vertical: 20.0,
                               ),
                               child: Text(
-                                Texts.translate(Texts.studentHomeSupportSubtitleText, context),
-                                textAlign: delegate.currentLocale.languageCode == 'ar' ? TextAlign.right : TextAlign.left,
+                                Texts.translate(
+                                    Texts.studentHomeSupportSubtitleText,
+                                    context),
+                                textAlign:
+                                    delegate.currentLocale.languageCode == 'ar'
+                                        ? TextAlign.right
+                                        : TextAlign.left,
                                 style: TextStyles
                                     .studentHomeSupportSubtitleTextStyle,
                               ),
@@ -137,7 +149,6 @@ class SupportScreen extends StatelessWidget {
                                       InkWell(
                                         onTap: () => UrlLauncher.launch(
                                             "mailto://${studentHomeCubit.supportModel!.supportInfo![1]!.value!.toString()}"),
-
                                         child: SizedBox(
                                           width: width * 0.38,
                                           child: Column(
@@ -197,8 +208,10 @@ class SupportScreen extends StatelessWidget {
                                                 FontAwesomeIcons.whatsapp,
                                                 color: AppColor.green,
                                               ),
-                                              Text(studentHomeCubit.supportModel!
-                                                  .supportInfo![2]!.value!
+                                              Text(studentHomeCubit
+                                                  .supportModel!
+                                                  .supportInfo![2]!
+                                                  .value!
                                                   .toString()),
                                             ],
                                           ),
@@ -216,7 +229,6 @@ class SupportScreen extends StatelessWidget {
                                       InkWell(
                                         onTap: () => UrlLauncher.launch(
                                             "https://www.facebook.com/${studentHomeCubit.supportModel!.supportInfo![3]!.value!.toString()}"),
-
                                         child: SizedBox(
                                           width: width * 0.38,
                                           child: Column(
@@ -227,8 +239,10 @@ class SupportScreen extends StatelessWidget {
                                                 Icons.facebook,
                                                 color: AppColor.indigoDye,
                                               ),
-                                              Text(studentHomeCubit.supportModel!
-                                                  .supportInfo![3]!.value!
+                                              Text(studentHomeCubit
+                                                  .supportModel!
+                                                  .supportInfo![3]!
+                                                  .value!
                                                   .toString()),
                                             ],
                                           ),

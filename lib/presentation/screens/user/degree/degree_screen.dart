@@ -28,21 +28,27 @@ class DegreesScreen extends StatelessWidget {
             return Scaffold(
               appBar: CustomAppBar(
                   appBarWidget: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const BackButtonWidget(),
+                  const SizedBox(
+                    width: 40.0,
+                  ),
                   const Spacer(),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3,
+                    width: MediaQuery.of(context).size.width * 0.5,
                     child: Align(
-                      alignment: AlignmentDirectional.centerStart,
+                      alignment: AlignmentDirectional.center,
                       child: Text(
                         Texts.translate(Texts.studentHomeDegreesScreenText, context),
                         style: TextStyles.studentHomeHomepageStyle,
+                        maxLines: 1,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
                   const Spacer(),
+                  const BackButtonWidget(),
                 ],
               )),
               backgroundColor: AppColor.babyBlue,

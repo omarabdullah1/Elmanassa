@@ -228,7 +228,7 @@ class CourseDashboardScreen extends StatelessWidget {
                       Container(
                         width: width,
                         constraints: BoxConstraints(
-                          minHeight: height * 0.572,
+                          minHeight: height -280,
                         ),
                         decoration: const BoxDecoration(
                           color: AppColor.white,
