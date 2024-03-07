@@ -167,7 +167,7 @@ class GlobalCubit extends Cubit<GlobalState> {
         'phone': phone,
         'gender': genderListEN[genderList.indexOf(selectedGender!)],
         'level_id': allLevelsId![allLevelsTitle.indexOf(selectedLevel!)-1]
-      },.
+      },
     ).then((value) {
       studentRegisterModel = StudentRegisterModel.fromJson(value.data);
       log(value.data.toString());
