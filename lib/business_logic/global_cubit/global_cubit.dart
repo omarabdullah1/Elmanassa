@@ -166,7 +166,7 @@ class GlobalCubit extends Cubit<GlobalState> {
         'password': password,
         'phone': phone,
         'gender': genderListEN[genderList.indexOf(selectedGender!)],
-        'level_id': allLevelsId![allLevelsTitle.indexOf(selectedLevel!)]
+        'level_id': allLevelsId![allLevelsTitle.indexOf(selectedLevel!)-1]
       },
     ).then((value) {
       studentRegisterModel = StudentRegisterModel.fromJson(value.data);
@@ -232,7 +232,7 @@ class GlobalCubit extends Cubit<GlobalState> {
 
   Future<void> getLevels() async {
     emit(GetLevelsLoadingState());
-
+    print('iam here');
     await DioHelper.getData(
       url: levels,
     ).then((value) {
@@ -319,6 +319,8 @@ class GlobalCubit extends Cubit<GlobalState> {
   }
 
   void changeLocalState() {
+    // print('gender: ${genderListEN[genderList.indexOf(selectedGender!)]}');
+    // print('level: ${allLevelsId![allLevelsTitle.indexOf(selectedLevel!)-1]}');
     emit(AppChangeLocalState());
   }
 
