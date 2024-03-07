@@ -12,7 +12,6 @@ import '../../../styles/texts.dart';
 import '../../../widget/back_button.dart';
 import '../../../widget/custom_app_bar.dart';
 
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
